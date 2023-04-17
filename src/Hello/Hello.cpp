@@ -29,7 +29,7 @@ namespace {
 
     bool runOnFunction(Function &F) override {
       ++HelloCounter;
-      errs() << "Hello!!!: ";
+      errs() << "Hello: ";
       errs().write_escaped(F.getName()) << '\n';
       return false;
     }
@@ -47,7 +47,7 @@ namespace {
 
     bool runOnFunction(Function &F) override {
       ++HelloCounter;
-      errs() << "Hello!!!: ";
+      errs() << "Hello: ";
       errs().write_escaped(F.getName()) << '\n';
       return false;
     }

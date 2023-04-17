@@ -42,13 +42,13 @@ RUN cmake -DCMAKE_BUILD_TYPE=Debug \
 RUN export NINJA_STATUS="%e[%f/%t] "
 RUN ninja
 
-
-# --- Link Hello Dir to work directory ---
 RUN rm -r /home/devblade/llvm-project-16.0.1.src/llvm/lib/Transforms/Hello
 RUN ln -s /home/devblade/work/src/Hello /home/devblade/llvm-project-16.0.1.src/llvm/lib/Transforms/Hello
 
+
 # --- Custom shell config ---
+USER devblade
 WORKDIR /home/devblade
 RUN rm /home/devblade/.bashrc
-RUN wget "" -O /home/devblade/.bashrc
+COPY ./config/.bashrc /home/devblade/.bashrc
 
