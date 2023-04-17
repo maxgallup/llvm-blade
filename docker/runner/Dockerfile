@@ -22,7 +22,8 @@ RUN mkdir -p /llvm/src
 RUN cp -r /home/devblade/llvm-project-16.0.1.src /llvm/src/llvm-project
 
 USER devblade
-# Build LLVM
+
+# --- Build LLVM ---
 WORKDIR /home/devblade/llvm-project-16.0.1.src
 RUN mkdir build
 WORKDIR /home/devblade/llvm-project-16.0.1.src/build
@@ -30,7 +31,7 @@ RUN export CC=clang
 RUN export CXX=clang++
 RUN cmake -DCMAKE_BUILD_TYPE=Debug \
 	-DLLVM_USE_SANITIZER="Address" \
-	# -DLLVM_USE_SANITIZER="Address;Undefined" \ // Currently not working
+	# -DLLVM_USE_SANITIZER="Address;Undefined" \ // Currently not compiling
 	-DLLVM_ENABLE_ASSERTIONS=On \
 	-DLLVM_ENABLE_PROJECTS=clang \
 	-DLLVM_TARGETS_TO_BUILD="X86" \
@@ -41,9 +42,13 @@ RUN cmake -DCMAKE_BUILD_TYPE=Debug \
 RUN export NINJA_STATUS="%e[%f/%t] "
 RUN ninja
 
-# Custom shell config
-WORKDIR /home/devblade
-COPY ./config/.bash_aliases /home/devblade
-COPY ./config/.bashrc /home/devblade
 
+# --- Link Hello Dir to work directory ---
+RUN rm -r /home/devblade/llvm-project-16.0.1.src/llvm/lib/Transforms/Hello
+RUN ln -s /home/devblade/work/src/Hello /home/devblade/llvm-project-16.0.1.src/llvm/lib/Transforms/Hello
+
+# --- Custom shell config ---
+WORKDIR /home/devblade
+RUN rm /home/devblade/.bashrc
+RUN wget "" -O /home/devblade/.bashrc
 
