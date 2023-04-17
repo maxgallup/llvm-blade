@@ -42,3 +42,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export NINJA_STATUS="%e[%f/%t] "
