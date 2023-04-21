@@ -15,15 +15,15 @@ RUN wget "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.1/
 RUN tar xf llvm.tar.xz
 RUN rm llvm.tar.xz
 
-USER root
 
 # Setup the LLVM source for debuggers to use.
+USER root
 RUN mkdir -p /llvm/src
 RUN cp -r /home/devblade/llvm-project-16.0.1.src /llvm/src/llvm-project
 
-USER devblade
 
 # --- Build LLVM ---
+USER devblade
 WORKDIR /home/devblade/llvm-project-16.0.1.src
 RUN mkdir build
 WORKDIR /home/devblade/llvm-project-16.0.1.src/build
@@ -42,9 +42,10 @@ RUN cmake -DCMAKE_BUILD_TYPE=Debug \
 RUN export NINJA_STATUS="%e[%f/%t] "
 RUN ninja
 
-RUN rm -r /home/devblade/llvm-project-16.0.1.src/llvm/lib/Transforms/Hello
-RUN ln -s /home/devblade/work/src/Hello /home/devblade/llvm-project-16.0.1.src/llvm/lib/Transforms/Hello
-
+# -- Install LLVM --
+WORKDIR /home/devblade/llvm-project-16.0.1.src/build
+USER root
+RUN ninja install
 
 # --- Custom shell config ---
 USER devblade

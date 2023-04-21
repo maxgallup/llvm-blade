@@ -78,10 +78,11 @@ alias tk="tmux kill-server"
 alias myip='curl ifconfig.me'
 
 # Custom build LLVM tools:
-alias opt='/home/devblade/llvm-project-16.0.1.src/build/bin/opt'
+alias myopt='/home/devblade/llvm-project-16.0.1.src/build/bin/opt'
 
 # easily recompile from any dir
 alias recompile='cd /home/devblade/llvm-project-16.0.1.src/build && ninja'
 
 
 export NINJA_STATUS="%e[%f/%t] "
+
