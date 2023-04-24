@@ -23,6 +23,6 @@ cmake -DCMAKE_BUILD_TYPE=Debug \
 	-DCLANG_ENABLE_ARCMT=OFF \
 	-G Ninja "$WORKDIR/llvm-project-16.0.1.src/llvm"
 
-ninja
+# ninja
 
-sudo ninja install
+# sudo ninja install
