@@ -35,11 +35,11 @@ alias tk="tmux kill-server"
 alias myip='curl ifconfig.me'
 
 # Custom build LLVM tools:
-# alias myopt='/home/devblade/work/llvm-project-16.0.1.src/build/bin/opt'
+# alias myopt='/home/devblade/build/bin/opt'
 
-alias myopt='export UBSAN_OPTIONS=print_stacktrace=true; /home/devblade/work/llvm-project-16.0.1.src/build/bin/opt -load "/home/devblade/work/src/obj/LLVMBlade.so" -S "$@"'
+alias myopt='export UBSAN_OPTIONS=print_stacktrace=true; /home/devblade/build/bin/opt -load "/home/devblade/work/obj/LLVMBlade.so" -S "$@"'
 
 # easily recompile from any dir
-alias recompile='cd /home/devblade/work/llvm-project-16.0.1.src/build && ninja --verbose && cd -'
+alias recompile='cd /home/devblade/build && ninja --verbose && cd -'
 
 
