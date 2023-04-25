@@ -42,9 +42,9 @@ alias myip='curl ifconfig.me'
 
 alias myopt='export UBSAN_OPTIONS=print_stacktrace=true; /home/devblade/build/bin/opt -S "$@"'
 
-
+alias ctollvm='/home/devblade/work/scripts/c-to-llvm.sh'
 
 # easily recompile from any dir
-alias recompile='cd /home/devblade/build && ninja opt && cd -'
+alias recompile='ninja -C /home/devblade/build opt ; cd /home/devblade/work'
 
 
