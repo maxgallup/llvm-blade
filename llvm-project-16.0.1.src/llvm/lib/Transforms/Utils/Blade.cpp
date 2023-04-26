@@ -57,8 +57,8 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
         for (User *U : I.users()) {
           if (Instruction *Inst = dyn_cast<Instruction>(U)) {
             if (Inst->getOpcode() == Instruction::Load) {
-              B("\t\tUsed as Array Index: " << *Inst);
-              markInstStable(Inst);
+              B("\t\t" << I << "is used as Array Index");
+              markInstStable(&I);
             }
           }
         }
