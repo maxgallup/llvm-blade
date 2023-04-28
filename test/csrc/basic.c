@@ -16,6 +16,8 @@ int main() {
 	int some_number = rand() % 5;
 	int some_array[5] = {1,2,3,4,5};
 	int x = some_array[some_number];
+
+	
 	return x;
 }
 

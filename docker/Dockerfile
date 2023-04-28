@@ -1,7 +1,7 @@
 FROM archlinux:base-devel
 
 # Install some dependencies/debuggers/editors
-RUN pacman -Sy --noconfirm cmake vim gdb rsync nano tmux wget libedit git lld ninja libffi ncurses libxml2 clang
+RUN pacman -Sy --noconfirm cmake vim gdb rsync nano tmux wget libedit git lld ninja libffi ncurses libxml2 clang graphviz
 
 # Add a custom user and allow sudo
 RUN useradd devblade -u 1000 -m -s /bin/bash
