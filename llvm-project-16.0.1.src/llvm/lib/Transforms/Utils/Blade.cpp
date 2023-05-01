@@ -56,16 +56,12 @@ void markInstruction(Instruction *I) {
 
 void propgateMarks(Instruction *I) {
   if (I->hasMetadata("TRANSIENT")) {
-    // propgate transient to all uses
-
+    // propgate transient to all users
     for (User *U : I->users()) {
       if (Instruction *II = dyn_cast<Instruction>(U)) {
         markInstructionTransient(II);
       }
     }
-
-  } else if (I->hasMetadata("STABLE")) {
-    // not propgating stable marks
   }
 }
 

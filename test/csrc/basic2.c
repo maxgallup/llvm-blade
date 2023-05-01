@@ -1,22 +1,27 @@
 
 
+
+#include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+
 
 
 int main() {
-
-	char some_array[5] = {1,2,3,4,5};
-	char *bad_array = calloc(10, sizeof(char));
+	srand(time(0));
+	int some_number = rand() % 5;
+	int some_number2 = rand() % 5;
+	int some_array[5] = {1,2,3,4,5};
 	
-	int this_is_an_index = 0;
+	
+	int x = some_array[some_number];
+	int y = some_array[some_number2];
 
-	char x = some_array[this_is_an_index];
-	char y = some_array[this_is_an_index];
+	int z = x + y;
 
-	char z = x + y;
+	int result = some_array[z % 5];
 
-	char secret = bad_array[z];
-
-	return 0;
+	return result;
 }
 

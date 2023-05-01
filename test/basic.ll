@@ -11,11 +11,11 @@ entry:
   %call = tail call i64 @time(ptr noundef null) #2
   %conv = trunc i64 %call to i32
   tail call void @srand(i32 noundef %conv) #2
-  %call1 = tail call i32 @rand() #2 ; TRANSIENT
-  %rem = srem i32 %call1, 5 ; [whatever call1 is]
-  %idxprom = sext i32 %rem to i64 ; [whatever rem is]
-  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom ; TRANSIENT STABLE
-  %0 = load i32, ptr %arrayidx, align 4, !tbaa !7 ; TRANSIENT
+  %call1 = tail call i32 @rand() #2
+  %rem = srem i32 %call1, 5
+  %idxprom = sext i32 %rem to i64
+  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom
+  %0 = load i32, ptr %arrayidx, align 4, !tbaa !7
   ret i32 %0
 }
 
