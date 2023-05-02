@@ -8,15 +8,15 @@ target triple = "x86_64-unknown-linux-gnu"
 ; Function Attrs: nounwind uwtable
 define dso_local i32 @main() local_unnamed_addr #0 {
 entry:
-  %call = tail call i64 @time(ptr noundef null) #2, !TRANSIENT !7
-  %conv = trunc i64 %call to i32, !TRANSIENT !7
-  tail call void @srand(i32 noundef %conv) #2, !TRANSIENT !7
-  %call1 = tail call i32 @rand() #2, !TRANSIENT !7
-  %rem = srem i32 %call1, 5, !TRANSIENT !7
-  %idxprom = sext i32 %rem to i64, !TRANSIENT !7
-  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom, !TRANSIENT !7, !STABLE !7
-  %0 = load i32, ptr %arrayidx, align 4, !tbaa !8, !TRANSIENT !7
-  ret i32 %0, !TRANSIENT !7
+  %call = tail call i64 @time(ptr noundef null) #2, !BLADE-T !7
+  %conv = trunc i64 %call to i32
+  tail call void @srand(i32 noundef %conv) #2, !BLADE-T !7
+  %call1 = tail call i32 @rand() #2, !BLADE-T !7
+  %rem = srem i32 %call1, 5
+  %idxprom = sext i32 %rem to i64
+  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom, !BLADE-S !8
+  %0 = load i32, ptr %arrayidx, align 4, !tbaa !9, !BLADE-T !7
+  ret i32 %0
 }
 
 ; Function Attrs: nounwind
@@ -42,8 +42,9 @@ attributes #2 = { nounwind }
 !4 = !{i32 1, !"ThinLTO", i32 0}
 !5 = !{i32 1, !"EnableSplitLTOUnit", i32 1}
 !6 = !{!"clang version 16.0.1 (git@github.com:maxgallup/llvm-blade.git 46a02438f168e189c789acdc03504ca8ee557a91)"}
-!7 = !{!"some metadata content"}
-!8 = !{!9, !9, i64 0}
-!9 = !{!"int", !10, i64 0}
-!10 = !{!"omnipotent char", !11, i64 0}
-!11 = !{!"Simple C/C++ TBAA"}
+!7 = !{!"Blade Transient"}
+!8 = !{!"Blade Stable"}
+!9 = !{!10, !10, i64 0}
+!10 = !{!"int", !11, i64 0}
+!11 = !{!"omnipotent char", !12, i64 0}
+!12 = !{!"Simple C/C++ TBAA"}

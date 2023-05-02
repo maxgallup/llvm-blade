@@ -26,7 +26,12 @@ entry:
   %idxprom7 = sext i32 %rem6 to i64
   %arrayidx8 = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom7
   %2 = load i32, ptr %arrayidx8, align 4, !tbaa !7
-  ret i32 %2
+  %rem9 = srem i32 %2, 2
+  %idxprom10 = sext i32 %rem9 to i64
+  %arrayidx11 = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom10
+  %3 = load i32, ptr %arrayidx11, align 4, !tbaa !7
+  %add12 = add nsw i32 %3, %2
+  ret i32 %add12
 }
 
 ; Function Attrs: nounwind
@@ -60,7 +65,7 @@ attributes #2 = { nounwind }
 ^0 = module: (path: "", hash: (0, 0, 0, 0, 0))
 ^1 = gv: (name: "time") ; guid = 3946912059654523911
 ^2 = gv: (name: "rand") ; guid = 7206085285791387956
-^3 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 19, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^4, relbf: 256), (callee: ^2, relbf: 512)), refs: (^5)))) ; guid = 15822663052811949562
+^3 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 24, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^4, relbf: 256), (callee: ^2, relbf: 512)), refs: (^5)))) ; guid = 15822663052811949562
 ^4 = gv: (name: "srand") ; guid = 16361127236386863736
 ^5 = gv: (name: "__const.main.some_array", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 17020009859615595810
 ^6 = flags: 8

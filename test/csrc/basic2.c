@@ -21,7 +21,8 @@ int main() {
 	int z = x + y;
 
 	int result = some_array[z % 5];
+	int result2 = some_array[result % 2];
 
-	return result;
+	return result + result2;
 }
 

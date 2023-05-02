@@ -17,26 +17,36 @@ using namespace llvm;
 #define E(X) errs() << "🔴 " << X << "\n"
 #define D(X) if(BLADE_DEBUG) errs() << "🟣 " << X << "\n"
 #define S(X) if(BLADE_DEBUG) errs() << "🟢 " << X << "\n"
-// #define B(X) if(BLADE_DEBUG) errs() << "🔵 " << X << "\n"
+
 
 // STATISTIC(NumTransient, "Number of transient Nodes added");
 // STATISTIC(NumStable, "Number of stable Nodes added");
 
+bool isStableInstruction(Instruction *Inst) {
+  return Inst->hasMetadata("BLADE-S");
+}
 
+bool isTransientInstruction(Instruction *Inst) {
+  return Inst->hasMetadata("BLADE-T");
+}
+
+bool isLeakyInstruction(Instruction *Inst) {
+  return Inst->hasMetadata("BLADE-S") && Inst->hasMetadata("BLADE-T");
+}
 
 void markInstructionStable(Instruction *Inst) {
-  if (!Inst->hasMetadata("STABLE")) {
+  if (!Inst->hasMetadata("BLADE-S")) {
     LLVMContext& C = Inst->getContext();
-    MDNode* N = MDNode::get(C, MDString::get(C, "some metadata content"));
-    Inst->setMetadata("STABLE", N);
+    MDNode* N = MDNode::get(C, MDString::get(C, "Blade Stable"));
+    Inst->setMetadata("BLADE-S", N);
   }
 }
 
 void markInstructionTransient(Instruction *Inst) {
-  if (!Inst->hasMetadata("TRANSIENT")) {
+  if (!Inst->hasMetadata("BLADE-T")) {
     LLVMContext& C = Inst->getContext();
-    MDNode* N = MDNode::get(C, MDString::get(C, "some metadata content"));
-    Inst->setMetadata("TRANSIENT", N);
+    MDNode* N = MDNode::get(C, MDString::get(C, "Blade Transient"));
+    Inst->setMetadata("BLADE-T", N);
   }
 }
 
@@ -55,7 +65,7 @@ void markInstruction(Instruction *I) {
 }
 
 void propgateMarks(Instruction *I) {
-  if (I->hasMetadata("TRANSIENT")) {
+  if (I->hasMetadata("BLADE-T")) {
     // propgate transient to all users
     for (User *U : I->users()) {
       if (Instruction *II = dyn_cast<Instruction>(U)) {
@@ -68,18 +78,36 @@ void propgateMarks(Instruction *I) {
 
 
 PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
-
+  // First pass to add marks 
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-
         markInstruction(&I);
-        propgateMarks(&I);
+        // propgateMarks(&I);
+      }
+    }
+  }
+
+  // Second pass to identify Transient -> Stable paths and isolate
+  for (Function &F : M) {
+    for (BasicBlock &BB : F) {
+      for (Instruction &I : BB) {
+        if (isTransientInstruction(&I)) {
+
+        }
+
+
+        // if (isLeakyInstruction(&I)) {
+        //   S("Leaky Instruction:");
+        // }
+        // D(I);
+        // if (isTransientInstruction(&I)) {
+
+        // }
 
       }
     }
   }
-  
 
   return PreservedAnalyses::all();
 }
