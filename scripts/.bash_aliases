@@ -47,4 +47,4 @@ alias ctollvm='/home/devblade/work/scripts/c-to-llvm.sh'
 # easily recompile from any dir
 alias recompile='ninja -C /home/devblade/build opt ; cd /home/devblade/work'
 
-
+alias gimme='/home/devblade/work/scripts/custom-run.sh'

@@ -50,7 +50,7 @@ void markInstructionTransient(Instruction *Inst) {
   }
 }
 
-void markInstruction(Instruction *I) {
+void markInstructions(Instruction *I) {
   if (I->getOpcode() == Instruction::Load || I->getOpcode() == Instruction::Call) {
     markInstructionTransient(I);
   }
@@ -82,7 +82,7 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        markInstruction(&I);
+        markInstructions(&I);
         // propgateMarks(&I);
       }
     }
