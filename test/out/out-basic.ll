@@ -3,7 +3,7 @@ source_filename = "basic.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
-@__const.main.some_array = private unnamed_addr constant [5 x i32] [i32 1, i32 2, i32 3, i32 4, i32 5], align 16
+@__const.main.a = private unnamed_addr constant [5 x i32] [i32 0, i32 1, i32 2, i32 3, i32 4], align 16
 
 ; Function Attrs: nounwind uwtable
 define dso_local i32 @main() local_unnamed_addr #0 {
@@ -14,9 +14,12 @@ entry:
   %call1 = tail call i32 @rand() #2, !BLADE-T !7
   %rem = srem i32 %call1, 5
   %idxprom = sext i32 %rem to i64
-  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom, !BLADE-S !8
+  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom, !BLADE-S !8
   %0 = load i32, ptr %arrayidx, align 4, !tbaa !9, !BLADE-T !7
-  ret i32 %0
+  %idxprom2 = sext i32 %0 to i64
+  %arrayidx3 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom2, !BLADE-S !8
+  %1 = load i32, ptr %arrayidx3, align 4, !tbaa !9, !BLADE-T !7
+  ret i32 %1
 }
 
 ; Function Attrs: nounwind

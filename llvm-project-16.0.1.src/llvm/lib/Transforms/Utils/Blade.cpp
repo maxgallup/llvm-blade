@@ -75,6 +75,16 @@ void propgateMarks(Instruction *I) {
   }
 }
 
+void printUsers(Instruction *I) {
+  for (User *U : I->users()) {
+    if (Instruction *II = dyn_cast<Instruction>(U)) {
+      D("\tU: " << *II);
+    } else {
+      E("failed to print a user of: " << I);
+    }
+  }
+}
+
 
 
 PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
@@ -92,9 +102,12 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        if (isTransientInstruction(&I)) {
+        D("" << I);
+        printUsers(&I);
+        
+        // if (isTransientInstruction(&I)) {
 
-        }
+        // }
 
 
         // if (isLeakyInstruction(&I)) {

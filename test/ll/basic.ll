@@ -3,7 +3,7 @@ source_filename = "basic.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
-@__const.main.some_array = private unnamed_addr constant [5 x i32] [i32 1, i32 2, i32 3, i32 4, i32 5], align 16
+@__const.main.a = private unnamed_addr constant [5 x i32] [i32 0, i32 1, i32 2, i32 3, i32 4], align 16
 
 ; Function Attrs: nounwind uwtable
 define dso_local i32 @main() local_unnamed_addr #0 {
@@ -14,9 +14,12 @@ entry:
   %call1 = tail call i32 @rand() #2
   %rem = srem i32 %call1, 5
   %idxprom = sext i32 %rem to i64
-  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.some_array, i64 0, i64 %idxprom
+  %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom
   %0 = load i32, ptr %arrayidx, align 4, !tbaa !7
-  ret i32 %0
+  %idxprom2 = sext i32 %0 to i64
+  %arrayidx3 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom2
+  %1 = load i32, ptr %arrayidx3, align 4, !tbaa !7
+  ret i32 %1
 }
 
 ; Function Attrs: nounwind
@@ -50,8 +53,8 @@ attributes #2 = { nounwind }
 ^0 = module: (path: "", hash: (0, 0, 0, 0, 0))
 ^1 = gv: (name: "time") ; guid = 3946912059654523911
 ^2 = gv: (name: "rand") ; guid = 7206085285791387956
-^3 = gv: (name: "__const.main.some_array", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 10530522993796894883
-^4 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 9, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^5, relbf: 256), (callee: ^2, relbf: 256)), refs: (^3)))) ; guid = 15822663052811949562
+^3 = gv: (name: "__const.main.a", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 14875617293546251327
+^4 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 12, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^5, relbf: 256), (callee: ^2, relbf: 256)), refs: (^3)))) ; guid = 15822663052811949562
 ^5 = gv: (name: "srand") ; guid = 16361127236386863736
 ^6 = flags: 8
 ^7 = blockcount: 1

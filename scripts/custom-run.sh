@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ninja -C /home/devblade/build opt ; cd /home/devblade/work
+
 /home/devblade/work/scripts/c-to-llvm.sh
 
 cd /home/devblade/work/test/ll/
