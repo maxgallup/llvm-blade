@@ -6,9 +6,9 @@
 
 int main() {
 	srand(time(0));
-	int some_number = rand() % 5;
 	int a[5] = {0,1,2,3,4};
-	int x = a[some_number];
+	int i = rand() % 5;
+	int x = a[i];
 	int y = a[x];
 	return y;
 }

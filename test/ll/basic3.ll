@@ -1,5 +1,5 @@
-; ModuleID = 'basic2.c'
-source_filename = "basic2.c"
+; ModuleID = 'basic3.c'
+source_filename = "basic3.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -13,16 +13,18 @@ entry:
   tail call void @srand(i32 noundef %conv) #2
   %call1 = tail call i32 @rand() #2
   %rem = srem i32 %call1, 5
+  %call2 = tail call i32 @rand() #2
+  %rem3 = srem i32 %call2, 5
   %idxprom = sext i32 %rem to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom
   %0 = load i32, ptr %arrayidx, align 4, !tbaa !7
-  %idxprom2 = sext i32 %0 to i64
-  %arrayidx3 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom2
-  %1 = load i32, ptr %arrayidx3, align 4, !tbaa !7
-  %add = add nsw i32 %1, %0
-  %idxprom4 = sext i32 %add to i64
+  %idxprom4 = sext i32 %rem3 to i64
   %arrayidx5 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom4
-  %2 = load i32, ptr %arrayidx5, align 4, !tbaa !7
+  %1 = load i32, ptr %arrayidx5, align 4, !tbaa !7
+  %add = add nsw i32 %1, %0
+  %idxprom6 = sext i32 %add to i64
+  %arrayidx7 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom6
+  %2 = load i32, ptr %arrayidx7, align 4, !tbaa !7
   ret i32 %2
 }
 
@@ -57,8 +59,8 @@ attributes #2 = { nounwind }
 ^0 = module: (path: "", hash: (0, 0, 0, 0, 0))
 ^1 = gv: (name: "time") ; guid = 3946912059654523911
 ^2 = gv: (name: "rand") ; guid = 7206085285791387956
-^3 = gv: (name: "__const.main.a", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 7860841885378030942
-^4 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 16, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^5, relbf: 256), (callee: ^2, relbf: 256)), refs: (^3)))) ; guid = 15822663052811949562
-^5 = gv: (name: "srand") ; guid = 16361127236386863736
+^3 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 18, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^4, relbf: 256), (callee: ^2, relbf: 512)), refs: (^5)))) ; guid = 15822663052811949562
+^4 = gv: (name: "srand") ; guid = 16361127236386863736
+^5 = gv: (name: "__const.main.a", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 17722005341507783076
 ^6 = flags: 8
 ^7 = blockcount: 1

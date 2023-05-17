@@ -8,6 +8,7 @@
 
 #include "llvm/Transforms/Utils/Blade.h"
 #include "llvm/ADT/Statistic.h"
+#include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/Debug.h"
 
 using namespace llvm;
@@ -78,12 +79,78 @@ void propgateMarks(Instruction *I) {
 void printUsers(Instruction *I) {
   for (User *U : I->users()) {
     if (Instruction *II = dyn_cast<Instruction>(U)) {
-      D("\tU: " << *II);
+      if (isStableInstruction(II)) {
+        D("\tU: " << *II);
+      }
+      printUsers(II);
     } else {
       E("failed to print a user of: " << I);
     }
   }
 }
+
+
+void printSecretLeakMsg(Instruction *Itrans, Instruction *Istable) {
+  D("---Leak Found---");
+  if (Itrans->getName().empty()) {
+    D("   From: " << *Itrans);
+  } else {
+    D("   From: " << Itrans->getName());
+  }
+
+  if (Istable->getName().empty()) {
+    D("   To:   " << *Istable);
+  } else {
+    D("   To:   " << Istable->getName());
+  }
+}
+
+
+void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths) {
+  for (User *U : Icurrent->users()) {
+    if (Instruction *II = dyn_cast<Instruction>(U)) {
+      D("i " << *II);
+      if (isStableInstruction(II)) {
+        // printSecretLeakMsg(Istart, II);
+        D("---------- LEAK ----------");
+      }
+      identifyLeakRec(Istart, II, leakyPaths);
+    } else {
+      E("failed to print a user of: " << Icurrent);
+    }
+  }
+}
+
+
+void identifyLeak(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths) {
+
+
+
+  if (isTransientInstruction(I)) {
+    auto aLeakyPath = SmallVector<Instruction*, 16>();
+    D("--Start--");
+    
+    
+    for (User *U : I->users()) {
+      if (Instruction *II = dyn_cast<Instruction>(U)) {
+        D("i " << *II);
+        if (isStableInstruction(II)) {
+          // printSecretLeakMsg(I, II);
+          D("---------- LEAK ----------");
+        }
+        
+        identifyLeakRec(I, II, leakyPaths);
+      } else {
+        E("failed to print a user of: " << I);
+      }
+    }
+
+    D("--End--");
+
+    
+  }
+}
+
 
 
 
@@ -98,27 +165,25 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
     }
   }
 
+  auto leakyPaths = SmallVector<SmallVector<Instruction*, 16>, 16>();
+
   // Second pass to identify Transient -> Stable paths and isolate
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        D("" << I);
-        printUsers(&I);
-        
-        // if (isTransientInstruction(&I)) {
-
-        // }
-
-
-        // if (isLeakyInstruction(&I)) {
-        //   S("Leaky Instruction:");
-        // }
-        // D(I);
-        // if (isTransientInstruction(&I)) {
-
-        // }
+        identifyLeak(&I, &leakyPaths);
 
       }
+    }
+  }
+
+
+  auto count = 1;
+  for (SmallVector<Instruction*, 16> S : leakyPaths) {
+    D("\tLeak " << count);
+    count++;
+    for (Instruction* I : S) {
+      D("\t\t" << *I);
     }
   }
 
