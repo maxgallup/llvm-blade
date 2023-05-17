@@ -1,6 +1,8 @@
 #!/bin/bash
 
-ninja -C /home/devblade/build opt ; cd /home/devblade/work
+ninja -C /home/devblade/build opt || exit 1
+
+cd /home/devblade/work 
 
 /home/devblade/work/scripts/c-to-llvm.sh
 

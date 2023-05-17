@@ -106,15 +106,16 @@ void printSecretLeakMsg(Instruction *Itrans, Instruction *Istable) {
 }
 
 
-void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths) {
+void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths, SmallVector<Instruction*, 16> *aLeakyPath) {
   for (User *U : Icurrent->users()) {
     if (Instruction *II = dyn_cast<Instruction>(U)) {
-      D("i " << *II);
+      aLeakyPath->push_back(II);
+      
       if (isStableInstruction(II)) {
         // printSecretLeakMsg(Istart, II);
-        D("---------- LEAK ----------");
+        leakyPaths->push_back(*aLeakyPath);
       }
-      identifyLeakRec(Istart, II, leakyPaths);
+      identifyLeakRec(Istart, II, leakyPaths, aLeakyPath);
     } else {
       E("failed to print a user of: " << Icurrent);
     }
@@ -123,31 +124,23 @@ void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<Sma
 
 
 void identifyLeak(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths) {
-
-
-
   if (isTransientInstruction(I)) {
     auto aLeakyPath = SmallVector<Instruction*, 16>();
-    D("--Start--");
-    
+    aLeakyPath.push_back(I);
     
     for (User *U : I->users()) {
       if (Instruction *II = dyn_cast<Instruction>(U)) {
-        D("i " << *II);
+        aLeakyPath.push_back(II);
         if (isStableInstruction(II)) {
           // printSecretLeakMsg(I, II);
-          D("---------- LEAK ----------");
+          leakyPaths->push_back(aLeakyPath);
         }
         
-        identifyLeakRec(I, II, leakyPaths);
+        identifyLeakRec(I, II, leakyPaths, &aLeakyPath);
       } else {
         E("failed to print a user of: " << I);
       }
     }
-
-    D("--End--");
-
-    
   }
 }
 
@@ -172,7 +165,6 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
         identifyLeak(&I, &leakyPaths);
-
       }
     }
   }
@@ -180,12 +172,14 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
   auto count = 1;
   for (SmallVector<Instruction*, 16> S : leakyPaths) {
-    D("\tLeak " << count);
+    S("\tLeak " << count);
     count++;
     for (Instruction* I : S) {
       D("\t\t" << *I);
     }
   }
+
+  S("DONE");
 
   return PreservedAnalyses::all();
 }
