@@ -110,7 +110,6 @@ void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<Sma
   for (User *U : Icurrent->users()) {
     if (Instruction *II = dyn_cast<Instruction>(U)) {
       aLeakyPath->push_back(II);
-      
       if (isStableInstruction(II)) {
         // printSecretLeakMsg(Istart, II);
         leakyPaths->push_back(*aLeakyPath);
@@ -127,7 +126,6 @@ void identifyLeak(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16>
   if (isTransientInstruction(I)) {
     auto aLeakyPath = SmallVector<Instruction*, 16>();
     aLeakyPath.push_back(I);
-    
     for (User *U : I->users()) {
       if (Instruction *II = dyn_cast<Instruction>(U)) {
         aLeakyPath.push_back(II);
@@ -170,16 +168,16 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   }
 
 
-  auto count = 1;
+  auto count = 0;
   for (SmallVector<Instruction*, 16> S : leakyPaths) {
-    S("\tLeak " << count);
     count++;
+    D("\tLeak " << count);
     for (Instruction* I : S) {
       D("\t\t" << *I);
     }
   }
 
-  S("DONE");
+  S("DONE, Total leaks: " << count);
 
   return PreservedAnalyses::all();
 }

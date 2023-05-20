@@ -1,5 +1,5 @@
-; ModuleID = 'basic.c'
-source_filename = "basic.c"
+; ModuleID = 'basic4.c'
+source_filename = "basic4.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -11,8 +11,10 @@ entry:
   %retval = alloca i32, align 4
   %a = alloca [5 x i32], align 16
   %i = alloca i32, align 4
-  %x = alloca i32, align 4
   %y = alloca i32, align 4
+  %x = alloca i32, align 4
+  %res = alloca i32, align 4
+  %res2 = alloca i32, align 4
   store i32 0, ptr %retval, align 4
   %call = call i64 @time(ptr noundef null) #3
   %conv = trunc i64 %call to i32
@@ -22,17 +24,25 @@ entry:
   %rem = srem i32 %call1, 5
   store i32 %rem, ptr %i, align 4
   %0 = load i32, ptr %i, align 4
-  %idxprom = sext i32 %0 to i64
+  %add = add nsw i32 %0, 3
+  store i32 %add, ptr %y, align 4
+  %1 = load i32, ptr %i, align 4
+  %add2 = add nsw i32 %1, 4
+  store i32 %add2, ptr %x, align 4
+  %2 = load i32, ptr %y, align 4
+  %idxprom = sext i32 %2 to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom
-  %1 = load i32, ptr %arrayidx, align 4
-  store i32 %1, ptr %x, align 4
-  %2 = load i32, ptr %x, align 4
-  %idxprom2 = sext i32 %2 to i64
-  %arrayidx3 = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom2
-  %3 = load i32, ptr %arrayidx3, align 4
-  store i32 %3, ptr %y, align 4
-  %4 = load i32, ptr %y, align 4
-  ret i32 %4
+  %3 = load i32, ptr %arrayidx, align 4
+  store i32 %3, ptr %res, align 4
+  %4 = load i32, ptr %x, align 4
+  %idxprom3 = sext i32 %4 to i64
+  %arrayidx4 = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom3
+  %5 = load i32, ptr %arrayidx4, align 4
+  store i32 %5, ptr %res2, align 4
+  %6 = load i32, ptr %res, align 4
+  %7 = load i32, ptr %res2, align 4
+  %add5 = add nsw i32 %6, %7
+  ret i32 %add5
 }
 
 ; Function Attrs: nounwind
@@ -66,9 +76,9 @@ attributes #3 = { nounwind }
 
 ^0 = module: (path: "", hash: (0, 0, 0, 0, 0))
 ^1 = gv: (name: "time") ; guid = 3946912059654523911
-^2 = gv: (name: "rand") ; guid = 7206085285791387956
-^3 = gv: (name: "__const.main.a", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 14875617293546251327
-^4 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 25, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 1, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^5, relbf: 256), (callee: ^2, relbf: 256)), refs: (^3)))) ; guid = 15822663052811949562
+^2 = gv: (name: "__const.main.a", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 7163772311424489683
+^3 = gv: (name: "rand") ; guid = 7206085285791387956
+^4 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 35, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 1, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 256), (callee: ^5, relbf: 256), (callee: ^3, relbf: 256)), refs: (^2)))) ; guid = 15822663052811949562
 ^5 = gv: (name: "srand") ; guid = 16361127236386863736
 ^6 = flags: 8
 ^7 = blockcount: 1
