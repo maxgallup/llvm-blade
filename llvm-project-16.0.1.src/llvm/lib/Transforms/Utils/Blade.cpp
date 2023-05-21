@@ -19,6 +19,14 @@ using namespace llvm;
 #define D(X) if(BLADE_DEBUG) errs() << "🟣 " << X << "\n"
 #define S(X) if(BLADE_DEBUG) errs() << "🟢 " << X << "\n"
 
+#define FULL_SEARCH 0
+
+typedef struct BladeNode {
+  Instruction* I;
+  BladeNode* parent;
+  SmallVector<BladeNode*, 16> nodes;
+} BladeNode;
+
 
 // STATISTIC(NumTransient, "Number of transient Nodes added");
 // STATISTIC(NumStable, "Number of stable Nodes added");
@@ -84,7 +92,7 @@ void printUsers(Instruction *I) {
       }
       printUsers(II);
     } else {
-      E("failed to print a user of: " << I);
+      E("unable to cast User to Instruction: " << *U);
     }
   }
 }
@@ -113,10 +121,12 @@ void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<Sma
       if (isStableInstruction(II)) {
         // printSecretLeakMsg(Istart, II);
         leakyPaths->push_back(*aLeakyPath);
+        
+        if (FULL_SEARCH) continue;
       }
       identifyLeakRec(Istart, II, leakyPaths, aLeakyPath);
     } else {
-      E("failed to print a user of: " << Icurrent);
+      E("unable to cast User to Instruction: " << *U);
     }
   }
 }
@@ -132,16 +142,75 @@ void identifyLeak(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16>
         if (isStableInstruction(II)) {
           // printSecretLeakMsg(I, II);
           leakyPaths->push_back(aLeakyPath);
+          
+          if (FULL_SEARCH) continue;
         }
         
         identifyLeakRec(I, II, leakyPaths, &aLeakyPath);
       } else {
-        E("failed to print a user of: " << I);
+        E("unable to cast User to Instruction: " << *U);
       }
     }
   }
 }
 
+
+
+void somethingRecursive(Instruction *I) {  
+
+  for (User *U : I->users()) {
+    if (Instruction *II = dyn_cast<Instruction>(U)) {
+      if (isStableInstruction(II)) {
+        
+        return;
+      }
+      
+      // somethingRecursive(II);
+    }
+  }
+  return;
+}
+
+
+void identifyLeak2(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakypaths) {
+
+
+  if (isTransientInstruction(I)) {
+    D("Start: " << *I);
+    somethingRecursive(I);
+  }
+
+}
+
+
+void identifyLeak3(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakypaths) {
+
+
+  if (isTransientInstruction(I)) {
+    auto blade_nodes = SmallVector<BladeNode*, 16>();
+    auto start = BladeNode{
+      .I = I,
+      .parent = NULL,
+      .nodes = blade_nodes,
+    };
+
+    
+    
+  for (User *U : I->users()) {
+    if (Instruction *II = dyn_cast<Instruction>(U)) {
+      if (isStableInstruction(II)) {
+        
+        return;
+      }
+      
+      
+    }
+  }
+
+  }
+
+
+}
 
 
 
@@ -162,7 +231,9 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        identifyLeak(&I, &leakyPaths);
+        // identifyLeak(&I, &leakyPaths);
+        // identifyLeak2(&I, &leakyPaths);
+        identifyLeak3(&I, &leakyPaths);
       }
     }
   }

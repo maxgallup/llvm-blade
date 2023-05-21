@@ -1,5 +1,5 @@
-; ModuleID = 'basic.ll'
-source_filename = "basic.c"
+; ModuleID = 'optimal_0.ll'
+source_filename = "optimal.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -11,8 +11,10 @@ entry:
   %retval = alloca i32, align 4
   %a = alloca [5 x i32], align 16
   %i = alloca i32, align 4, !BLADE-S !8
-  %x = alloca i32, align 4, !BLADE-S !8
   %y = alloca i32, align 4, !BLADE-S !8
+  %x = alloca i32, align 4, !BLADE-S !8
+  %res = alloca i32, align 4, !BLADE-S !8
+  %res2 = alloca i32, align 4, !BLADE-S !8
   store i32 0, ptr %retval, align 4
   %call = call i64 @time(ptr noundef null) #3, !BLADE-T !9
   %conv = trunc i64 %call to i32
@@ -22,17 +24,25 @@ entry:
   %rem = srem i32 %call1, 5
   store i32 %rem, ptr %i, align 4
   %0 = load i32, ptr %i, align 4, !BLADE-T !9
-  %idxprom = sext i32 %0 to i64
+  %add = add nsw i32 %0, 3
+  store i32 %add, ptr %y, align 4
+  %1 = load i32, ptr %i, align 4, !BLADE-T !9
+  %add2 = add nsw i32 %1, 4
+  store i32 %add2, ptr %x, align 4
+  %2 = load i32, ptr %y, align 4, !BLADE-T !9
+  %idxprom = sext i32 %2 to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom, !BLADE-S !8
-  %1 = load i32, ptr %arrayidx, align 4, !BLADE-T !9
-  store i32 %1, ptr s, align 4
-  %2 = load i32, ptr %x, align 4, !BLADE-T !9
-  %idxprom2 = sext i32 %2 to i64
-  %arrayidx3 = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom2, !BLADE-S !8
-  %3 = load i32, ptr %arrayidx3, align 4, !BLADE-T !9
-  store i32 %3, ptr %y, align 4
-  %4 = load i32, ptr %y, align 4, !BLADE-T !9
-  ret i32 %4
+  %3 = load i32, ptr %arrayidx, align 4, !BLADE-T !9
+  store i32 %3, ptr %res, align 4
+  %4 = load i32, ptr %x, align 4, !BLADE-T !9
+  %idxprom3 = sext i32 %4 to i64
+  %arrayidx4 = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom3, !BLADE-S !8
+  %5 = load i32, ptr %arrayidx4, align 4, !BLADE-T !9
+  store i32 %5, ptr %res2, align 4
+  %6 = load i32, ptr %res, align 4, !BLADE-T !9
+  %7 = load i32, ptr %res2, align 4, !BLADE-T !9
+  %add5 = add nsw i32 %6, %7
+  ret i32 %add5
 }
 
 ; Function Attrs: nounwind
