@@ -21,11 +21,19 @@ using namespace llvm;
 
 #define FULL_SEARCH 0
 
-typedef struct BladeNode {
-  Instruction* I;
-  BladeNode* parent;
-  SmallVector<BladeNode*, 16> nodes;
-} BladeNode;
+
+class BladeNode {
+  public:
+    Instruction* I;
+    BladeNode* parent;
+    SmallVector<BladeNode*, 16> *nodes;
+    BladeNode(Instruction *newI, BladeNode *newParent) {
+      I = newI;
+      parent = newParent;
+      nodes = new SmallVector<BladeNode*, 16>();
+    };
+};
+
 
 
 // STATISTIC(NumTransient, "Number of transient Nodes added");
@@ -183,33 +191,59 @@ void identifyLeak2(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16
 }
 
 
-void identifyLeak3(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakypaths) {
+// Walk through the entire graph and free all nodes
+void freeBladeNodes(BladeNode *B) {
+  if (B->nodes->empty()) {
+    D("freeing: " << *B->I);
+    delete(B->nodes);
+    delete(B);
+    return;
+  }
+
+  for (BladeNode *node : *B->nodes) {
+    freeBladeNodes(node);
+  }
+
+}
 
 
-  if (isTransientInstruction(I)) {
-    auto blade_nodes = SmallVector<BladeNode*, 16>();
-    auto start = BladeNode{
-      .I = I,
-      .parent = NULL,
-      .nodes = blade_nodes,
-    };
-
-    
-    
+void findStableRec(Instruction *I, BladeNode *parent, SmallVector<BladeNode*, 16> *si) {
   for (User *U : I->users()) {
     if (Instruction *II = dyn_cast<Instruction>(U)) {
+      auto user = new BladeNode(II, parent);
+      parent->nodes->push_back(user);
+
       if (isStableInstruction(II)) {
-        
-        return;
+        si->push_back(user);
       }
-      
-      
+
+      findStableRec(II, user, si);
     }
   }
+}
+
+
+void identifyLeak3(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakypaths) {
+
+  if (isTransientInstruction(I)) {
+    auto stable_instructions = SmallVector<BladeNode*, 16>();
+    auto start = new BladeNode(I, NULL);
+    findStableRec(I, start, &stable_instructions);
+
+    for (BladeNode *B : stable_instructions) {
+      D("Stable Inst: " << *B->I);
+      // auto a_leaky_path = SmallVector<Instruction*, 16>();
+      // BladeNode* current = B;
+      // while (current->parent) {
+      //   a_leaky_path.push_back(current->I);
+      //   current = current->parent;
+      // }
+      // leakypaths->push_back(a_leaky_path);
+    }
+
+    freeBladeNodes(start);
 
   }
-
-
 }
 
 
