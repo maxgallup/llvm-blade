@@ -36,38 +36,48 @@ class BladeNode {
 
 
 
-// STATISTIC(NumTransient, "Number of transient Nodes added");
-// STATISTIC(NumStable, "Number of stable Nodes added");
+STATISTIC(NumTransient, "Number of transient Nodes added.");
+STATISTIC(NumStable, "Number of stable Nodes added.");
+STATISTIC(NumLeaks, "Total number of distinct paths that leak secrets.");
 
+
+/// @brief Returns true if the instruction is makred as Stable.
 bool isStableInstruction(Instruction *Inst) {
   return Inst->hasMetadata("BLADE-S");
 }
 
+
+/// @brief Returns true if the instruction is makred as Transient.
 bool isTransientInstruction(Instruction *Inst) {
   return Inst->hasMetadata("BLADE-T");
 }
 
-bool isLeakyInstruction(Instruction *Inst) {
-  return Inst->hasMetadata("BLADE-S") && Inst->hasMetadata("BLADE-T");
-}
 
+/// @brief Mark instruction idempotently as Stable
 void markInstructionStable(Instruction *Inst) {
   if (!Inst->hasMetadata("BLADE-S")) {
     LLVMContext& C = Inst->getContext();
     MDNode* N = MDNode::get(C, MDString::get(C, "Blade Stable"));
     Inst->setMetadata("BLADE-S", N);
+    NumStable++;
   }
 }
 
+
+/// @brief Mark instruction idempotently as Transient.
 void markInstructionTransient(Instruction *Inst) {
   if (!Inst->hasMetadata("BLADE-T")) {
     LLVMContext& C = Inst->getContext();
     MDNode* N = MDNode::get(C, MDString::get(C, "Blade Transient"));
     Inst->setMetadata("BLADE-T", N);
+    NumTransient++;
   }
 }
 
-void markInstructions(Instruction *I) {
+
+/// @brief Labels the instruction as Transient if it's a Load or Call. 
+/// If the instruction is used as an index for a load operation, it will be marked Stable.
+void markInstruction(Instruction *I) {
   if (I->getOpcode() == Instruction::Load || I->getOpcode() == Instruction::Call) {
     markInstructionTransient(I);
   }
@@ -81,9 +91,11 @@ void markInstructions(Instruction *I) {
   }
 }
 
+
+/// @brief [NOT USED] Propagates the Transient label down to all users of a transient inst.
+/// @param I Transient Instruction
 void propgateMarks(Instruction *I) {
   if (I->hasMetadata("BLADE-T")) {
-    // propgate transient to all users
     for (User *U : I->users()) {
       if (Instruction *II = dyn_cast<Instruction>(U)) {
         markInstructionTransient(II);
@@ -91,78 +103,6 @@ void propgateMarks(Instruction *I) {
     }
   }
 }
-
-void printUsers(Instruction *I) {
-  for (User *U : I->users()) {
-    if (Instruction *II = dyn_cast<Instruction>(U)) {
-      if (isStableInstruction(II)) {
-        D("\tU: " << *II);
-      }
-      printUsers(II);
-    } else {
-      E("unable to cast User to Instruction: " << *U);
-    }
-  }
-}
-
-
-void printSecretLeakMsg(Instruction *Itrans, Instruction *Istable) {
-  D("---Leak Found---");
-  if (Itrans->getName().empty()) {
-    D("   From: " << *Itrans);
-  } else {
-    D("   From: " << Itrans->getName());
-  }
-
-  if (Istable->getName().empty()) {
-    D("   To:   " << *Istable);
-  } else {
-    D("   To:   " << Istable->getName());
-  }
-}
-
-
-void identifyLeakRec(Instruction *Istart, Instruction *Icurrent, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths, SmallVector<Instruction*, 16> *aLeakyPath) {
-  for (User *U : Icurrent->users()) {
-    if (Instruction *II = dyn_cast<Instruction>(U)) {
-      aLeakyPath->push_back(II);
-      if (isStableInstruction(II)) {
-        // printSecretLeakMsg(Istart, II);
-        leakyPaths->push_back(*aLeakyPath);
-        
-        if (FULL_SEARCH) continue;
-      }
-      identifyLeakRec(Istart, II, leakyPaths, aLeakyPath);
-    } else {
-      E("unable to cast User to Instruction: " << *U);
-    }
-  }
-}
-
-
-void identifyLeak(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> *leakyPaths) {
-  if (isTransientInstruction(I)) {
-    auto aLeakyPath = SmallVector<Instruction*, 16>();
-    aLeakyPath.push_back(I);
-    for (User *U : I->users()) {
-      if (Instruction *II = dyn_cast<Instruction>(U)) {
-        aLeakyPath.push_back(II);
-        if (isStableInstruction(II)) {
-          // printSecretLeakMsg(I, II);
-          leakyPaths->push_back(aLeakyPath);
-          
-          if (FULL_SEARCH) continue;
-        }
-        
-        identifyLeakRec(I, II, leakyPaths, &aLeakyPath);
-      } else {
-        E("unable to cast User to Instruction: " << *U);
-      }
-    }
-  }
-}
-
-
 
 
 /// @brief Traverse graph in Post-Order and delete (free) all nodes to prevent a memory leak.
@@ -183,6 +123,7 @@ void freeBladeNodes(BladeNode *B) {
   return;
 }
 
+
 /// @brief Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
 /// we then save the stable leaf BladeNodes into a vector so that we can construct the correct
 /// def-use chain going bottom up.
@@ -191,19 +132,25 @@ void freeBladeNodes(BladeNode *B) {
 /// @param stable_insts Collection of stable instruction leaf nodes that we are interested in.
 void findStableRec(Instruction *I, BladeNode *parent, SmallVector<BladeNode*, 16> *stable_insts) {
   for (User *U : I->users()) {
-    if (Instruction *II = dyn_cast<Instruction>(U)) {
-      auto user = new BladeNode(II, parent);
-      parent->children->push_back(user);
+    if (Instruction *current_inst = dyn_cast<Instruction>(U)) {
+      
+      // Here we connect the new node to its parent via the constructor, and we make sure that
+      // the parent is connected to its child via the `children` vector.
+      auto new_node = new BladeNode(current_inst, parent);
+      parent->children->push_back(new_node);
 
-      if (isStableInstruction(II)) {
-        stable_insts->push_back(user);
+      // If we encounter a stable instruction, there is a leak. We can simply save this node into
+      // a vector and then traverse the graph bottom up via the `parent` pointer to know the exact
+      // def-use chain of the leak.
+      if (isStableInstruction(current_inst)) {
+        stable_insts->push_back(new_node);
       }
 
-      findStableRec(II, user, stable_insts);
+      // Recursive call with next instruction and the new node as the parent.
+      findStableRec(current_inst, new_node, stable_insts);
     }
   }
 }
-
 
 
 /// @brief Walks through the Def-Use chain of the given instruction to identify all paths
@@ -243,24 +190,28 @@ void gatherLeaks(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> 
   }
 }
 
-int print_leaky_paths(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_paths) {
-  int count = 0;
+
+/// @brief Pretty print all instructions that make up the leaky paths.
+/// @param leaky_paths 2D Vector of instruction pointers where the stable instrction comes first.
+void print_leaky_paths(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_paths) {
   for (SmallVector<Instruction*, 16> S : *leaky_paths) {
-    count++;
-    S("\tLeak " << count);
+    NumLeaks++;
+    S("\tLeak " << NumLeaks);
     for (Instruction* I : S) {
       D("\t\t" << *I);
     }
   }
-  return count;
 }
 
+
+/// @brief Main entry point for the Blade optimization pass.
+/// @return Currently not considering return value - TODO will have to changed preserved analysis
 PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   // First pass to add marks 
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        markInstructions(&I);
+        markInstruction(&I);
         // propgateMarks(&I);
       }
     }
@@ -271,18 +222,15 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   for (Function &F : M) {
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        // identifyLeak(&I, &leaky_paths);
-        // identifyLeak2(&I, &leaky_paths);
         gatherLeaks(&I, &leaky_paths);
       }
     }
   }
 
-  int total_leaky_paths = print_leaky_paths(&leaky_paths);
-
-  S("------------------------");
-  S("  DONE, Total leaks: " << total_leaky_paths);
-  S("------------------------");
+  print_leaky_paths(&leaky_paths);
+  
+  S("--- Summary ---" << "\n\tTotal Leaks: " << NumLeaks << "\n\tTotal Transient: " << NumTransient << "\n\tTotal Stable: " << NumStable);
 
   return PreservedAnalyses::all();
 }
+
