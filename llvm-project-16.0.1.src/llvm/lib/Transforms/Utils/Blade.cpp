@@ -9,6 +9,7 @@
 #include "llvm/Transforms/Utils/Blade.h"
 #include "llvm/ADT/Statistic.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/ADT/SetVector.h"
 #include "llvm/Support/Debug.h"
 
 using namespace llvm;
@@ -18,6 +19,7 @@ using namespace llvm;
 #define E(X) errs() << "🔴 " << X << "\n"
 #define D(X) if(BLADE_DEBUG) errs() << "🟣 " << X << "\n"
 #define S(X) if(BLADE_DEBUG) errs() << "🟢 " << X << "\n"
+#define N(X) if(BLADE_DEBUG) errs() << "   " << X << "\n"
 
 #define FULL_SEARCH 0
 
@@ -193,7 +195,7 @@ void gatherLeaks(Instruction *I, SmallVector<SmallVector<Instruction*, 16>, 16> 
 
 /// @brief Pretty print all instructions that make up the leaky paths.
 /// @param leaky_paths 2D Vector of instruction pointers where the stable instrction comes first.
-void print_leaky_paths(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_paths) {
+void printLeakyPaths(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_paths) {
   for (SmallVector<Instruction*, 16> S : *leaky_paths) {
     NumLeaks++;
     S("\tLeak " << NumLeaks);
@@ -202,6 +204,50 @@ void print_leaky_paths(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_pat
     }
   }
 }
+
+
+void printSummary() {
+  S("--- Summary ---");
+  N("\tTotal Leaks: " << NumLeaks);
+  N("\tTransient Marks: " << NumTransient);
+  N("\tStable Marks: " << NumStable);
+}
+
+
+SmallSetVector<Instruction*, 16> findCutSet(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
+
+  auto edges_transient = SmallSetVector<Instruction*, 16>();
+  auto edges_stable = SmallSetVector<Instruction*, 16>();
+
+  for (SmallVector<Instruction*, 16> S : *leaky_paths) {
+    auto stable_inst = S.front();
+    auto trans_inst = S.back();
+
+    edges_stable.insert(stable_inst);
+    edges_transient.insert(trans_inst);
+
+  }
+
+  auto num_edges_stable = edges_stable.size();
+  auto num_edges_trans = edges_transient.size();
+
+  SmallSetVector<Instruction*, 16> *cutset;
+
+
+  if (num_edges_trans <= num_edges_stable) {
+    cutset = &edges_transient;
+  } else {
+    cutset = &edges_stable;
+  }
+
+  S("\tFinal Cutset:");
+  for (Instruction *I : *cutset) {
+    N("\t\tcut: " << *I);
+  }
+
+  return *cutset;
+}
+
 
 
 /// @brief Main entry point for the Blade optimization pass.
@@ -227,9 +273,12 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
     }
   }
 
-  print_leaky_paths(&leaky_paths);
+  printLeakyPaths(&leaky_paths);
+
+  printSummary();
+
+  auto cutset = findCutSet(&leaky_paths);
   
-  S("--- Summary ---" << "\n\tTotal Leaks: " << NumLeaks << "\n\tTotal Transient: " << NumTransient << "\n\tTotal Stable: " << NumStable);
 
   return PreservedAnalyses::all();
 }
