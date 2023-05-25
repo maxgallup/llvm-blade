@@ -26,6 +26,7 @@ using namespace llvm;
 
 class BladeNode {
   public:
+    int id = 0;
     Instruction* I;
     BladeNode* parent;
     SmallVector<BladeNode*, 16> *children;
@@ -35,7 +36,6 @@ class BladeNode {
       children = new SmallVector<BladeNode*, 16>();
     };
 };
-
 
 
 STATISTIC(NumTransient, "Number of transient Nodes added.");
@@ -249,6 +249,70 @@ SmallSetVector<Instruction*, 16> findCutSet(SmallVector<SmallVector<Instruction*
 }
 
 
+void readOffNodes(BladeNode *B) {
+
+  D(*B->I << "\n\t>>> " << B->id);
+
+  if (B->children->empty()) {
+    return;
+  }
+
+  for (BladeNode *node : *B->children) {
+    readOffNodes(node);
+  }
+
+  // D(*B->I << "\n\t>>> " << B->id);
+  return;  
+
+}
+
+
+SmallSetVector<Instruction*, 16> findCutSet2(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
+
+  // Transient Root of tree with id already set to 0
+  auto root = BladeNode(NULL, NULL);
+  int id_counter = 0;
+  
+
+  // Prepare matrix for processing algorithm
+  for (SmallVector<Instruction*, 16> path : *leaky_paths) {
+    BladeNode *current = &root;
+
+    for (SmallVector<Instruction*, 16>::reverse_iterator it = path.rbegin(); it != path.rend(); ++it) {
+      auto I = *it;
+
+      for (BladeNode *child : *current->children) {
+        if (I == child->I) {
+          break;
+        }
+      }
+
+      D("Inst: " << *I);
+      id_counter++;
+      D("\t count: " << id_counter);
+      auto new_node = new BladeNode(I, current);
+      current->children->push_back(new_node);
+      current->id = id_counter;
+      current = new_node;
+
+      
+    }
+  }
+
+  // todo add stable node connection
+
+  readOffNodes(&root);
+
+  freeBladeNodes(&root);
+
+
+  return SmallSetVector<Instruction*, 16>();
+}
+
+
+
+
+
 
 /// @brief Main entry point for the Blade optimization pass.
 /// @return Currently not considering return value - TODO will have to changed preserved analysis
@@ -277,7 +341,8 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
   printSummary();
 
-  auto cutset = findCutSet(&leaky_paths);
+  // auto cutset = findCutSet(&leaky_paths);
+  auto cutset = findCutSet2(&leaky_paths);
 
   
 
