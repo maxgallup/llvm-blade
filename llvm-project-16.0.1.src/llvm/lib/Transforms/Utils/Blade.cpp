@@ -251,9 +251,13 @@ SmallSetVector<Instruction*, 16> findCutSet(SmallVector<SmallVector<Instruction*
 
 void readOffNodes(BladeNode *B) {
 
-  D(*B->I << "\n\t>>> " << B->id);
+  if (B->I == NULL) {
+    D("root:" << "\n\t>>> " << B->id);
+  } else {
+    D(*B->I << "\n\t>>> " << B->id << "\n\tparent id: " << B->parent->id);
+  }
 
-  if (B->children->empty()) {
+  if (B->children->empty()) { 
     return;
   }
 
@@ -261,49 +265,87 @@ void readOffNodes(BladeNode *B) {
     readOffNodes(node);
   }
 
-  // D(*B->I << "\n\t>>> " << B->id);
-  return;  
-
+  return;
 }
 
+void insertBladeNode(BladeNode *root, SmallVector<Instruction*, 16> *path, int inst_idx, int *id_counter) {
+
+  auto current = root;
+  Instruction *last_inst;
+  for (int i = path->size() - 1; i >= inst_idx; i--) {
+    last_inst = (*path)[i];
+    // D("Inst: " << *last_inst);
+
+    for (BladeNode *child : *current->children) {
+      if (child->I == last_inst) {
+        current = child;
+        break;
+      }
+    }
+  }
+
+  if (current->I != NULL) {
+    // D("current: " << *current->I << "\n\tid: " << current->id);
+  } else {
+    // D("current is root" << "\n\tid: " << current->id);
+  }
+
+  if (current->I == last_inst) {
+    // D("node already exists, skipping");
+    // D("------------");
+    return;
+  }
+  
+
+  // D("inserting");
+  (*id_counter)++;
+  auto new_node = new BladeNode(last_inst, current);
+  new_node->id = *id_counter;
+  current->children->push_back(new_node);
+      
+  
+  // D("------------");
+}
 
 SmallSetVector<Instruction*, 16> findCutSet2(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
 
   // Transient Root of tree with id already set to 0
-  auto root = BladeNode(NULL, NULL);
+  auto root = new BladeNode(NULL, NULL);
   int id_counter = 0;
   
-
-  // Prepare matrix for processing algorithm
+  // Create fully merged dependency chain made up of all leaky paths combined 
   for (SmallVector<Instruction*, 16> path : *leaky_paths) {
-    BladeNode *current = &root;
+    // BladeNode *current = root;
 
-    for (SmallVector<Instruction*, 16>::reverse_iterator it = path.rbegin(); it != path.rend(); ++it) {
-      auto I = *it;
 
-      for (BladeNode *child : *current->children) {
-        if (I == child->I) {
-          break;
-        }
-      }
-
-      D("Inst: " << *I);
-      id_counter++;
-      D("\t count: " << id_counter);
-      auto new_node = new BladeNode(I, current);
-      current->children->push_back(new_node);
-      current->id = id_counter;
-      current = new_node;
-
-      
+    for (int i = path.size() - 1; i >= 0; i--) {
+      // auto some_inst = path[i];
+      // D("Inst: " << *some_inst);
+      insertBladeNode(root, &path, i, &id_counter);
     }
+
+    // for (SmallVector<Instruction*, 16>::reverse_iterator it = path.rbegin(); it != path.rend(); ++it) {
+    //   auto I = *it;
+
+    //   for (BladeNode *child : *current->children) {
+    //     if (I == child->I) {
+    //       break;
+    //     }
+    //   }
+
+    //   id_counter++;
+    //   auto new_node = new BladeNode(I, current);
+    //   new_node->id = id_counter;
+    //   current->children->push_back(new_node);
+    //   current = new_node;
+    // }
   }
 
   // todo add stable node connection
 
-  readOffNodes(&root);
+  readOffNodes(root);
 
-  freeBladeNodes(&root);
+  freeBladeNodes(root);
 
 
   return SmallSetVector<Instruction*, 16>();
