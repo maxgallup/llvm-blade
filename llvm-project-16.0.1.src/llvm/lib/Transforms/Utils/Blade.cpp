@@ -12,6 +12,9 @@
 #include "llvm/ADT/SetVector.h"
 #include "llvm/Support/Debug.h"
 
+
+#include <queue>
+
 using namespace llvm;
 
 #define DEBUG_TYPE "blade"
@@ -251,7 +254,6 @@ SmallSetVector<Instruction*, 16> findCutSet(SmallVector<SmallVector<Instruction*
 
 
 void readOffNodes(BladeNode *B) {
-
   if (B->I == NULL) {
     D("root:" << "\n\t>>> " << B->id);
   } else {
@@ -378,8 +380,7 @@ int getInstructionIndex(SmallSetVector<Instruction*, 16> *set, Instruction *I) {
 }
 
 
-SmallSetVector<Instruction*, 16> findCutSet3(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
-
+SmallSetVector<Instruction*, 16> aggregateInstructions(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
   // Iterate over each path in reverse order since sources (T) are at the back and
   // accumulate all instructions into a set and create Instruction -> ID mapping.
   auto mappings = SmallSetVector<Instruction*, 16>();
@@ -389,60 +390,146 @@ SmallSetVector<Instruction*, 16> findCutSet3(SmallVector<SmallVector<Instruction
       mappings.insert(I);
     }
   }
-
-  // Add Transient and Stable Node so that there is only a single Source (T) and Sink (s)
-
   for (Instruction *I : mappings) {
     auto n = getInstructionIndex(&mappings, I);
     D(n << " " << *I);
   }
-
-  // ---- Allocate 2D array to store graph information
-  int num_vertices = mappings.size() + 2; // must also Source and Sink Node
-  int **graph = (int **)calloc(num_vertices, sizeof(int*));
-  for (int i = 0; i < num_vertices; i++) {
-    graph[i] = (int *)calloc(num_vertices, sizeof(int));
-  }
-  // ----
+  return mappings;
+}
 
 
+void populateGraph(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_paths, SmallSetVector<Instruction*, 16> *mappings, int **graph, int num_vertices) {
   for (SmallVector<Instruction*, 16> path : *leaky_paths) {
     for (int i = path.size() - 1; i >= 1; i--) {
       Instruction *current_instruction = path[i];
       Instruction *next_instruction = path[i-1];
-      int current_index = getInstructionIndex(&mappings, current_instruction);
-      int next_index = getInstructionIndex(&mappings, next_instruction);
+      int current_index = getInstructionIndex(mappings, current_instruction);
+      int next_index = getInstructionIndex(mappings, next_instruction);
       graph[current_index][next_index] = 1;
     }
   }
 
-  for (Instruction *I : mappings) {
+  for (Instruction *I : *mappings) {
     // Link the Source Node to all Transient instructions
     // and the Sink node to all Stable instructions.
     if (isTransientInstruction(I)) {
-      auto i = getInstructionIndex(&mappings, I);
+      auto i = getInstructionIndex(mappings, I);
       graph[0][i] = 1;
     } else if (isStableInstruction(I)) {
-      auto i = getInstructionIndex(&mappings, I);
+      auto i = getInstructionIndex(mappings, I);
       graph[i][num_vertices - 1] = 1;
     }
   }
+}
 
-  D("printing matrix");
 
-  for (int row = 0; row < num_vertices; row++) {
+void printGraph(int **graph, int size) {
+  for (int row = 0; row < size; row++) {
     RAW(row << ":\t[");
-    for (int col = 0; col < num_vertices; col++) {
+    for (int col = 0; col < size; col++) {
       RAW(graph[row][col] << ", ");
     }
     RAW("]\n");
   }
+}
 
+
+int **allocateGraphDS(int num_vertices) {
+  int **graph = (int **)calloc(num_vertices, sizeof(int*));
+  for (int i = 0; i < num_vertices; i++) {
+    graph[i] = (int *)calloc(num_vertices, sizeof(int));
+  }
+  return graph;
+}
+
+
+int bfs(int **rGraph, int s, int t, int parent[], int num_vertices) {
+    bool visited[num_vertices];
+    memset(visited, 0, sizeof(visited));
+ 
+    std::queue<int> q;
+    q.push(s);
+    visited[s] = true;
+    parent[s] = -1;
+ 
+    while (!q.empty()){
+        int u = q.front();
+        q.pop();
+ 
+        for (int v=0; v<num_vertices; v++){
+            if (visited[v]==false && rGraph[u][v] > 0){
+                q.push(v);
+                parent[v] = u;
+                visited[v] = true;
+            }
+        }
+    }
+ 
+    return (visited[t] == true);
+}
+ 
+void dfs(int **rGraph, int s, bool visited[], int num_vertices) {
+    visited[s] = true;
+    for (int i = 0; i < num_vertices; i++)
+       if (rGraph[s][i] && !visited[i])
+           dfs(rGraph, i, visited, num_vertices);
+}
+
+
+
+void minCut(int **graph, int source, int sink, int num_vertices) {
+    int u, v;
+    int **rGraph = graph;
+    for (u = 0; u < num_vertices; u++)
+        for (v = 0; v < num_vertices; v++)
+             rGraph[u][v] = graph[u][v];
+ 
+    int parent[num_vertices];
+ 
+    while (bfs(rGraph, source, sink, parent, num_vertices)) {
+        int path_flow = INT_MAX;
+        for (v = sink; v != source; v = parent[v]) {
+            u = parent[v];
+            path_flow = std::min(path_flow, rGraph[u][v]);
+        }
+ 
+        // update residual capacities of the edges and reverse edges
+        // along the path
+        for (v = sink; v != source; v=parent[v]) {
+            u = parent[v];
+            rGraph[u][v] -= path_flow;
+            rGraph[v][u] += path_flow;
+        }
+    }
+ 
+    // Flow is maximum now, find vertices reachable from s
+    bool visited[num_vertices];
+    memset(visited, false, sizeof(visited));
+    dfs(rGraph, source, visited, num_vertices);
+ 
+    // Print all edges that are from a reachable vertex to
+    // non-reachable vertex in the original graph
+    for (int i = 0; i < num_vertices; i++)
+      for (int j = 0; j < num_vertices; j++)
+         if (visited[i] && !visited[j] && graph[i][j])
+              RAW(i << " - " << j);
+ 
+    return;
+}
+
+
+SmallSetVector<Instruction*, 16> findCutSet3(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
+  SmallSetVector<Instruction*, 16> mappings = aggregateInstructions(leaky_paths);
+  // `size + 2` because of adding a Source and Sink node at the end
+  int num_vertices = mappings.size() + 2;
+  int **graph = allocateGraphDS(num_vertices);
+  populateGraph(leaky_paths, &mappings, graph, num_vertices);
+  printGraph(graph, num_vertices);
   freeGraph(graph, num_vertices);
 
- 
 
-  // return mappings;
+  minCut(graph, 0, num_vertices - 1, num_vertices);
+
 
   return SmallSetVector<Instruction*, 16>();
 }
