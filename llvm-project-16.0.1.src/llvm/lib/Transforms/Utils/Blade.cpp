@@ -20,6 +20,7 @@ using namespace llvm;
 #define D(X) if(BLADE_DEBUG) errs() << "🟣 " << X << "\n"
 #define S(X) if(BLADE_DEBUG) errs() << "🟢 " << X << "\n"
 #define N(X) if(BLADE_DEBUG) errs() << "   " << X << "\n"
+#define RAW(X) if(BLADE_DEBUG) errs() << X
 
 #define FULL_SEARCH 0
 
@@ -268,6 +269,7 @@ void readOffNodes(BladeNode *B) {
   return;
 }
 
+
 void insertBladeNode(BladeNode *root, SmallVector<Instruction*, 16> *path, int inst_idx, int *id_counter) {
 
   auto current = root;
@@ -306,6 +308,7 @@ void insertBladeNode(BladeNode *root, SmallVector<Instruction*, 16> *path, int i
   
   // D("------------");
 }
+
 
 SmallSetVector<Instruction*, 16> findCutSet2(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
 
@@ -352,7 +355,97 @@ SmallSetVector<Instruction*, 16> findCutSet2(SmallVector<SmallVector<Instruction
 }
 
 
+void freeGraph(int **graph, int length) {
+  for (int i = 0; i < length; i++) {
+    free(graph[i]);
+  }
+  free(graph);
+}
 
+
+int getInstructionIndex(SmallSetVector<Instruction*, 16> *set, Instruction *I) {
+  // Number of instructions start counting from 1, so that we can add a Source Node
+  // at index 0 of the final graph (and a sink node appended to the end as well)
+  int index = 1;
+  for (auto inst : *set) {
+    if (inst == I) {
+      return index;
+    }
+    index++;
+  }
+
+  return -1;
+}
+
+
+SmallSetVector<Instruction*, 16> findCutSet3(SmallVector<SmallVector<Instruction*,16>, 16> *leaky_paths) {
+
+  // Iterate over each path in reverse order since sources (T) are at the back and
+  // accumulate all instructions into a set and create Instruction -> ID mapping.
+  auto mappings = SmallSetVector<Instruction*, 16>();
+  for (SmallVector<Instruction*, 16> path : *leaky_paths) {
+    for (SmallVector<Instruction*, 16>::reverse_iterator it = path.rbegin(); it != path.rend(); ++it) {
+      auto I = *it;
+      mappings.insert(I);
+    }
+  }
+
+  // Add Transient and Stable Node so that there is only a single Source (T) and Sink (s)
+
+  for (Instruction *I : mappings) {
+    auto n = getInstructionIndex(&mappings, I);
+    D(n << " " << *I);
+  }
+
+  // ---- Allocate 2D array to store graph information
+  int num_vertices = mappings.size() + 2; // must also Source and Sink Node
+  int **graph = (int **)calloc(num_vertices, sizeof(int*));
+  for (int i = 0; i < num_vertices; i++) {
+    graph[i] = (int *)calloc(num_vertices, sizeof(int));
+  }
+  // ----
+
+
+  for (SmallVector<Instruction*, 16> path : *leaky_paths) {
+    for (int i = path.size() - 1; i >= 1; i--) {
+      Instruction *current_instruction = path[i];
+      Instruction *next_instruction = path[i-1];
+      int current_index = getInstructionIndex(&mappings, current_instruction);
+      int next_index = getInstructionIndex(&mappings, next_instruction);
+      graph[current_index][next_index] = 1;
+    }
+  }
+
+  for (Instruction *I : mappings) {
+    // Link the Source Node to all Transient instructions
+    // and the Sink node to all Stable instructions.
+    if (isTransientInstruction(I)) {
+      auto i = getInstructionIndex(&mappings, I);
+      graph[0][i] = 1;
+    } else if (isStableInstruction(I)) {
+      auto i = getInstructionIndex(&mappings, I);
+      graph[i][num_vertices - 1] = 1;
+    }
+  }
+
+  D("printing matrix");
+
+  for (int row = 0; row < num_vertices; row++) {
+    RAW(row << ":\t[");
+    for (int col = 0; col < num_vertices; col++) {
+      RAW(graph[row][col] << ", ");
+    }
+    RAW("]\n");
+  }
+
+  freeGraph(graph, num_vertices);
+
+ 
+
+  // return mappings;
+
+  return SmallSetVector<Instruction*, 16>();
+}
 
 
 
@@ -383,8 +476,10 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
   printSummary();
 
-  // auto cutset = findCutSet(&leaky_paths);
-  auto cutset = findCutSet2(&leaky_paths);
+  // auto cutset = findCutSet(&leaky_paths); // Not correct, must implement Max Flow Min Cut
+  // auto cutset = findCutSet2(&leaky_paths); // constructing it myself is too complicated- too many edge cases
+  auto cutset = findCutSet3(&leaky_paths);
+
 
   
 
