@@ -444,8 +444,7 @@ int **allocateGraphDS(int num_vertices) {
 
 
 int bfs(int **rGraph, int s, int t, int parent[], int num_vertices) {
-    bool visited[num_vertices];
-    memset(visited, 0, sizeof(visited));
+    bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
  
     std::queue<int> q;
     q.push(s);
@@ -464,8 +463,11 @@ int bfs(int **rGraph, int s, int t, int parent[], int num_vertices) {
             }
         }
     }
- 
-    return (visited[t] == true);
+
+    auto res = visited[t] == true;
+    free(visited);
+  
+    return res;
 }
  
 void dfs(int **rGraph, int s, bool visited[], int num_vertices) {
@@ -479,12 +481,12 @@ void dfs(int **rGraph, int s, bool visited[], int num_vertices) {
 
 void minCut(int **graph, int source, int sink, int num_vertices) {
     int u, v;
-    int **rGraph = graph;
+    int **rGraph = allocateGraphDS(num_vertices);
     for (u = 0; u < num_vertices; u++)
         for (v = 0; v < num_vertices; v++)
              rGraph[u][v] = graph[u][v];
- 
-    int parent[num_vertices];
+    
+    int *parent = (int*) calloc(num_vertices, sizeof(int));    
  
     while (bfs(rGraph, source, sink, parent, num_vertices)) {
         int path_flow = INT_MAX;
@@ -501,19 +503,24 @@ void minCut(int **graph, int source, int sink, int num_vertices) {
             rGraph[v][u] += path_flow;
         }
     }
+  
+    free(parent);
  
-    // Flow is maximum now, find vertices reachable from s
-    bool visited[num_vertices];
-    memset(visited, false, sizeof(visited));
+    bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
     dfs(rGraph, source, visited, num_vertices);
  
     // Print all edges that are from a reachable vertex to
     // non-reachable vertex in the original graph
     for (int i = 0; i < num_vertices; i++)
       for (int j = 0; j < num_vertices; j++)
+
          if (visited[i] && !visited[j] && graph[i][j])
-              RAW(i << " - " << j);
- 
+              RAW(i << " - " << j << "\n");
+
+
+    free(visited);
+    freeGraph(rGraph, num_vertices);
+
     return;
 }
 
@@ -525,11 +532,10 @@ SmallSetVector<Instruction*, 16> findCutSet3(SmallVector<SmallVector<Instruction
   int **graph = allocateGraphDS(num_vertices);
   populateGraph(leaky_paths, &mappings, graph, num_vertices);
   printGraph(graph, num_vertices);
-  freeGraph(graph, num_vertices);
-
-
+  
   minCut(graph, 0, num_vertices - 1, num_vertices);
 
+  freeGraph(graph, num_vertices);
 
   return SmallSetVector<Instruction*, 16>();
 }
@@ -559,7 +565,7 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
     }
   }
 
-  printLeakyPaths(&leaky_paths);
+  // printLeakyPaths(&leaky_paths);
 
   printSummary();
 
