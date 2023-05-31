@@ -11,7 +11,9 @@
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/SetVector.h"
 #include "llvm/Support/Debug.h"
+#include "llvm/IR/Intrinsics.h"
 
+#include "llvm/IR/IntrinsicsX86.h"
 
 #include <queue>
 
@@ -41,10 +43,16 @@ class BladeNode {
     };
 };
 
+enum ProtectType {
+  FENCE,
+  SLH
+};
+
 
 STATISTIC(NumTransient, "Number of transient Nodes added.");
 STATISTIC(NumStable, "Number of stable Nodes added.");
 STATISTIC(NumLeaks, "Total number of distinct paths that leak secrets.");
+STATISTIC(NumCuts, "Total number of cuts resulting in a protect statement.");
 
 
 /// @brief Returns true if the instruction is makred as Stable.
@@ -215,9 +223,10 @@ void printLeakyPaths(SmallVector<SmallVector<Instruction*, 16>, 16> *leaky_paths
 
 void printSummary() {
   S("--- Summary ---");
-  N("\tTotal Leaks: " << NumLeaks);
   N("\tTransient Marks: " << NumTransient);
   N("\tStable Marks: " << NumStable);
+  N("\tTotal Leaks: " << NumLeaks);
+  N("\tTotal Cuts: " << NumCuts);
 }
 
 
@@ -478,6 +487,21 @@ SmallSetVector<Instruction*, 16> findCutSet(SmallVector<SmallVector<Instruction*
   return cutset;
 }
 
+/// @brief Inserts protections right after leaky instructions given by cutset to defend
+/// against speculative leaks.
+/// @param prot see enum ProtectType
+void insertProtections(Module &M, SmallSetVector<Instruction*, 16> *cutset, ProtectType prot) {
+  if (prot == FENCE) {
+    for (Instruction *I : *cutset) {
+      Function *fence_fn = Intrinsic::getDeclaration(&M, Intrinsic::x86_sse2_lfence);
+      CallInst *fence_call = CallInst::Create(fence_fn);
+      fence_call->insertAfter(I);
+    }
+  } else if (prot == SLH) {
+    E("Blade-SLH not yet implemented");
+  }
+}
+
 
 
 /// @brief Main entry point for the Blade optimization pass.
@@ -504,12 +528,13 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   }
 
   NumLeaks = leaky_paths.size();
-  // printLeakyPaths(&leaky_paths);
-  printSummary();
 
   auto cutset = findCutSet(&leaky_paths);
-  printCutSet(&cutset);
+  NumCuts = cutset.size();
 
+  insertProtections(M, &cutset, FENCE);
+
+  printSummary();
 
   return PreservedAnalyses::all();
 }

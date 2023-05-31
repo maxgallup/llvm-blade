@@ -12,6 +12,7 @@ entry:
   %conv = trunc i64 %call to i32
   tail call void @srand(i32 noundef %conv) #2, !BLADE-T !7
   %call1 = tail call i32 @rand() #2, !BLADE-T !7
+  call void @llvm.x86.sse2.lfence()
   %rem = srem i32 %call1, 5
   %add = add nsw i32 %rem, 3
   %add2 = add nsw i32 %rem, 4
@@ -33,6 +34,9 @@ declare i64 @time(ptr noundef) local_unnamed_addr #1
 
 ; Function Attrs: nounwind
 declare i32 @rand() local_unnamed_addr #1
+
+; Function Attrs: nounwind
+declare void @llvm.x86.sse2.lfence() #2
 
 attributes #0 = { nounwind uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #1 = { nounwind "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }

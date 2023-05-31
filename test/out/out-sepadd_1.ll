@@ -12,8 +12,10 @@ entry:
   %conv = trunc i64 %call to i32
   tail call void @srand(i32 noundef %conv) #2, !BLADE-T !7
   %call1 = tail call i32 @rand() #2, !BLADE-T !7
+  call void @llvm.x86.sse2.lfence()
   %rem = srem i32 %call1, 5
   %call2 = tail call i32 @rand() #2, !BLADE-T !7
+  call void @llvm.x86.sse2.lfence()
   %rem3 = srem i32 %call2, 5
   %idxprom = sext i32 %rem to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom, !BLADE-S !8
@@ -23,6 +25,7 @@ entry:
   %1 = load i32, ptr %arrayidx5, align 4, !tbaa !9, !BLADE-T !7
   %add = add nsw i32 %1, %0
   %idxprom6 = sext i32 %add to i64
+  call void @llvm.x86.sse2.lfence()
   %arrayidx7 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom6, !BLADE-S !8
   %2 = load i32, ptr %arrayidx7, align 4, !tbaa !9, !BLADE-T !7
   ret i32 %2
@@ -36,6 +39,9 @@ declare i64 @time(ptr noundef) local_unnamed_addr #1
 
 ; Function Attrs: nounwind
 declare i32 @rand() local_unnamed_addr #1
+
+; Function Attrs: nounwind
+declare void @llvm.x86.sse2.lfence() #2
 
 attributes #0 = { nounwind uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #1 = { nounwind "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }

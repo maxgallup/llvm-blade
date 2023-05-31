@@ -39,11 +39,13 @@ entry:
   %add5 = add nsw i32 %3, 5
   store i32 %add5, ptr %y, align 4
   %4 = load i32, ptr %x, align 4, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %idxprom = sext i32 %4 to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom, !BLADE-S !8
   %5 = load i32, ptr %arrayidx, align 4, !BLADE-T !9
   store i32 %5, ptr %res, align 4
   %6 = load i32, ptr %y, align 4, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %idxprom6 = sext i32 %6 to i64
   %arrayidx7 = getelementptr inbounds [5 x i32], ptr %a, i64 0, i64 %idxprom6, !BLADE-S !8
   %7 = load i32, ptr %arrayidx7, align 4, !BLADE-T !9
@@ -65,6 +67,9 @@ declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias
 
 ; Function Attrs: nounwind
 declare i32 @rand() #1
+
+; Function Attrs: nounwind
+declare void @llvm.x86.sse2.lfence() #3
 
 attributes #0 = { noinline nounwind optnone uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #1 = { nounwind "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
