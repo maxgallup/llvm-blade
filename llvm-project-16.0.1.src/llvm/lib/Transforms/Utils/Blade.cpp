@@ -212,6 +212,12 @@ void printSummary() {
 }
 
 
+/// @brief Used for command line data collection
+void printSummaryData() {
+  RAW(NumTransient << "," << NumStable << "," << NumLeaks << "," << NumCuts << "\n");
+}
+
+
 /// @brief Print all instructions that make up the cutset.
 void printCutSet(SmallSetVector<Instruction*, 16> *cutset) {
   S("--- Cutset ---");
@@ -547,7 +553,7 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   // Finally, iterate over all instructions in the cutset and place a lfence after them.
   insertProtections(M, &cutset, FENCE);
 
-  printSummary();
+  // printSummaryData();
 
   return PreservedAnalyses::all();
 }
