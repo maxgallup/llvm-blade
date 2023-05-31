@@ -40,8 +40,8 @@
 namespace llvm {
 
 class BladePass : public PassInfoMixin<BladePass> {
-public:
-  PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
+  public:
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM);
 };
 
 } // namespace llvm
