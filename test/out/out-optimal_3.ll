@@ -22,6 +22,7 @@ entry:
   %idxprom3 = zext i32 %add2 to i64
   %arrayidx4 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom3, !BLADE-S !8
   %1 = load i32, ptr %arrayidx4, align 4, !tbaa !9, !BLADE-T !7
+  call void @llvm.x86.sse2.lfence()
   %add5 = add nsw i32 %1, %0
   ret i32 %add5
 }

@@ -1,12 +1,16 @@
 #!/bin/bash
 
+# Usage: 
+# `gimme` converts all files in /test/csrc
+# `gimme [filename]` converts only [filename] in /test/csrc
+# `gimme bench` benchmarks everything in /test-benchmarks
+
+
 MAINDIR="/home/devblade/work"
 
 ninja -C /home/devblade/build opt || exit 1
 
 cd $MAINDIR
-
-
 
 if [ -z $1 ]; then
 
@@ -28,7 +32,8 @@ elif [ $1 == "bench" ]; then
 		file_core=${file%%.*}
 		export UBSAN_OPTIONS=print_stacktrace=true
 		# echo "compiling $file -> ../out/out-$file_core.ll"
-		STATS=$(/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/out-$file_core.ll 2>&1)
+		# STATS=$(/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/out-$file_core.ll 2>&1)
+		/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/out-$file_core.ll
 		
 		# MyBlade binary
 		# echo "compiling out-$file -> ../bin/$file_core"
