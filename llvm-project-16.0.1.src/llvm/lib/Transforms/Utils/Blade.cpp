@@ -127,7 +127,7 @@ void freeBladeNodes(BladeNode *B) {
 
 /// @brief Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
 /// we then save the stable leaf BladeNodes into a vector so that we can construct the correct
-/// def-use chain going bottom up.
+/// def-use chain going bottom up. This function works recursively.
 /// @param I Instruction whose users will turn into children.
 /// @param parent Pointer to parent instruction, starting transient instruction has NULL.
 /// @param stable_insts Collection of stable instruction leaf nodes that we are interested in.
@@ -152,25 +152,38 @@ void findStableRec(Instruction *I, BladeNode *parent, SmallVector<BladeNode*, 16
   }
 }
 
+
+/// @brief Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
+/// we then save the stable leaf BladeNodes into a vector so that we can construct the correct
+/// def-use chain going bottom up. This function works iteratively.
+/// @param I Instruction whose users will turn into children.
+/// @param parent Pointer to parent instruction, starting transient instruction has NULL.
+/// @param stable_insts Collection of stable instruction leaf nodes that we are interested in.
 void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<BladeNode*, 16> *stable_insts) {
   auto current_parent = parent;
+
+  // We use a stack of iterators, so that we can make a Pre-Order graph traversal.
+  // Increasing the iterator (iters.top()++) is the same as moving to the next 
+  // child of a given node.
   std::stack<llvm::Value::user_iterator> iters;
   iters.push(start->users().begin());
 
   while (true) {
+    // Once all nodes have been visited, the stack will be empty, and we are finished.
     if (iters.size() == 0) {
       break;
     }
 
     if (iters.top().atEnd()) {
-      // looked at all children, go up one parent
-      // check if iters, is empty that means we are done
+      // Looked at all children of a node so go up one node
       current_parent = current_parent->parent;
-
       iters.pop();
-      if (iters.size() <= 0) {
+
+      // Check if we are already finished.
+      if (iters.size() == 0) {
         break;
       }
+
 
       iters.top()++;
       continue;
@@ -179,6 +192,8 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
     auto user = *iters.top();
 
     if (Instruction* current_inst = dyn_cast<Instruction>(user)) {
+      // Insert a node into the graph, if it's a stable instruction,
+      // save it so that we can find the exact path later (by traversing the parents)
       auto new_node = new BladeNode(current_inst, current_parent);
       current_parent->children->push_back(new_node);
       if (isStableInstruction(current_inst)) {
@@ -186,8 +201,10 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
       }
 
       if (current_inst->users().empty()) {
+        // This node has no more users so we check the next child and going right.
         iters.top()++;
       } else {
+        // There are still nodes to traverse so we go down.
         iters.push(current_inst->users().begin());
         current_parent = new_node;
       }
@@ -492,10 +509,6 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
     free(parent);
 
   }
-
-  
-
-  // TODO try optimizing by taking r_graph = transpose(graph)
 
   // Perform a Depth-First-Search on residual garph and keep track of which nodes are reachable.
   bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
