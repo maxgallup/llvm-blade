@@ -184,7 +184,6 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
         break;
       }
 
-
       iters.top()++;
       continue;
     }
@@ -595,42 +594,35 @@ bool insertProtections(Module &M, SmallSetVector<Instruction*, 16> *cutset, Prot
 }
 
 
-void performBladePerFunction(Function &F) {
-  if (F.size() < 1) {
-    D("Skipping func, no instructions found");
-    return;
-  }
-  D("Inserting protects over: " << F.getName());
-  D("(FuncLvl) Marking Instructions");
-  for (BasicBlock &BB : F) {
-    for (Instruction &I : BB) {
-      markInstruction(&I);
-    }
-  }
-  D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
-
-  D("(FuncLvl) Gathering Leaks");
-  auto leaky_paths = InstVec2D();
-  for (BasicBlock &BB : F) {
-    for (Instruction &I : BB) {
-      gatherLeaks(&I, &leaky_paths);
-    }
-  }
-
-  D("(FuncLvl) Finding cutset over " << leaky_paths.size() << " leaky paths.");
-  auto cutset = findCutSet(&leaky_paths);
-
-  D("(FuncLvl) Inserting Protections");
-  auto M = F.getParent();
-  insertProtections(*M, &cutset, FENCE);
-
-  printSummary();
-}
-
-
-void runBlade2(Module &M) {
+void runBladePerFunction(Module &M) {
   for (Function &F : M) {
-    performBladePerFunction(F);
+    if (F.size() < 1) {
+      D("Skipping func, no instructions found");
+      return;
+    }
+    D("Inserting protects over: " << F.getName());
+    D("(FuncLvl) Marking Instructions");
+    for (BasicBlock &BB : F) {
+      for (Instruction &I : BB) {
+        markInstruction(&I);
+      }
+    }
+    D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
+
+    D("(FuncLvl) Gathering Leaks");
+    auto leaky_paths = InstVec2D();
+    for (BasicBlock &BB : F) {
+      for (Instruction &I : BB) {
+        gatherLeaks(&I, &leaky_paths);
+      }
+    }
+
+    D("(FuncLvl) Finding cutset over " << leaky_paths.size() << " leaky paths.");
+    auto cutset = findCutSet(&leaky_paths);
+
+    D("(FuncLvl) Inserting Protections");
+    auto M = F.getParent();
+    insertProtections(*M, &cutset, FENCE);
   }
 }
 
@@ -673,8 +665,40 @@ void runBlade(Module &M) {
   // Finally, iterate over all instructions in the cutset and place a lfence after them.
   D("Inserting Protections");
   insertProtections(M, &cutset, FENCE);
+}
 
-  printSummary();
+
+void runFenceEverywhere(Module &M) {
+  for (Function &F : M) {
+    if (F.size() < 1) {
+      D("Skipping func, no instructions found");
+      return;
+    }
+    D("Inserting protects over: " << F.getName());
+    D("Marking Instructions");
+    for (BasicBlock &BB : F) {
+      for (Instruction &I : BB) {
+        markInstruction(&I);
+      }
+    }
+    D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
+
+    auto cutset = SmallSetVector<Instruction*, 16>();
+
+    for (BasicBlock &BB : F) {
+      for (Instruction &I : BB) {
+        if (isTransientInstruction(&I)) {
+          cutset.insert(&I);
+          NumCuts++;
+          NumLeaks++;
+        }
+      }
+    }
+
+    D("Inserting Protections");
+    auto M = F.getParent();
+    insertProtections(*M, &cutset, FENCE);
+  }
 }
 
 
@@ -683,7 +707,10 @@ void runBlade(Module &M) {
 PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
   // runBlade(M);
-  runBlade2(M);
+  runBladePerFunction(M);
+  // runFenceEverywhere(M);
+
+  printSummary();
 
   return PreservedAnalyses::all();
 }
