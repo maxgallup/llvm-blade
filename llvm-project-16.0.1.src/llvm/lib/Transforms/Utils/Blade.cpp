@@ -240,6 +240,7 @@ void gatherLeaks(Instruction *I, InstVec2D *leaky_paths) {
       }
       a_leaky_path.push_back(I);
       leaky_paths->push_back(a_leaky_path);
+      NumLeaks++;
     }
 
     // Since we've accumulated all BladeNodes on the heap and we've alread saved the leaky path
@@ -567,6 +568,7 @@ SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
 
   for (auto n : cutset_ids) {
     cutset.insert(mappings[n]);
+    NumCuts++;
   }
 
   freeGraph(graph, num_vertices);
@@ -593,9 +595,47 @@ bool insertProtections(Module &M, SmallSetVector<Instruction*, 16> *cutset, Prot
 }
 
 
-/// @brief Main entry point for the Blade optimization pass.
-/// @return Currently not considering return value - TODO will have to changed preserved analysis
-PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
+void performBladePerFunction(Function &F) {
+  if (F.size() < 1) {
+    D("Skipping func, no instructions found");
+    return;
+  }
+  D("Inserting protects over: " << F.getName());
+  D("(FuncLvl) Marking Instructions");
+  for (BasicBlock &BB : F) {
+    for (Instruction &I : BB) {
+      markInstruction(&I);
+    }
+  }
+  D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
+
+  D("(FuncLvl) Gathering Leaks");
+  auto leaky_paths = InstVec2D();
+  for (BasicBlock &BB : F) {
+    for (Instruction &I : BB) {
+      gatherLeaks(&I, &leaky_paths);
+    }
+  }
+
+  D("(FuncLvl) Finding cutset over " << leaky_paths.size() << " leaky paths.");
+  auto cutset = findCutSet(&leaky_paths);
+
+  D("(FuncLvl) Inserting Protections");
+  auto M = F.getParent();
+  insertProtections(*M, &cutset, FENCE);
+
+  printSummary();
+}
+
+
+void runBlade2(Module &M) {
+  for (Function &F : M) {
+    performBladePerFunction(F);
+  }
+}
+
+
+void runBlade(Module &M) {
   // Firstly, iterate over all instructions and mark them either as transient or stable without
   // propagating transient marks along def-use chain - only the entry  points are marked.
   D("Marking Instructions");
@@ -606,6 +646,7 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
       }
     }
   }
+  D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
 
   // Secondly, collect all secret leaking paths into a 2D Vector of instruction pointers.
   // The resulting vector will contain each Def-Use chain that is part of a leak.
@@ -618,7 +659,6 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
       }
     }
   }
-  NumLeaks = leaky_paths.size();
 
   // printLeakyPaths(&leaky_paths);
 
@@ -628,13 +668,22 @@ PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
   // be protected which is the "cutset".
   D("Finding cutset over " << NumLeaks << " leaky paths.");
   auto cutset = findCutSet(&leaky_paths);
-  NumCuts = cutset.size();
+
 
   // Finally, iterate over all instructions in the cutset and place a lfence after them.
   D("Inserting Protections");
   insertProtections(M, &cutset, FENCE);
 
   printSummary();
+}
+
+
+/// @brief Main entry point for the Blade optimization pass.
+/// @return Currently not considering return value - TODO will have to changed preserved analysis
+PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
+
+  // runBlade(M);
+  runBlade2(M);
 
   return PreservedAnalyses::all();
 }
