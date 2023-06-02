@@ -17,15 +17,15 @@ entry:
   %idxprom = sext i32 %rem to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom, !BLADE-S !8
   %0 = load i32, ptr %arrayidx, align 4, !tbaa !9, !BLADE-T !7
+  call void @llvm.x86.sse2.lfence()
   %idxprom2 = sext i32 %0 to i64
   %arrayidx3 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom2, !BLADE-S !8
   %1 = load i32, ptr %arrayidx3, align 4, !tbaa !9, !BLADE-T !7
+  call void @llvm.x86.sse2.lfence()
   %add = add nsw i32 %1, %0
   %idxprom4 = sext i32 %add to i64
-  call void @llvm.x86.sse2.lfence()
   %arrayidx5 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom4, !BLADE-S !8
   %2 = load i32, ptr %arrayidx5, align 4, !tbaa !9, !BLADE-T !7
-  call void @llvm.x86.sse2.lfence()
   ret i32 %2
 }
 

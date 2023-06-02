@@ -25,7 +25,6 @@ entry:
   %idxprom6 = sext i32 %add5 to i64
   %arrayidx7 = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom6, !BLADE-S !8
   %1 = load i32, ptr %arrayidx7, align 4, !tbaa !9, !BLADE-T !7
-  call void @llvm.x86.sse2.lfence()
   %add8 = add nsw i32 %1, %0
   ret i32 %add8
 }

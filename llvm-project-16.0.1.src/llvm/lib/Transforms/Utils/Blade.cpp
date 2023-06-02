@@ -165,6 +165,8 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
     if (iters.top().atEnd()) {
       // looked at all children, go up one parent
       // check if iters, is empty that means we are done
+      current_parent = current_parent->parent;
+
       iters.pop();
       if (iters.size() <= 0) {
         break;
@@ -471,7 +473,7 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
   // to the transpose of the original graph.
   if (!transpose_optimization) {
     int *parent = (int*) calloc(num_vertices, sizeof(int));
-    D("\t\tBuilding Residual Graph");
+    // D("\t\tBuilding Residual Graph");
     while (bfs(residual_graph, source, sink, parent, num_vertices)) {
       int path_flow = INT_MAX;
       for (v = sink; v != source; v = parent[v]) {
@@ -497,7 +499,7 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
 
   // Perform a Depth-First-Search on residual garph and keep track of which nodes are reachable.
   bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
-  D("\t\tDepth First Search for visited nodes");
+  // D("\t\tDepth First Search for visited nodes");
   dfs(residual_graph, source, visited, num_vertices);
 
   auto cutset_ids = SmallSetVector<int, 16>();
@@ -527,7 +529,7 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
 SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
   // We accumulate all instructions into a set and assign them a 
   // unique ID based on their index position within the set.
-  D("\tAggregating Instructions");
+  // D("\tAggregating Instructions");
   SmallSetVector<Instruction*, 16> mappings = aggregateInstructions(leaky_paths);
   
   // The total number of vertices in the graph will be `size + 2` because of the 
@@ -541,7 +543,7 @@ SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
   // We represent the graph in the form of a matrix where a 1 in row i and column j
   // indicates there is an edge from vertex i to vertex j.
   int **graph = allocateGraphDS(num_vertices);
-  D("\tPopulating Graph");
+  // D("\tPopulating Graph");
   populateGraph(leaky_paths, &mappings, graph, num_vertices, og_num_vertices);
 
   // Run Ford-Fulkerson's Max Flow Min Cut algorithm to find which instructions need
