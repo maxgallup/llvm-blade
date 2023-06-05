@@ -50,6 +50,16 @@ class BladeNode {
     };
 };
 
+// class BladeInstruction {
+//   public:
+//     int id;
+//     Instruction *I;
+//     BladeInstruction(Instruction *newI, int i) {
+//       I = newI;
+//       id = i;
+//     };
+// };
+
 
 /// @brief Blade uses either lfences or SLH underneath the protect statement.
 enum ProtectType {
@@ -105,6 +115,18 @@ void markInstruction(Instruction *I) {
   }
 }
 
+/// @brief Mark the instructions that use a function's arguments as transient.
+void markArgs(Function &F) {
+  for (Argument &A : F.args()) {
+    if (Value *transient_value = dyn_cast<Value>(&A)) {
+      for (User *U : transient_value->users()) {
+        if (Instruction *I = dyn_cast<Instruction>(U)) {
+          markInstructionTransient(I);
+        }
+      }
+    }
+  }
+}
 
 /// @brief Traverse graph in Post-Order and delete (free) all nodes to prevent a memory leak.
 /// @param B Root node of graph.
@@ -169,6 +191,7 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
   iters.push(start->users().begin());
 
   while (true) {
+
     // Once all nodes have been visited, the stack will be empty, and we are finished.
     if (iters.size() == 0) {
       break;
@@ -250,6 +273,14 @@ void gatherLeaks(Instruction *I, InstVec2D *leaky_paths) {
 }
 
 
+void gatherLeaks2(Instruction *I, InstVec2D *leaky_paths) {
+  // auto start = I;
+
+  // for ()
+
+}
+
+
 /// @brief Pretty print all instructions that make up the leaky paths.
 /// @param leaky_paths 2D Vector of instruction pointers where the stable instrction comes first.
 void printLeakyPaths(InstVec2D *leaky_paths) {
@@ -304,6 +335,21 @@ int getInstructionIndex(SmallSetVector<Instruction*, 16> *set, Instruction *I) {
   // at index 0 of the final graph (and a sink node appended to the end as well).
   int index = 1;
   for (auto inst : *set) {
+    if (inst == I) {
+      return index;
+    }
+    index++;
+  }
+  return -1;
+}
+
+/// @brief Look up the the index of a given instruction within the set. This is
+/// used to uniquely ID each instruction in the dependency graph.
+int getInstructionIndex(InstVec1D &vec, Instruction *I) {
+  // Number of instructions start counting from 1, so that we can add a Source Node
+  // at index 0 of the final graph (and a sink node appended to the end as well).
+  int index = 1;
+  for (auto inst : vec) {
     if (inst == I) {
       return index;
     }
@@ -426,6 +472,57 @@ void populateGraph(InstVec2D *leaky_paths, SmallSetVector<Instruction*, 16> *map
 }
 
 
+
+void populateGraph(InstVec1D &insts, int **graph, int num_vertices, int og_num_vertices) {
+
+  int **og_graph = allocateGraphDS(og_num_vertices);
+
+  for (Instruction *I : insts) {
+    for (User *U : I->users()) {
+      if (Instruction *II = dyn_cast<Instruction>(U)) {
+        auto row = getInstructionIndex(insts, I);
+        auto col = getInstructionIndex(insts, II);
+        og_graph[row][col] = 1;
+      }
+    }
+  }
+
+  for (Instruction *I : insts) {
+    if (isTransientInstruction(I)) {
+      auto i = getInstructionIndex(insts, I);
+      og_graph[0][i] = 1;
+    } else if (isStableInstruction(I)) {
+      auto i = getInstructionIndex(insts, I);
+      og_graph[i][og_num_vertices - 1] = 1;
+    }
+  }
+
+
+    for (int row = 1; row < og_num_vertices - 1; row++) {
+    int target_row = (row * 2) - 1;
+    graph[target_row][target_row + 1] = 1; // Link X_i to X_o
+
+    // Modify the index of all outgoing edges of the current vertex to be (index * 2) - 1.
+    for (int col = 0; col < og_num_vertices; col++) {
+      if (og_graph[row][col] == 1) {
+        graph[target_row + 1][(col * 2) - 1] = 1;
+      }
+    }
+  }
+
+  // Update the source node's edges (index 0) to point to correct locations.
+  for (int col = 0; col < og_num_vertices - 1; col++) {
+    if (og_graph[0][col] == 1) {
+      graph[0][(col * 2) - 1] = 1;
+    }
+  }
+
+
+  freeGraph(og_graph, og_num_vertices);
+
+}
+
+
 /// @brief Performs Breadth-First-Search on residual graph
 /// @returns whether or not target can be reached
 bool bfs(int **residual_graph, int s, int t, int parent[], int num_vertices) {
@@ -471,44 +568,34 @@ void dfs(int **residual_graph, int s, bool visited[], int num_vertices) {
 SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertices) {
   int u, v;
   int **residual_graph = allocateGraphDS(num_vertices);
-  bool transpose_optimization = false;
   for (u = 0; u < num_vertices; u++) {
     for (v = 0; v < num_vertices; v++) {
-      // Original
       residual_graph[u][v] = graph[u][v];
-
-      // Optimization for not having to use traditional algorithm, but instead just take
-      // the matrix Transpose
-      // residual_graph[u][v] = graph[v][u];
-      // transpose_optimization = true;
-
     }
   }
 
   // Keep track of the parent when performing Breadth-First-Search to build the residual graph.
   // However, potentially unnecessary due to the fact that resulting residual graph is equivalent
   // to the transpose of the original graph.
-  if (!transpose_optimization) {
-    int *parent = (int*) calloc(num_vertices, sizeof(int));
-    // D("\t\tBuilding Residual Graph");
-    while (bfs(residual_graph, source, sink, parent, num_vertices)) {
-      int path_flow = INT_MAX;
-      for (v = sink; v != source; v = parent[v]) {
-        u = parent[v];
-        path_flow = std::min(path_flow, residual_graph[u][v]);
-      }
-
-      // Update residual capacities and reverse the direction of the edges.
-      for (v = sink; v != source; v=parent[v]) {
-        u = parent[v];
-        residual_graph[u][v] -= path_flow;
-        residual_graph[v][u] += path_flow;
-      }
+  int *parent = (int*) calloc(num_vertices, sizeof(int));
+  while (bfs(residual_graph, source, sink, parent, num_vertices)) {
+    int path_flow = INT_MAX;
+    for (v = sink; v != source; v = parent[v]) {
+      u = parent[v];
+      path_flow = std::min(path_flow, residual_graph[u][v]);
     }
-    
-    free(parent);
 
+    // Update residual capacities and reverse the direction of the edges.
+    for (v = sink; v != source; v=parent[v]) {
+      u = parent[v];
+      residual_graph[u][v] -= path_flow;
+      residual_graph[v][u] += path_flow;
+    }
   }
+  
+  free(parent);
+
+  
 
   // Perform a Depth-First-Search on residual garph and keep track of which nodes are reachable.
   bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
@@ -529,6 +616,8 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
         }
     }
   }
+  
+  // printGraph(graph, num_vertices);
 
   free(visited);
   freeGraph(residual_graph, num_vertices);
@@ -561,7 +650,6 @@ SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
 
   // Run Ford-Fulkerson's Max Flow Min Cut algorithm to find which instructions need
   // to be protected to prevent leaks.
-  D("\tMinCut Algorithm");
   auto cutset_ids = minCut(graph, 0, num_vertices - 1, num_vertices);
   auto cutset = SmallSetVector<Instruction*, 16>();
 
@@ -574,6 +662,43 @@ SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
 
   return cutset;
 }
+
+
+SmallSetVector<Instruction*, 16> findCutSet2(Function &F) {
+  int num_instructions = F.getInstructionCount();
+
+  auto table = InstVec1D();
+  table.resize(num_instructions);
+
+  auto current_block = 0;
+  for (BasicBlock &BB : F) {
+    auto current_inst = 0;
+    for (Instruction &I : BB) {
+      table[current_block + current_inst] = &I;
+      current_inst++;
+    }
+    current_block++;
+  }
+
+  int og_num_vertices = num_instructions + 2;
+  int num_vertices = (num_instructions * 2) + 2;
+  int **graph = allocateGraphDS(num_vertices);
+
+  populateGraph(table, graph, num_vertices, og_num_vertices);
+
+  auto cutset_ids = minCut(graph, 0, num_vertices - 1, num_vertices);
+  auto cutset = SmallSetVector<Instruction*, 16>();
+
+  for (auto n : cutset_ids) {
+    cutset.insert(table[n]);
+    NumCuts++;
+  }
+
+  freeGraph(graph, num_vertices);
+
+  return cutset;
+}
+
 
 
 /// @brief Inserts protections right after leaky instructions given by cutset to defend
@@ -593,109 +718,64 @@ bool insertProtections(Module &M, SmallSetVector<Instruction*, 16> *cutset, Prot
   return false;
 }
 
+/// @brief Marks all transient and stable instructions in a given function.
+void placeMarkings(Function &F) {
+  for (BasicBlock &BB : F) {
+    for (Instruction &I : BB) {
+      markInstruction(&I);
+    }
+  }
+  // markArgs(F);
+}
+
+
+void gatherLeaksWrapper(Function &F, InstVec2D *leaky_paths) {
+  for (BasicBlock &BB : F) {
+    for (Instruction &I : BB) {
+      gatherLeaks(&I, leaky_paths);
+      // gatherLeaks2(&I, leaky_paths);
+    }
+  }
+}
 
 void runBladePerFunction(Module &M) {
   for (Function &F : M) {
     if (F.size() < 1) {
-      D("Skipping func, no instructions found");
       return;
     }
     D("Inserting protects over: " << F.getName());
-    D("(FuncLvl) Marking Instructions");
-    for (BasicBlock &BB : F) {
-      for (Instruction &I : BB) {
-        markInstruction(&I);
-      }
-    }
-    D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
+    placeMarkings(F);
 
-    D("(FuncLvl) Gathering Leaks");
     auto leaky_paths = InstVec2D();
-    for (BasicBlock &BB : F) {
-      for (Instruction &I : BB) {
-        gatherLeaks(&I, &leaky_paths);
-      }
-    }
+    gatherLeaksWrapper(F, &leaky_paths);
 
-    D("(FuncLvl) Finding cutset over " << leaky_paths.size() << " leaky paths.");
     auto cutset = findCutSet(&leaky_paths);
+    // auto cutset = findCutSet2(F);
 
-    D("(FuncLvl) Inserting Protections");
     auto M = F.getParent();
     insertProtections(*M, &cutset, FENCE);
   }
 }
 
 
-void runBlade(Module &M) {
-  // Firstly, iterate over all instructions and mark them either as transient or stable without
-  // propagating transient marks along def-use chain - only the entry  points are marked.
-  D("Marking Instructions");
-  for (Function &F : M) {
-    for (BasicBlock &BB : F) {
-      for (Instruction &I : BB) {
-        markInstruction(&I);
-      }
-    }
-  }
-  D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
-
-  // Secondly, collect all secret leaking paths into a 2D Vector of instruction pointers.
-  // The resulting vector will contain each Def-Use chain that is part of a leak.
-  D("Gathering Leaks");
-  auto leaky_paths = InstVec2D();
-  for (Function &F : M) {
-    for (BasicBlock &BB : F) {
-      for (Instruction &I : BB) {
-        gatherLeaks(&I, &leaky_paths);
-      }
-    }
-  }
-
-  // printLeakyPaths(&leaky_paths);
-
-  // Thirdly, given all leaky paths we must create a dependency graph of all paths 
-  // combined with a sharedsource and sink node. Then, we can apply Ford-Fulkerson's
-  // Max Flow Min Cut algorithm on the to find the set of instructions that need to
-  // be protected which is the "cutset".
-  D("Finding cutset over " << NumLeaks << " leaky paths.");
-  auto cutset = findCutSet(&leaky_paths);
-
-
-  // Finally, iterate over all instructions in the cutset and place a lfence after them.
-  D("Inserting Protections");
-  insertProtections(M, &cutset, FENCE);
-}
 
 
 void runFenceEverywhere(Module &M) {
   for (Function &F : M) {
     if (F.size() < 1) {
-      D("Skipping func, no instructions found");
       return;
     }
-    D("Inserting protects over: " << F.getName());
-    D("Marking Instructions");
-    for (BasicBlock &BB : F) {
-      for (Instruction &I : BB) {
-        markInstruction(&I);
-      }
-    }
-    D("\t\tNumTransient: " << NumTransient << " NumStable: " << NumStable);
-
+    placeMarkings(F);
     auto cutset = SmallSetVector<Instruction*, 16>();
-
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
         if (isTransientInstruction(&I)) {
           cutset.insert(&I);
-          NumCuts++;
           NumLeaks++;
         }
       }
     }
-
-    D("Inserting Protections");
+    NumCuts += cutset.size();
     auto M = F.getParent();
     insertProtections(*M, &cutset, FENCE);
   }
@@ -706,7 +786,6 @@ void runFenceEverywhere(Module &M) {
 /// @return Currently not considering return value - TODO will have to changed preserved analysis
 PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
-  // runBlade(M);
   runBladePerFunction(M);
   // runFenceEverywhere(M);
 
