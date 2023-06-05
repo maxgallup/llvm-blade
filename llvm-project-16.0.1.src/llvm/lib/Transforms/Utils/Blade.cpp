@@ -35,6 +35,7 @@ STATISTIC(NumCuts, "Total number of cuts resulting in a protect statement.");
 
 typedef SmallVector<Instruction*, 16> InstVec1D;
 typedef SmallVector<InstVec1D, 16> InstVec2D;
+typedef int dag_type;
 
 /// @brief Used internally to construct dependency graph of all leaky instructions
 class BladeNode {
@@ -49,17 +50,6 @@ class BladeNode {
       children = new SmallVector<BladeNode*, 16>();
     };
 };
-
-// class BladeInstruction {
-//   public:
-//     int id;
-//     Instruction *I;
-//     BladeInstruction(Instruction *newI, int i) {
-//       I = newI;
-//       id = i;
-//     };
-// };
-
 
 /// @brief Blade uses either lfences or SLH underneath the protect statement.
 enum ProtectType {
@@ -320,7 +310,7 @@ void printCutSet(SmallSetVector<Instruction*, 16> *cutset) {
 }
 
 /// @brief Frees a 2D array of ints by freeing each row first.
-void freeGraph(int **graph, int length) {
+void freeGraph(dag_type **graph, int length) {
   for (int i = 0; i < length; i++) {
     free(graph[i]);
   }
@@ -360,7 +350,7 @@ int getInstructionIndex(InstVec1D &vec, Instruction *I) {
 
 
 /// @brief Pretty print Matrix representation of graph.
-void printGraph(int **graph, int size) {
+void printGraph(dag_type **graph, int size) {
   for (int row = 0; row < size; row++) {
     RAW(row << ":\t[");
     for (int col = 0; col < size; col++) {
@@ -372,7 +362,7 @@ void printGraph(int **graph, int size) {
 
 
 /// @brief Pretty print Matrix representation of graph, highlighting visited nodes.
-void printGraph(int **graph, bool visited[], int size) {
+void printGraph(dag_type **graph, bool visited[], int size) {
   for (int row = 0; row < size; row++) {
     if (visited[row]) {
       RAW("\033[31;1;4m" << row << ":\t[");
@@ -405,10 +395,11 @@ SmallSetVector<Instruction*, 16> aggregateInstructions(InstVec2D *leaky_paths) {
 
 
 /// @brief This data structure must be freed, use calloc to allocate a 2D array.
-int **allocateGraphDS(int num_vertices) {
-  int **graph = (int **)calloc(num_vertices, sizeof(int*));
+dag_type **allocateGraphDS(int num_vertices) {
+  D("\t\t Allocating " << num_vertices * sizeof(dag_type*) + num_vertices * sizeof(dag_type) << " bytes");
+  dag_type **graph = (dag_type **)calloc(num_vertices, sizeof(dag_type *));
   for (int i = 0; i < num_vertices; i++) {
-    graph[i] = (int *)calloc(num_vertices, sizeof(int));
+    graph[i] = (dag_type *)calloc(num_vertices, sizeof(dag_type));
   }
   return graph;
 }
@@ -419,10 +410,10 @@ int **allocateGraphDS(int num_vertices) {
 /// all incoming edges and vertex X_o keeps all outgoing edges. There is a single edge between vertex
 /// X_i and X_o in order for the Min Cut Algorithm to correctly identify the minimum cut. This leads
 /// to a Matrix that is twice the size as the original.
-void populateGraph(InstVec2D *leaky_paths, SmallSetVector<Instruction*, 16> *mappings, int **graph, int num_vertices, int og_num_vertices) {
+void populateGraph(InstVec2D *leaky_paths, SmallSetVector<Instruction*, 16> *mappings, dag_type **graph, int num_vertices, int og_num_vertices) {
   // Internal to this function, we first make a matrix representation without changing each
   // vertex X to (X_i, X_o) - this graph must be freed before the function returns.
-  int **og_graph = allocateGraphDS(og_num_vertices);
+  dag_type **og_graph = allocateGraphDS(og_num_vertices);
   
   for (InstVec1D path : *leaky_paths) {
     for (int i = path.size() - 1; i >= 1; i--) {
@@ -473,16 +464,21 @@ void populateGraph(InstVec2D *leaky_paths, SmallSetVector<Instruction*, 16> *map
 
 
 
-void populateGraph(InstVec1D &insts, int **graph, int num_vertices, int og_num_vertices) {
+void populateGraph(InstVec1D &insts, dag_type **graph, int num_vertices, int og_num_vertices) {
 
-  int **og_graph = allocateGraphDS(og_num_vertices);
+  dag_type **og_graph = allocateGraphDS(og_num_vertices);
 
   for (Instruction *I : insts) {
-    for (User *U : I->users()) {
-      if (Instruction *II = dyn_cast<Instruction>(U)) {
-        auto row = getInstructionIndex(insts, I);
-        auto col = getInstructionIndex(insts, II);
-        og_graph[row][col] = 1;
+    if (I->hasNUsesOrMore(1)) {
+      for (User *U : I->users()) {
+        if (Instruction *II = dyn_cast<Instruction>(U)) {
+          auto row = getInstructionIndex(insts, I);
+          auto col = getInstructionIndex(insts, II);
+          if (row == -1 || col == -1) {
+            continue;
+          }
+          og_graph[row][col] = 1;
+        }
       }
     }
   }
@@ -497,8 +493,7 @@ void populateGraph(InstVec1D &insts, int **graph, int num_vertices, int og_num_v
     }
   }
 
-
-    for (int row = 1; row < og_num_vertices - 1; row++) {
+  for (int row = 1; row < og_num_vertices - 1; row++) {
     int target_row = (row * 2) - 1;
     graph[target_row][target_row + 1] = 1; // Link X_i to X_o
 
@@ -517,7 +512,6 @@ void populateGraph(InstVec1D &insts, int **graph, int num_vertices, int og_num_v
     }
   }
 
-
   freeGraph(og_graph, og_num_vertices);
 
 }
@@ -525,7 +519,7 @@ void populateGraph(InstVec1D &insts, int **graph, int num_vertices, int og_num_v
 
 /// @brief Performs Breadth-First-Search on residual graph
 /// @returns whether or not target can be reached
-bool bfs(int **residual_graph, int s, int t, int parent[], int num_vertices) {
+bool bfs(dag_type **residual_graph, int s, int t, int parent[], int num_vertices) {
   bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
   std::queue<int> traversed_so_far;
   traversed_so_far.push(s);
@@ -553,7 +547,7 @@ bool bfs(int **residual_graph, int s, int t, int parent[], int num_vertices) {
 
 /// @brief Performs Deapth-First-Search recursively on residual graph and updates
 /// visited[] array where the indices of visited allign with the IDs of instructions
-void dfs(int **residual_graph, int s, bool visited[], int num_vertices) {
+void dfs(dag_type **residual_graph, int s, bool visited[], int num_vertices) {
   visited[s] = true;
   for (int i = 0; i < num_vertices; i++) {
     if (residual_graph[s][i] && !visited[i]) {
@@ -565,9 +559,9 @@ void dfs(int **residual_graph, int s, bool visited[], int num_vertices) {
 
 /// @brief Performs a customized version of Ford Fulkerson's Max Flow Min Cut Algorithm
 /// to find the minimal cuts of the dependency graph.
-SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertices) {
+SmallSetVector<int, 16> minCut(dag_type **graph, int source, int sink, int num_vertices) {
   int u, v;
-  int **residual_graph = allocateGraphDS(num_vertices);
+  dag_type **residual_graph = allocateGraphDS(num_vertices);
   for (u = 0; u < num_vertices; u++) {
     for (v = 0; v < num_vertices; v++) {
       residual_graph[u][v] = graph[u][v];
@@ -578,8 +572,9 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
   // However, potentially unnecessary due to the fact that resulting residual graph is equivalent
   // to the transpose of the original graph.
   int *parent = (int*) calloc(num_vertices, sizeof(int));
+  D(" -- making residual graph");
   while (bfs(residual_graph, source, sink, parent, num_vertices)) {
-    int path_flow = INT_MAX;
+    dag_type path_flow = INT_MAX;
     for (v = sink; v != source; v = parent[v]) {
       u = parent[v];
       path_flow = std::min(path_flow, residual_graph[u][v]);
@@ -595,11 +590,9 @@ SmallSetVector<int, 16> minCut(int **graph, int source, int sink, int num_vertic
   
   free(parent);
 
-  
-
   // Perform a Depth-First-Search on residual garph and keep track of which nodes are reachable.
   bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
-  // D("\t\tDepth First Search for visited nodes");
+  D(" -- dfs");
   dfs(residual_graph, source, visited, num_vertices);
 
   auto cutset_ids = SmallSetVector<int, 16>();
@@ -644,7 +637,7 @@ SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
 
   // We represent the graph in the form of a matrix where a 1 in row i and column j
   // indicates there is an edge from vertex i to vertex j.
-  int **graph = allocateGraphDS(num_vertices);
+  dag_type **graph = allocateGraphDS(num_vertices);
   // D("\tPopulating Graph");
   populateGraph(leaky_paths, &mappings, graph, num_vertices, og_num_vertices);
 
@@ -670,22 +663,24 @@ SmallSetVector<Instruction*, 16> findCutSet2(Function &F) {
   auto table = InstVec1D();
   table.resize(num_instructions);
 
-  auto current_block = 0;
+  
+  auto current_inst = 0;
   for (BasicBlock &BB : F) {
-    auto current_inst = 0;
     for (Instruction &I : BB) {
-      table[current_block + current_inst] = &I;
+      table[current_inst] = &I;
       current_inst++;
     }
-    current_block++;
   }
 
   int og_num_vertices = num_instructions + 2;
   int num_vertices = (num_instructions * 2) + 2;
-  int **graph = allocateGraphDS(num_vertices);
+  dag_type **graph = allocateGraphDS(num_vertices);
 
+  D(" -- populating graph");
   populateGraph(table, graph, num_vertices, og_num_vertices);
 
+
+  D(" -- min cut algo");
   auto cutset_ids = minCut(graph, 0, num_vertices - 1, num_vertices);
   auto cutset = SmallSetVector<Instruction*, 16>();
 
@@ -743,14 +738,15 @@ void runBladePerFunction(Module &M) {
     if (F.size() < 1) {
       return;
     }
-    D("Inserting protects over: " << F.getName());
+
+    D(" -- placing in function: " << F.getName());
     placeMarkings(F);
 
-    auto leaky_paths = InstVec2D();
-    gatherLeaksWrapper(F, &leaky_paths);
+    // auto leaky_paths = InstVec2D();
+    // gatherLeaksWrapper(F, &leaky_paths);
 
-    auto cutset = findCutSet(&leaky_paths);
-    // auto cutset = findCutSet2(F);
+    // auto cutset = findCutSet(&leaky_paths);
+    auto cutset = findCutSet2(F);
 
     auto M = F.getParent();
     insertProtections(*M, &cutset, FENCE);

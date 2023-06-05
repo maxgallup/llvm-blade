@@ -266,17 +266,17 @@ if.then18:                                        ; preds = %for.body16
 if.end19:                                         ; preds = %for.body16
   %16 = load ptr, ptr %buffer.addr, align 8, !BLADE-T !9
   %17 = load i64, ptr %j, align 8, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %arrayidx20 = getelementptr inbounds i8, ptr %16, i64 %17, !BLADE-S !8
   %18 = load i8, ptr %arrayidx20, align 1, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %conv = zext i8 %18 to i32
   %19 = load ptr, ptr %keystream, align 8, !BLADE-T !9
   %20 = load i64, ptr %j, align 8, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %21 = load i64, ptr %i, align 8, !BLADE-T !9
   %sub = sub i64 %20, %21
   %arrayidx21 = getelementptr inbounds i8, ptr %19, i64 %sub, !BLADE-S !8
   %22 = load i8, ptr %arrayidx21, align 1, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %conv22 = zext i8 %22 to i32
   %xor = xor i32 %conv, %conv22
   %conv23 = trunc i32 %xor to i8
@@ -327,10 +327,10 @@ for.cond:                                         ; preds = %for.inc, %entry
 for.body:                                         ; preds = %for.cond
   %1 = load ptr, ptr %in.addr, align 8, !BLADE-T !9
   %2 = load i32, ptr %i, align 4, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %idxprom = sext i32 %2 to i64
   %arrayidx = getelementptr inbounds i32, ptr %1, i64 %idxprom, !BLADE-S !8
   %3 = load i32, ptr %arrayidx, align 4, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %4 = load ptr, ptr %out.addr, align 8, !BLADE-T !9
   %5 = load i32, ptr %i, align 4, !BLADE-T !9
   %idxprom1 = sext i32 %5 to i64
@@ -11236,16 +11236,16 @@ for.cond3839:                                     ; preds = %for.inc3847, %for.e
 for.body3841:                                     ; preds = %for.cond3839
   %4168 = load ptr, ptr %in.addr, align 8, !BLADE-T !9
   %4169 = load i32, ptr %i3838, align 4, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %idxprom3842 = sext i32 %4169 to i64
   %arrayidx3843 = getelementptr inbounds i32, ptr %4168, i64 %idxprom3842, !BLADE-S !8
   %4170 = load i32, ptr %arrayidx3843, align 4, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %4171 = load ptr, ptr %out.addr, align 8, !BLADE-T !9
   %4172 = load i32, ptr %i3838, align 4, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %idxprom3844 = sext i32 %4172 to i64
   %arrayidx3845 = getelementptr inbounds i32, ptr %4171, i64 %idxprom3844, !BLADE-S !8
   %4173 = load i32, ptr %arrayidx3845, align 4, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %add3846 = add i32 %4173, %4170
   store i32 %add3846, ptr %arrayidx3845, align 4
   br label %for.inc3847
@@ -11280,27 +11280,27 @@ entry:
   %retval = alloca i32, align 4
   %ctx = alloca %struct.ChaCha20_Ctx, align 4
   store i32 0, ptr %retval, align 4
-  call void @run_benchmark(ptr noundef @.str.3, ptr noundef @bench_chacha_init, ptr noundef %ctx, i32 noundef 50, i32 noundef 50000), !BLADE-T !9
-  call void @run_benchmark(ptr noundef @.str.4, ptr noundef @bench_chacha_encrypt_16, ptr noundef %ctx, i32 noundef 50, i32 noundef 4000000), !BLADE-T !9
-  call void @run_benchmark(ptr noundef @.str.5, ptr noundef @bench_chacha_encrypt_64, ptr noundef %ctx, i32 noundef 50, i32 noundef 4000000), !BLADE-T !9
-  call void @run_benchmark(ptr noundef @.str.6, ptr noundef @bench_chacha_encrypt_256, ptr noundef %ctx, i32 noundef 50, i32 noundef 4000000), !BLADE-T !9
+  call void @run_benchmark(ptr noundef @.str.3, ptr noundef @bench_chacha_init, ptr noundef %ctx, i32 noundef 50, i32 noundef 50000)
+  call void @run_benchmark(ptr noundef @.str.4, ptr noundef @bench_chacha_encrypt_16, ptr noundef %ctx, i32 noundef 50, i32 noundef 4000000)
+  call void @run_benchmark(ptr noundef @.str.5, ptr noundef @bench_chacha_encrypt_64, ptr noundef %ctx, i32 noundef 50, i32 noundef 4000000)
+  call void @run_benchmark(ptr noundef @.str.6, ptr noundef @bench_chacha_encrypt_256, ptr noundef %ctx, i32 noundef 50, i32 noundef 4000000)
   ret i32 0
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal void @run_benchmark(ptr noundef %name, ptr noundef %benchmark, ptr noundef %data, i32 noundef %count, i32 noundef %iter) #0 {
 entry:
-  %name.addr = alloca ptr, align 8, !BLADE-S !8
-  %benchmark.addr = alloca ptr, align 8, !BLADE-S !8
-  %data.addr = alloca ptr, align 8, !BLADE-S !8
-  %count.addr = alloca i32, align 4, !BLADE-S !8
-  %iter.addr = alloca i32, align 4, !BLADE-S !8
-  %min = alloca double, align 8, !BLADE-S !8
-  %max = alloca double, align 8, !BLADE-S !8
-  %sum = alloca double, align 8, !BLADE-S !8
-  %i = alloca i32, align 4, !BLADE-S !8
-  %begin = alloca double, align 8, !BLADE-S !8
-  %total = alloca double, align 8, !BLADE-S !8
+  %name.addr = alloca ptr, align 8
+  %benchmark.addr = alloca ptr, align 8
+  %data.addr = alloca ptr, align 8
+  %count.addr = alloca i32, align 4
+  %iter.addr = alloca i32, align 4
+  %min = alloca double, align 8
+  %max = alloca double, align 8
+  %sum = alloca double, align 8
+  %i = alloca i32, align 4
+  %begin = alloca double, align 8
+  %total = alloca double, align 8
   store ptr %name, ptr %name.addr, align 8
   store ptr %benchmark, ptr %benchmark.addr, align 8
   store ptr %data, ptr %data.addr, align 8
@@ -11313,119 +11313,119 @@ entry:
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %entry
-  %0 = load i32, ptr %i, align 4, !BLADE-T !9
-  %1 = load i32, ptr %count.addr, align 4, !BLADE-T !9
+  %0 = load i32, ptr %i, align 4
+  %1 = load i32, ptr %count.addr, align 4
   %cmp = icmp slt i32 %0, %1
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %call = call double @gettimedouble(), !BLADE-T !9
+  %call = call double @gettimedouble()
   store double %call, ptr %begin, align 8
-  %2 = load ptr, ptr %benchmark.addr, align 8, !BLADE-T !9
-  %3 = load ptr, ptr %data.addr, align 8, !BLADE-T !9
-  call void %2(ptr noundef %3), !BLADE-T !9
-  %call1 = call double @gettimedouble(), !BLADE-T !9
-  %4 = load double, ptr %begin, align 8, !BLADE-T !9
+  %2 = load ptr, ptr %benchmark.addr, align 8
+  %3 = load ptr, ptr %data.addr, align 8
+  call void %2(ptr noundef %3)
+  %call1 = call double @gettimedouble()
+  %4 = load double, ptr %begin, align 8
   %sub = fsub double %call1, %4
   store double %sub, ptr %total, align 8
-  %5 = load double, ptr %min, align 8, !BLADE-T !9
-  %6 = load double, ptr %total, align 8, !BLADE-T !9
+  %5 = load double, ptr %min, align 8
+  %6 = load double, ptr %total, align 8
   %cmp2 = fcmp olt double %5, %6
   br i1 %cmp2, label %cond.true, label %cond.false
 
 cond.true:                                        ; preds = %for.body
-  %7 = load double, ptr %min, align 8, !BLADE-T !9
+  %7 = load double, ptr %min, align 8
   br label %cond.end
 
 cond.false:                                       ; preds = %for.body
-  %8 = load double, ptr %total, align 8, !BLADE-T !9
+  %8 = load double, ptr %total, align 8
   br label %cond.end
 
 cond.end:                                         ; preds = %cond.false, %cond.true
   %cond = phi double [ %7, %cond.true ], [ %8, %cond.false ]
   store double %cond, ptr %min, align 8
-  %9 = load double, ptr %max, align 8, !BLADE-T !9
-  %10 = load double, ptr %total, align 8, !BLADE-T !9
+  %9 = load double, ptr %max, align 8
+  %10 = load double, ptr %total, align 8
   %cmp3 = fcmp ogt double %9, %10
   br i1 %cmp3, label %cond.true4, label %cond.false5
 
 cond.true4:                                       ; preds = %cond.end
-  %11 = load double, ptr %max, align 8, !BLADE-T !9
+  %11 = load double, ptr %max, align 8
   br label %cond.end6
 
 cond.false5:                                      ; preds = %cond.end
-  %12 = load double, ptr %total, align 8, !BLADE-T !9
+  %12 = load double, ptr %total, align 8
   br label %cond.end6
 
 cond.end6:                                        ; preds = %cond.false5, %cond.true4
   %cond7 = phi double [ %11, %cond.true4 ], [ %12, %cond.false5 ]
   store double %cond7, ptr %max, align 8
-  %13 = load double, ptr %total, align 8, !BLADE-T !9
-  %14 = load double, ptr %sum, align 8, !BLADE-T !9
+  %13 = load double, ptr %total, align 8
+  %14 = load double, ptr %sum, align 8
   %add = fadd double %14, %13
   store double %add, ptr %sum, align 8
   br label %for.inc
 
 for.inc:                                          ; preds = %cond.end6
-  %15 = load i32, ptr %i, align 4, !BLADE-T !9
+  %15 = load i32, ptr %i, align 4
   %inc = add nsw i32 %15, 1
   store i32 %inc, ptr %i, align 4
   br label %for.cond, !llvm.loop !15
 
 for.end:                                          ; preds = %for.cond
-  %16 = load i32, ptr %iter.addr, align 4, !BLADE-T !9
+  %16 = load i32, ptr %iter.addr, align 4
   %conv = sitofp i32 %16 to double
   %div = fdiv double 1.000000e+09, %conv
-  %17 = load double, ptr %min, align 8, !BLADE-T !9
+  %17 = load double, ptr %min, align 8
   %mul = fmul double %17, %div
   store double %mul, ptr %min, align 8
-  %18 = load i32, ptr %iter.addr, align 4, !BLADE-T !9
+  %18 = load i32, ptr %iter.addr, align 4
   %conv8 = sitofp i32 %18 to double
   %div9 = fdiv double 1.000000e+09, %conv8
-  %19 = load double, ptr %max, align 8, !BLADE-T !9
+  %19 = load double, ptr %max, align 8
   %mul10 = fmul double %19, %div9
   store double %mul10, ptr %max, align 8
-  %20 = load i32, ptr %iter.addr, align 4, !BLADE-T !9
+  %20 = load i32, ptr %iter.addr, align 4
   %conv11 = sitofp i32 %20 to double
   %div12 = fdiv double 1.000000e+09, %conv11
-  %21 = load double, ptr %sum, align 8, !BLADE-T !9
+  %21 = load double, ptr %sum, align 8
   %mul13 = fmul double %21, %div12
   store double %mul13, ptr %sum, align 8
-  %22 = load ptr, ptr %name.addr, align 8, !BLADE-T !9
-  %23 = load double, ptr %min, align 8, !BLADE-T !9
-  %24 = load double, ptr %sum, align 8, !BLADE-T !9
-  %25 = load i32, ptr %count.addr, align 4, !BLADE-T !9
+  %22 = load ptr, ptr %name.addr, align 8
+  %23 = load double, ptr %min, align 8
+  %24 = load double, ptr %sum, align 8
+  %25 = load i32, ptr %count.addr, align 4
   %conv14 = sitofp i32 %25 to double
   %div15 = fdiv double %24, %conv14
-  %26 = load double, ptr %max, align 8, !BLADE-T !9
-  %call16 = call i32 (ptr, ...) @printf(ptr noundef @.str.7, ptr noundef %22, double noundef %23, double noundef %div15, double noundef %26), !BLADE-T !9
+  %26 = load double, ptr %max, align 8
+  %call16 = call i32 (ptr, ...) @printf(ptr noundef @.str.7, ptr noundef %22, double noundef %23, double noundef %div15, double noundef %26)
   ret void
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal void @bench_chacha_init(ptr noundef %data) #0 {
 entry:
-  %data.addr = alloca ptr, align 8, !BLADE-S !8
-  %ctx = alloca ptr, align 8, !BLADE-S !8
-  %i = alloca i32, align 4, !BLADE-S !8
+  %data.addr = alloca ptr, align 8
+  %ctx = alloca ptr, align 8
+  %i = alloca i32, align 4
   store ptr %data, ptr %data.addr, align 8
-  %0 = load ptr, ptr %data.addr, align 8, !BLADE-T !9
+  %0 = load ptr, ptr %data.addr, align 8
   store ptr %0, ptr %ctx, align 8
   store i32 0, ptr %i, align 4
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %entry
-  %1 = load i32, ptr %i, align 4, !BLADE-T !9
+  %1 = load i32, ptr %i, align 4
   %cmp = icmp slt i32 %1, 50000
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %2 = load ptr, ptr %ctx, align 8, !BLADE-T !9
-  call void @ChaCha20_init(ptr noundef %2, ptr noundef @key, ptr noundef @nonce, i32 noundef 0), !BLADE-T !9
+  %2 = load ptr, ptr %ctx, align 8
+  call void @ChaCha20_init(ptr noundef %2, ptr noundef @key, ptr noundef @nonce, i32 noundef 0)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %3 = load i32, ptr %i, align 4, !BLADE-T !9
+  %3 = load i32, ptr %i, align 4
   %inc = add nsw i32 %3, 1
   store i32 %inc, ptr %i, align 4
   br label %for.cond, !llvm.loop !16
@@ -11437,30 +11437,30 @@ for.end:                                          ; preds = %for.cond
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal void @bench_chacha_encrypt_16(ptr noundef %data) #0 {
 entry:
-  %data.addr = alloca ptr, align 8, !BLADE-S !8
-  %ctx = alloca ptr, align 8, !BLADE-S !8
+  %data.addr = alloca ptr, align 8
+  %ctx = alloca ptr, align 8
   %scratch = alloca [16 x i8], align 16
-  %i = alloca i32, align 4, !BLADE-S !8
+  %i = alloca i32, align 4
   store ptr %data, ptr %data.addr, align 8
-  %0 = load ptr, ptr %data.addr, align 8, !BLADE-T !9
+  %0 = load ptr, ptr %data.addr, align 8
   store ptr %0, ptr %ctx, align 8
-  call void @llvm.memset.p0.i64(ptr align 16 %scratch, i8 0, i64 16, i1 false), !BLADE-T !9
+  call void @llvm.memset.p0.i64(ptr align 16 %scratch, i8 0, i64 16, i1 false)
   store i32 0, ptr %i, align 4
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %entry
-  %1 = load i32, ptr %i, align 4, !BLADE-T !9
+  %1 = load i32, ptr %i, align 4
   %cmp = icmp slt i32 %1, 250000
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %2 = load ptr, ptr %ctx, align 8, !BLADE-T !9
+  %2 = load ptr, ptr %ctx, align 8
   %arraydecay = getelementptr inbounds [16 x i8], ptr %scratch, i64 0, i64 0
-  call void @ChaCha20_xor(ptr noundef %2, ptr noundef %arraydecay, i64 noundef 16), !BLADE-T !9
+  call void @ChaCha20_xor(ptr noundef %2, ptr noundef %arraydecay, i64 noundef 16)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %3 = load i32, ptr %i, align 4, !BLADE-T !9
+  %3 = load i32, ptr %i, align 4
   %inc = add nsw i32 %3, 1
   store i32 %inc, ptr %i, align 4
   br label %for.cond, !llvm.loop !17
@@ -11472,30 +11472,30 @@ for.end:                                          ; preds = %for.cond
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal void @bench_chacha_encrypt_64(ptr noundef %data) #0 {
 entry:
-  %data.addr = alloca ptr, align 8, !BLADE-S !8
-  %ctx = alloca ptr, align 8, !BLADE-S !8
+  %data.addr = alloca ptr, align 8
+  %ctx = alloca ptr, align 8
   %scratch = alloca [64 x i8], align 16
-  %i = alloca i32, align 4, !BLADE-S !8
+  %i = alloca i32, align 4
   store ptr %data, ptr %data.addr, align 8
-  %0 = load ptr, ptr %data.addr, align 8, !BLADE-T !9
+  %0 = load ptr, ptr %data.addr, align 8
   store ptr %0, ptr %ctx, align 8
-  call void @llvm.memset.p0.i64(ptr align 16 %scratch, i8 0, i64 64, i1 false), !BLADE-T !9
+  call void @llvm.memset.p0.i64(ptr align 16 %scratch, i8 0, i64 64, i1 false)
   store i32 0, ptr %i, align 4
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %entry
-  %1 = load i32, ptr %i, align 4, !BLADE-T !9
+  %1 = load i32, ptr %i, align 4
   %cmp = icmp slt i32 %1, 62500
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %2 = load ptr, ptr %ctx, align 8, !BLADE-T !9
+  %2 = load ptr, ptr %ctx, align 8
   %arraydecay = getelementptr inbounds [64 x i8], ptr %scratch, i64 0, i64 0
-  call void @ChaCha20_xor(ptr noundef %2, ptr noundef %arraydecay, i64 noundef 64), !BLADE-T !9
+  call void @ChaCha20_xor(ptr noundef %2, ptr noundef %arraydecay, i64 noundef 64)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %3 = load i32, ptr %i, align 4, !BLADE-T !9
+  %3 = load i32, ptr %i, align 4
   %inc = add nsw i32 %3, 1
   store i32 %inc, ptr %i, align 4
   br label %for.cond, !llvm.loop !18
@@ -11507,30 +11507,30 @@ for.end:                                          ; preds = %for.cond
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal void @bench_chacha_encrypt_256(ptr noundef %data) #0 {
 entry:
-  %data.addr = alloca ptr, align 8, !BLADE-S !8
-  %ctx = alloca ptr, align 8, !BLADE-S !8
+  %data.addr = alloca ptr, align 8
+  %ctx = alloca ptr, align 8
   %scratch = alloca [256 x i8], align 16
-  %i = alloca i32, align 4, !BLADE-S !8
+  %i = alloca i32, align 4
   store ptr %data, ptr %data.addr, align 8
-  %0 = load ptr, ptr %data.addr, align 8, !BLADE-T !9
+  %0 = load ptr, ptr %data.addr, align 8
   store ptr %0, ptr %ctx, align 8
-  call void @llvm.memset.p0.i64(ptr align 16 %scratch, i8 0, i64 256, i1 false), !BLADE-T !9
+  call void @llvm.memset.p0.i64(ptr align 16 %scratch, i8 0, i64 256, i1 false)
   store i32 0, ptr %i, align 4
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %entry
-  %1 = load i32, ptr %i, align 4, !BLADE-T !9
+  %1 = load i32, ptr %i, align 4
   %cmp = icmp slt i32 %1, 15625
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %2 = load ptr, ptr %ctx, align 8, !BLADE-T !9
+  %2 = load ptr, ptr %ctx, align 8
   %arraydecay = getelementptr inbounds [256 x i8], ptr %scratch, i64 0, i64 0
-  call void @ChaCha20_xor(ptr noundef %2, ptr noundef %arraydecay, i64 noundef 256), !BLADE-T !9
+  call void @ChaCha20_xor(ptr noundef %2, ptr noundef %arraydecay, i64 noundef 256)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %3 = load i32, ptr %i, align 4, !BLADE-T !9
+  %3 = load i32, ptr %i, align 4
   %inc = add nsw i32 %3, 1
   store i32 %inc, ptr %i, align 4
   br label %for.cond, !llvm.loop !19
@@ -11543,14 +11543,14 @@ for.end:                                          ; preds = %for.cond
 define internal double @gettimedouble() #0 {
 entry:
   %tv = alloca %struct.timeval, align 8
-  %call = call i32 @gettimeofday(ptr noundef %tv, ptr noundef null) #6, !BLADE-T !9
-  %tv_usec = getelementptr inbounds %struct.timeval, ptr %tv, i32 0, i32 1, !BLADE-S !8
-  %0 = load i64, ptr %tv_usec, align 8, !BLADE-T !9
+  %call = call i32 @gettimeofday(ptr noundef %tv, ptr noundef null) #6
+  %tv_usec = getelementptr inbounds %struct.timeval, ptr %tv, i32 0, i32 1
+  %0 = load i64, ptr %tv_usec, align 8
   %conv = sitofp i64 %0 to double
-  %tv_sec = getelementptr inbounds %struct.timeval, ptr %tv, i32 0, i32 0, !BLADE-S !8
-  %1 = load i64, ptr %tv_sec, align 8, !BLADE-T !9
+  %tv_sec = getelementptr inbounds %struct.timeval, ptr %tv, i32 0, i32 0
+  %1 = load i64, ptr %tv_sec, align 8
   %conv1 = sitofp i64 %1 to double
-  %2 = call double @llvm.fmuladd.f64(double %conv, double 0x3EB0C6F7A0B5ED8D, double %conv1), !BLADE-T !9
+  %2 = call double @llvm.fmuladd.f64(double %conv, double 0x3EB0C6F7A0B5ED8D, double %conv1)
   ret double %2
 }
 
