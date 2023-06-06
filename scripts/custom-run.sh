@@ -35,8 +35,8 @@ function run_benchmark() {
 	# echo "compiling $file -> ../bin/base-$file_core"
 	clang $file -o ../bin/base-$file_core
 
-	TIME=$( (time ../bin/$file_core ) 2>&1 > /dev/null | grep real | awk '{print $2}')
-	TIME_BASE=$( (time ../bin/base-$file_core ) 2>&1 > /dev/null | grep real | awk '{print $2}')
+	TIME=$( (time ../bin/$file_core ) 2>&1 >> ../bin/$file_core.log | grep real | awk '{print $2}')
+	TIME_BASE=$( (time ../bin/base-$file_core ) 2>&1 >> ../bin/$file_core.log | grep real | awk '{print $2}')
 	
 	# echo "$file_core,$STATS,$TIME"
 	echo "$file_core,$TIME,blade" >> $MAINDIR/test-benchmarks/results.csv
@@ -51,6 +51,23 @@ function run_tests() {
 
 }
 
+function execute_bin() {
+	file_core=$1
+	cd $MAINDIR/test-benchmarks/bin/
+
+	TIME=$( (time ../bin/$file_core ) 2>&1 >> ../bin-log/$file_core.log | grep real | awk '{print $2}')
+
+	echo "$file_core,$TIME" >> $MAINDIR/test-benchmarks/results.csv
+	
+}
+
+if [ $1 == "runs" ]; then
+	cd $MAINDIR/test-benchmarks/bin/
+	for file in * ; do 
+		execute_bin $file
+	done
+	exit 0
+fi
 
 
 if [ -z $1 ]; then

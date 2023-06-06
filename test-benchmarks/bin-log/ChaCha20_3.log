@@ -1,0 +1,8 @@
+[1mChaCha20: Initialization[0m: min 0.00ns / avg 0.00ns / max 0.02ns
+[1mChaCha20: Encryption (16-byte blocks)[0m: min 7.34ns / avg 7.56ns / max 9.40ns
+[1mChaCha20: Encryption (64-byte blocks)[0m: min 1.86ns / avg 1.90ns / max 1.95ns
+[1mChaCha20: Encryption (256-byte blocks)[0m: min 1.75ns / avg 1.82ns / max 1.85ns
+[1mChaCha20: Initialization[0m: min 0.00ns / avg 0.00ns / max 0.02ns
+[1mChaCha20: Encryption (16-byte blocks)[0m: min 7.32ns / avg 7.58ns / max 11.23ns
+[1mChaCha20: Encryption (64-byte blocks)[0m: min 1.79ns / avg 1.89ns / max 2.02ns
+[1mChaCha20: Encryption (256-byte blocks)[0m: min 1.82ns / avg 1.84ns / max 1.95ns
