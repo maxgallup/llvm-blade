@@ -137,7 +137,7 @@ void freeBladeNodes(BladeNode *B) {
 }
 
 
-/// @brief Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
+/// @brief [UNUSED] Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
 /// we then save the stable leaf BladeNodes into a vector so that we can construct the correct
 /// def-use chain going bottom up. This function works recursively.
 /// @param I Instruction whose users will turn into children.
@@ -165,7 +165,7 @@ void findStableRec(Instruction *I, BladeNode *parent, SmallVector<BladeNode*, 16
 }
 
 
-/// @brief Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
+/// @brief [UNUSED] Builds the DAG of BladeNodes that make up all Def-Use chains throughout the program,
 /// we then save the stable leaf BladeNodes into a vector so that we can construct the correct
 /// def-use chain going bottom up. This function works iteratively.
 /// @param I Instruction whose users will turn into children.
@@ -225,7 +225,7 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
 }
 
 
-/// @brief Walks through the Def-Use chain of the given instruction to identify all paths
+/// @brief [UNUSED] Walks through the Def-Use chain of the given instruction to identify all paths
 /// from T->S. A path is given by a vector of instructions from stable instruction to
 /// transient. These vectors are then collected into a 2D vector.
 /// @param I The transient instruction to start looking from.
@@ -260,14 +260,6 @@ void gatherLeaks(Instruction *I, InstVec2D *leaky_paths) {
     freeBladeNodes(start);
 
   }
-}
-
-
-void gatherLeaks2(Instruction *I, InstVec2D *leaky_paths) {
-  // auto start = I;
-
-  // for ()
-
 }
 
 
@@ -405,7 +397,7 @@ dag_type **allocateGraphDS(int num_vertices) {
 }
 
 
-/// @brief Iterates over all all leaky paths and builds matrix representation of dependency chain.
+/// @brief [UNUSED] Iterates over all all leaky paths and builds matrix representation of dependency chain.
 /// It also extends replaces each vertex X with vertex (X_i, X_o) where X_i is a vertex that keeps
 /// all incoming edges and vertex X_o keeps all outgoing edges. There is a single edge between vertex
 /// X_i and X_o in order for the Min Cut Algorithm to correctly identify the minimum cut. This leads
@@ -463,9 +455,14 @@ void populateGraph(InstVec2D *leaky_paths, SmallSetVector<Instruction*, 16> *map
 }
 
 
-
+/// @brief Iterates over all all leaky paths and builds matrix representation of dependency chain.
+/// It also extends replaces each vertex X with vertex (X_i, X_o) where X_i is a vertex that keeps
+/// all incoming edges and vertex X_o keeps all outgoing edges. There is a single edge between vertex
+/// X_i and X_o in order for the Min Cut Algorithm to correctly identify the minimum cut. This leads
+/// to a Matrix that is twice the size as the original.
 void populateGraph(InstVec1D &insts, dag_type **graph, int num_vertices, int og_num_vertices) {
-
+  // Internal to this function, we first make a matrix representation without changing each
+  // vertex X to (X_i, X_o) - this graph must be freed before the function returns.
   dag_type **og_graph = allocateGraphDS(og_num_vertices);
 
   for (Instruction *I : insts) {
@@ -572,7 +569,6 @@ SmallSetVector<int, 16> minCut(dag_type **graph, int source, int sink, int num_v
   // However, potentially unnecessary due to the fact that resulting residual graph is equivalent
   // to the transpose of the original graph.
   int *parent = (int*) calloc(num_vertices, sizeof(int));
-  D(" -- making residual graph");
   while (bfs(residual_graph, source, sink, parent, num_vertices)) {
     dag_type path_flow = INT_MAX;
     for (v = sink; v != source; v = parent[v]) {
@@ -676,11 +672,8 @@ SmallSetVector<Instruction*, 16> findCutSet2(Function &F) {
   int num_vertices = (num_instructions * 2) + 2;
   dag_type **graph = allocateGraphDS(num_vertices);
 
-  D(" -- populating graph");
   populateGraph(table, graph, num_vertices, og_num_vertices);
 
-
-  D(" -- min cut algo");
   auto cutset_ids = minCut(graph, 0, num_vertices - 1, num_vertices);
   auto cutset = SmallSetVector<Instruction*, 16>();
 
@@ -728,7 +721,6 @@ void gatherLeaksWrapper(Function &F, InstVec2D *leaky_paths) {
   for (BasicBlock &BB : F) {
     for (Instruction &I : BB) {
       gatherLeaks(&I, leaky_paths);
-      // gatherLeaks2(&I, leaky_paths);
     }
   }
 }
@@ -739,7 +731,6 @@ void runBladePerFunction(Module &M) {
       return;
     }
 
-    D(" -- placing in function: " << F.getName());
     placeMarkings(F);
 
     // auto leaky_paths = InstVec2D();
@@ -779,7 +770,7 @@ void runFenceEverywhere(Module &M) {
 
 
 /// @brief Main entry point for the Blade optimization pass.
-/// @return Currently not considering return value - TODO will have to changed preserved analysis
+/// @return Currently not considering return value TODO
 PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
   runBladePerFunction(M);
