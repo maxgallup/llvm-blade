@@ -17,8 +17,8 @@ entry:
   %rem3 = srem i32 %call2, 5
   %add = add nsw i32 %rem3, %rem
   %add4 = add nsw i32 %add, 3
-  %add5 = add nsw i32 %add, 5
   call void @llvm.x86.sse2.lfence()
+  %add5 = add nsw i32 %add, 5
   %idxprom = sext i32 %add4 to i64
   %arrayidx = getelementptr inbounds [5 x i32], ptr @__const.main.a, i64 0, i64 %idxprom, !BLADE-S !8
   %0 = load i32, ptr %arrayidx, align 4, !tbaa !9, !BLADE-T !7

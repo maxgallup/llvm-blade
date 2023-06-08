@@ -1,0 +1,3 @@
+[submodule "test/spv1-demo"]
+	path = test/spv1-demo
+	url = https://github.com/CcjWagenaar/spv1-demo.git
