@@ -1,0 +1,4 @@
+[1mChaCha20: Initialization[0m: min 0.00ns / avg 0.02ns / max 0.04ns
+[1mChaCha20: Encryption (16-byte blocks)[0m: min 97.66ns / avg 99.68ns / max 105.26ns
+[1mChaCha20: Encryption (64-byte blocks)[0m: min 24.82ns / avg 24.91ns / max 25.52ns
+[1mChaCha20: Encryption (256-byte blocks)[0m: min 24.62ns / avg 24.79ns / max 25.85ns

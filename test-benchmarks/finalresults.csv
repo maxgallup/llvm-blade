@@ -1,0 +1,7 @@
+ChaCha20_0, 203.150s
+ChaCha20_3, 2.289s
+all-ChaCha20_0, 358.681s
+all-ChaCha20_3, 29.877s
+base-ChaCha20_0, 35.107s
+base-ChaCha20_3, 2.109s
+

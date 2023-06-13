@@ -6,3 +6,10 @@
 [1mChaCha20: Encryption (16-byte blocks)[0m: min 500.27ns / avg 514.51ns / max 541.22ns
 [1mChaCha20: Encryption (64-byte blocks)[0m: min 133.31ns / avg 134.86ns / max 141.74ns
 [1mChaCha20: Encryption (256-byte blocks)[0m: min 133.22ns / avg 138.22ns / max 145.21ns
+
+
+
+[1mChaCha20: Initialization[0m: min 287.18ns / avg 294.66ns / max 302.22ns
+[1mChaCha20: Encryption (16-byte blocks)[0m: min 522.61ns / avg 529.43ns / max 548.60ns
+[1mChaCha20: Encryption (64-byte blocks)[0m: min 139.95ns / avg 140.76ns / max 143.75ns
+[1mChaCha20: Encryption (256-byte blocks)[0m: min 139.93ns / avg 141.83ns / max 144.70ns

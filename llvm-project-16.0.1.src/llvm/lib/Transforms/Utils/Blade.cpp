@@ -388,7 +388,7 @@ SmallSetVector<Instruction*, 16> aggregateInstructions(InstVec2D *leaky_paths) {
 
 /// @brief This data structure must be freed, use calloc to allocate a 2D array.
 dag_type **allocateGraphDS(int num_vertices) {
-  D("\t\t Allocating " << num_vertices * sizeof(dag_type*) + num_vertices * sizeof(dag_type) << " bytes");
+  // D("\t\t Allocating " << num_vertices * sizeof(dag_type*) + num_vertices * sizeof(dag_type) << " bytes");
   dag_type **graph = (dag_type **)calloc(num_vertices, sizeof(dag_type *));
   for (int i = 0; i < num_vertices; i++) {
     graph[i] = (dag_type *)calloc(num_vertices, sizeof(dag_type));
@@ -508,7 +508,7 @@ void populateGraph(InstVec1D &insts, dag_type **graph, int num_vertices, int og_
       graph[0][(col * 2) - 1] = 1;
     }
   }
-
+  // printGraph(og_graph, og_num_vertices);
   freeGraph(og_graph, og_num_vertices);
 
 }
@@ -588,7 +588,6 @@ SmallSetVector<int, 16> minCut(dag_type **graph, int source, int sink, int num_v
 
   // Perform a Depth-First-Search on residual garph and keep track of which nodes are reachable.
   bool *visited = (bool*) calloc(num_vertices, sizeof(bool));
-  D(" -- dfs");
   dfs(residual_graph, source, visited, num_vertices);
 
   auto cutset_ids = SmallSetVector<int, 16>();
@@ -733,10 +732,13 @@ void runBladePerFunction(Module &M) {
 
     placeMarkings(F);
 
+    // use this to show leaky paths in paper
     // auto leaky_paths = InstVec2D();
     // gatherLeaksWrapper(F, &leaky_paths);
-
+    // printLeakyPaths(&leaky_paths);
     // auto cutset = findCutSet(&leaky_paths);
+
+    // use this function for "prod"
     auto cutset = findCutSet2(F);
 
     auto M = F.getParent();
