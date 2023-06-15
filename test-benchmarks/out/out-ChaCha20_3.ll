@@ -18,50 +18,50 @@ target triple = "x86_64-unknown-linux-gnu"
 ; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(argmem: readwrite) uwtable
 define dso_local void @ChaCha20_init(ptr nocapture noundef writeonly %ctx, ptr nocapture noundef readonly %key, ptr nocapture noundef readonly %nonce, i32 noundef %count) local_unnamed_addr #0 {
 entry:
-  store <4 x i32> <i32 1634760805, i32 857760878, i32 2036477234, i32 1797285236>, ptr %ctx, align 4, !tbaa !7
+  store <4 x i32> <i32 1634760805, i32 857760878, i32 2036477234, i32 1797285236>, ptr %ctx, align 4, !tbaa !7, !BLADE-T !11
   %0 = load i32, ptr %key, align 1, !BLADE-T !11
-  %arrayidx12 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 4
+  %arrayidx12 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 4, !BLADE-T !11
   store i32 %0, ptr %arrayidx12, align 4, !tbaa !7
-  %add.ptr13 = getelementptr inbounds i8, ptr %key, i64 4, !BLADE-S !12
+  %add.ptr13 = getelementptr inbounds i8, ptr %key, i64 4, !BLADE-T !11, !BLADE-S !12
   %1 = load i32, ptr %add.ptr13, align 1, !BLADE-T !11
-  %arrayidx16 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 5
+  %arrayidx16 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 5, !BLADE-T !11
   store i32 %1, ptr %arrayidx16, align 4, !tbaa !7
-  %add.ptr17 = getelementptr inbounds i8, ptr %key, i64 8, !BLADE-S !12
+  %add.ptr17 = getelementptr inbounds i8, ptr %key, i64 8, !BLADE-T !11, !BLADE-S !12
   %2 = load i32, ptr %add.ptr17, align 1, !BLADE-T !11
-  %arrayidx20 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 6
+  %arrayidx20 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 6, !BLADE-T !11
   store i32 %2, ptr %arrayidx20, align 4, !tbaa !7
-  %add.ptr21 = getelementptr inbounds i8, ptr %key, i64 12, !BLADE-S !12
+  %add.ptr21 = getelementptr inbounds i8, ptr %key, i64 12, !BLADE-T !11, !BLADE-S !12
   %3 = load i32, ptr %add.ptr21, align 1, !BLADE-T !11
-  %arrayidx24 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 7
+  %arrayidx24 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 7, !BLADE-T !11
   store i32 %3, ptr %arrayidx24, align 4, !tbaa !7
-  %add.ptr25 = getelementptr inbounds i8, ptr %key, i64 16, !BLADE-S !12
+  %add.ptr25 = getelementptr inbounds i8, ptr %key, i64 16, !BLADE-T !11, !BLADE-S !12
   %4 = load i32, ptr %add.ptr25, align 1, !BLADE-T !11
-  %arrayidx28 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 8
+  %arrayidx28 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 8, !BLADE-T !11
   store i32 %4, ptr %arrayidx28, align 4, !tbaa !7
-  %add.ptr29 = getelementptr inbounds i8, ptr %key, i64 20, !BLADE-S !12
+  %add.ptr29 = getelementptr inbounds i8, ptr %key, i64 20, !BLADE-T !11, !BLADE-S !12
   %5 = load i32, ptr %add.ptr29, align 1, !BLADE-T !11
-  %arrayidx32 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 9
+  %arrayidx32 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 9, !BLADE-T !11
   store i32 %5, ptr %arrayidx32, align 4, !tbaa !7
-  %add.ptr33 = getelementptr inbounds i8, ptr %key, i64 24, !BLADE-S !12
+  %add.ptr33 = getelementptr inbounds i8, ptr %key, i64 24, !BLADE-T !11, !BLADE-S !12
   %6 = load i32, ptr %add.ptr33, align 1, !BLADE-T !11
-  %arrayidx36 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 10
+  %arrayidx36 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 10, !BLADE-T !11
   store i32 %6, ptr %arrayidx36, align 4, !tbaa !7
-  %add.ptr37 = getelementptr inbounds i8, ptr %key, i64 28, !BLADE-S !12
+  %add.ptr37 = getelementptr inbounds i8, ptr %key, i64 28, !BLADE-T !11, !BLADE-S !12
   %7 = load i32, ptr %add.ptr37, align 1, !BLADE-T !11
-  %arrayidx40 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 11
+  %arrayidx40 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 11, !BLADE-T !11
   store i32 %7, ptr %arrayidx40, align 4, !tbaa !7
-  %arrayidx42 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 12
-  store i32 %count, ptr %arrayidx42, align 4, !tbaa !7
+  %arrayidx42 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 12, !BLADE-T !11
+  store i32 %count, ptr %arrayidx42, align 4, !tbaa !7, !BLADE-T !11
   %8 = load i32, ptr %nonce, align 1, !BLADE-T !11
-  %arrayidx46 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 13
+  %arrayidx46 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 13, !BLADE-T !11
   store i32 %8, ptr %arrayidx46, align 4, !tbaa !7
-  %add.ptr47 = getelementptr inbounds i8, ptr %nonce, i64 4, !BLADE-S !12
+  %add.ptr47 = getelementptr inbounds i8, ptr %nonce, i64 4, !BLADE-T !11, !BLADE-S !12
   %9 = load i32, ptr %add.ptr47, align 1, !BLADE-T !11
-  %arrayidx50 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 14
+  %arrayidx50 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 14, !BLADE-T !11
   store i32 %9, ptr %arrayidx50, align 4, !tbaa !7
-  %add.ptr51 = getelementptr inbounds i8, ptr %nonce, i64 8, !BLADE-S !12
+  %add.ptr51 = getelementptr inbounds i8, ptr %nonce, i64 8, !BLADE-T !11, !BLADE-S !12
   %10 = load i32, ptr %add.ptr51, align 1, !BLADE-T !11
-  %arrayidx54 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 15
+  %arrayidx54 = getelementptr inbounds [16 x i32], ptr %ctx, i64 0, i64 15, !BLADE-T !11
   store i32 %10, ptr %arrayidx54, align 4, !tbaa !7
   ret void
 }
@@ -71,44 +71,44 @@ define dso_local void @ChaCha20_xor(ptr nocapture noundef %ctx, ptr nocapture no
 entry:
   %tmp = alloca [16 x i32], align 16
   call void @llvm.lifetime.start.p0(i64 64, ptr nonnull %tmp) #7, !BLADE-T !11
-  %cmp51.not = icmp eq i64 %bufflen, 0
+  %cmp51.not = icmp eq i64 %bufflen, 0, !BLADE-T !11
   br i1 %cmp51.not, label %for.cond.cleanup, label %for.body.lr.ph
 
 for.body.lr.ph:                                   ; preds = %entry
-  %arrayidx.1.i = getelementptr inbounds i32, ptr %ctx, i64 1, !BLADE-S !12
+  %arrayidx.1.i = getelementptr inbounds i32, ptr %ctx, i64 1, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.1.i = getelementptr inbounds i32, ptr %tmp, i64 1
-  %arrayidx.2.i = getelementptr inbounds i32, ptr %ctx, i64 2, !BLADE-S !12
+  %arrayidx.2.i = getelementptr inbounds i32, ptr %ctx, i64 2, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.2.i = getelementptr inbounds i32, ptr %tmp, i64 2
-  %arrayidx.3.i = getelementptr inbounds i32, ptr %ctx, i64 3, !BLADE-S !12
+  %arrayidx.3.i = getelementptr inbounds i32, ptr %ctx, i64 3, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.3.i = getelementptr inbounds i32, ptr %tmp, i64 3
-  %arrayidx.4.i = getelementptr inbounds i32, ptr %ctx, i64 4, !BLADE-S !12
+  %arrayidx.4.i = getelementptr inbounds i32, ptr %ctx, i64 4, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.4.i = getelementptr inbounds i32, ptr %tmp, i64 4
-  %arrayidx.5.i = getelementptr inbounds i32, ptr %ctx, i64 5, !BLADE-S !12
+  %arrayidx.5.i = getelementptr inbounds i32, ptr %ctx, i64 5, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.5.i = getelementptr inbounds i32, ptr %tmp, i64 5
-  %arrayidx.6.i = getelementptr inbounds i32, ptr %ctx, i64 6, !BLADE-S !12
+  %arrayidx.6.i = getelementptr inbounds i32, ptr %ctx, i64 6, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.6.i = getelementptr inbounds i32, ptr %tmp, i64 6
-  %arrayidx.7.i = getelementptr inbounds i32, ptr %ctx, i64 7, !BLADE-S !12
+  %arrayidx.7.i = getelementptr inbounds i32, ptr %ctx, i64 7, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.7.i = getelementptr inbounds i32, ptr %tmp, i64 7
-  %arrayidx.8.i = getelementptr inbounds i32, ptr %ctx, i64 8, !BLADE-S !12
+  %arrayidx.8.i = getelementptr inbounds i32, ptr %ctx, i64 8, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.8.i = getelementptr inbounds i32, ptr %tmp, i64 8
-  %arrayidx.9.i = getelementptr inbounds i32, ptr %ctx, i64 9, !BLADE-S !12
+  %arrayidx.9.i = getelementptr inbounds i32, ptr %ctx, i64 9, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.9.i = getelementptr inbounds i32, ptr %tmp, i64 9
-  %arrayidx.10.i = getelementptr inbounds i32, ptr %ctx, i64 10, !BLADE-S !12
+  %arrayidx.10.i = getelementptr inbounds i32, ptr %ctx, i64 10, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.10.i = getelementptr inbounds i32, ptr %tmp, i64 10
-  %arrayidx.11.i = getelementptr inbounds i32, ptr %ctx, i64 11, !BLADE-S !12
+  %arrayidx.11.i = getelementptr inbounds i32, ptr %ctx, i64 11, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.11.i = getelementptr inbounds i32, ptr %tmp, i64 11
-  %arrayidx.12.i = getelementptr inbounds i32, ptr %ctx, i64 12, !BLADE-S !12
+  %arrayidx.12.i = getelementptr inbounds i32, ptr %ctx, i64 12, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.12.i = getelementptr inbounds i32, ptr %tmp, i64 12
-  %arrayidx.13.i = getelementptr inbounds i32, ptr %ctx, i64 13, !BLADE-S !12
+  %arrayidx.13.i = getelementptr inbounds i32, ptr %ctx, i64 13, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.13.i = getelementptr inbounds i32, ptr %tmp, i64 13
-  %arrayidx.14.i = getelementptr inbounds i32, ptr %ctx, i64 14, !BLADE-S !12
+  %arrayidx.14.i = getelementptr inbounds i32, ptr %ctx, i64 14, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.14.i = getelementptr inbounds i32, ptr %tmp, i64 14
-  %arrayidx.15.i = getelementptr inbounds i32, ptr %ctx, i64 15, !BLADE-S !12
+  %arrayidx.15.i = getelementptr inbounds i32, ptr %ctx, i64 15, !BLADE-T !11, !BLADE-S !12
   %arrayidx2.15.i = getelementptr inbounds i32, ptr %tmp, i64 15
   br label %for.body
 
 for.cond.loopexit:                                ; preds = %if.end20, %vec.epilog.middle.block, %middle.block, %if.end13
-  %cmp = icmp ult i64 %add, %bufflen
+  %cmp = icmp ult i64 %add, %bufflen, !BLADE-T !11
   %indvar.next = add i64 %indvar, 1
   br i1 %cmp, label %for.body, label %for.cond.cleanup, !llvm.loop !13
 
@@ -1175,7 +1175,7 @@ vector.ph:                                        ; preds = %vector.main.loop.it
 vector.body:                                      ; preds = %vector.body, %vector.ph
   %index = phi i64 [ 0, %vector.ph ], [ %index.next, %vector.body ]
   %offset.idx = add i64 %i.052, %index
-  %25 = getelementptr inbounds i8, ptr %buffer, i64 %offset.idx, !BLADE-S !12
+  %25 = getelementptr inbounds i8, ptr %buffer, i64 %offset.idx, !BLADE-T !11, !BLADE-S !12
   %wide.load = load <16 x i8>, ptr %25, align 1, !tbaa !15, !BLADE-T !11
   %26 = getelementptr inbounds i8, ptr %tmp, i64 %index, !BLADE-S !12
   %wide.load55 = load <16 x i8>, ptr %26, align 16, !tbaa !15, !BLADE-T !11
@@ -1204,7 +1204,7 @@ vec.epilog.ph:                                    ; preds = %vec.epilog.iter.che
 vec.epilog.vector.body:                           ; preds = %vec.epilog.vector.body, %vec.epilog.ph
   %index60 = phi i64 [ %vec.epilog.resume.val, %vec.epilog.ph ], [ %index.next64, %vec.epilog.vector.body ]
   %offset.idx61 = add i64 %i.052, %index60
-  %29 = getelementptr inbounds i8, ptr %buffer, i64 %offset.idx61, !BLADE-S !12
+  %29 = getelementptr inbounds i8, ptr %buffer, i64 %offset.idx61, !BLADE-T !11, !BLADE-S !12
   %wide.load62 = load <8 x i8>, ptr %29, align 1, !tbaa !15, !BLADE-T !11
   %30 = getelementptr inbounds i8, ptr %tmp, i64 %index60, !BLADE-S !12
   %wide.load63 = load <8 x i8>, ptr %30, align 8, !tbaa !15, !BLADE-T !11
@@ -1224,7 +1224,7 @@ if.end20.preheader:                               ; preds = %vec.epilog.middle.b
 
 if.end20:                                         ; preds = %if.end20, %if.end20.preheader
   %j.050 = phi i64 [ %inc26, %if.end20 ], [ %j.050.ph, %if.end20.preheader ]
-  %arrayidx21 = getelementptr inbounds i8, ptr %buffer, i64 %j.050, !BLADE-S !12
+  %arrayidx21 = getelementptr inbounds i8, ptr %buffer, i64 %j.050, !BLADE-T !11, !BLADE-S !12
   %33 = load i8, ptr %arrayidx21, align 1, !tbaa !15, !BLADE-T !11
   %sub = sub nuw nsw i64 %j.050, %i.052
   %arrayidx22 = getelementptr inbounds i8, ptr %tmp, i64 %sub, !BLADE-S !12
@@ -1233,7 +1233,7 @@ if.end20:                                         ; preds = %if.end20, %if.end20
   store i8 %xor46, ptr %arrayidx21, align 1, !tbaa !15
   %inc26 = add nuw i64 %j.050, 1
   %cmp15 = icmp ult i64 %inc26, %add
-  %cmp18.not = icmp ult i64 %inc26, %bufflen
+  %cmp18.not = icmp ult i64 %inc26, %bufflen, !BLADE-T !11
   %or.cond = and i1 %cmp15, %cmp18.not
   br i1 %or.cond, label %if.end20, label %for.cond.loopexit, !llvm.loop !20
 }

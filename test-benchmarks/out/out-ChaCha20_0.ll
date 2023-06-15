@@ -21,14 +21,18 @@ target triple = "x86_64-unknown-linux-gnu"
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @ChaCha20_init(ptr noundef %ctx, ptr noundef %key, ptr noundef %nonce, i32 noundef %count) #0 {
 entry:
+  call void @llvm.x86.sse2.lfence()
   %ctx.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %key.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %nonce.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %count.addr = alloca i32, align 4, !BLADE-S !8
-  store ptr %ctx, ptr %ctx.addr, align 8
-  store ptr %key, ptr %key.addr, align 8
-  store ptr %nonce, ptr %nonce.addr, align 8
-  store i32 %count, ptr %count.addr, align 4
+  store ptr %ctx, ptr %ctx.addr, align 8, !BLADE-T !9
+  store ptr %key, ptr %key.addr, align 8, !BLADE-T !9
+  store ptr %nonce, ptr %nonce.addr, align 8, !BLADE-T !9
+  store i32 %count, ptr %count.addr, align 4, !BLADE-T !9
   %call = call i32 @pack4(ptr noundef @.str), !BLADE-T !9
   %0 = load ptr, ptr %ctx.addr, align 8, !BLADE-T !9
   %state = getelementptr inbounds %struct.ChaCha20_Ctx, ptr %0, i32 0, i32 0
@@ -137,9 +141,11 @@ entry:
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal i32 @pack4(ptr noundef %a) #0 {
 entry:
+  call void @llvm.x86.sse2.lfence()
   %a.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %res = alloca i32, align 4, !BLADE-S !8
-  store ptr %a, ptr %a.addr, align 8
+  store ptr %a, ptr %a.addr, align 8, !BLADE-T !9
   %0 = load ptr, ptr %a.addr, align 8, !BLADE-T !9
   call void @llvm.x86.sse2.lfence()
   %arrayidx = getelementptr inbounds i8, ptr %0, i64 0, !BLADE-S !8
@@ -175,16 +181,22 @@ entry:
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @ChaCha20_xor(ptr noundef %ctx, ptr noundef %buffer, i64 noundef %bufflen) #0 {
 entry:
+  call void @llvm.x86.sse2.lfence()
   %ctx.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %buffer.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %bufflen.addr = alloca i64, align 8, !BLADE-S !8
   %tmp = alloca [16 x i32], align 16
+  call void @llvm.x86.sse2.lfence()
   %keystream = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %i = alloca i64, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %j = alloca i64, align 8, !BLADE-S !8
-  store ptr %ctx, ptr %ctx.addr, align 8
-  store ptr %buffer, ptr %buffer.addr, align 8
-  store i64 %bufflen, ptr %bufflen.addr, align 8
+  store ptr %ctx, ptr %ctx.addr, align 8, !BLADE-T !9
+  store ptr %buffer, ptr %buffer.addr, align 8, !BLADE-T !9
+  store i64 %bufflen, ptr %bufflen.addr, align 8, !BLADE-T !9
   store ptr null, ptr %keystream, align 8
   store i64 0, ptr %i, align 8
   br label %for.cond
@@ -202,15 +214,15 @@ for.body:                                         ; preds = %for.cond
   %arraydecay1 = getelementptr inbounds [16 x i32], ptr %tmp, i64 0, i64 0
   call void @ChaCha20_block_next(ptr noundef %arraydecay, ptr noundef %arraydecay1, ptr noundef %keystream), !BLADE-T !9
   %3 = load ptr, ptr %ctx.addr, align 8, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %state2 = getelementptr inbounds %struct.ChaCha20_Ctx, ptr %3, i32 0, i32 0
+  call void @llvm.x86.sse2.lfence()
   %arrayidx = getelementptr inbounds [16 x i32], ptr %state2, i64 0, i64 12, !BLADE-S !8
   %4 = load i32, ptr %arrayidx, align 4, !BLADE-T !9
   %inc = add i32 %4, 1
   store i32 %inc, ptr %arrayidx, align 4
   %5 = load ptr, ptr %ctx.addr, align 8, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %state3 = getelementptr inbounds %struct.ChaCha20_Ctx, ptr %5, i32 0, i32 0
+  call void @llvm.x86.sse2.lfence()
   %arrayidx4 = getelementptr inbounds [16 x i32], ptr %state3, i64 0, i64 12, !BLADE-S !8
   %6 = load i32, ptr %arrayidx4, align 4, !BLADE-T !9
   %cmp5 = icmp eq i32 %6, 0
@@ -218,15 +230,15 @@ for.body:                                         ; preds = %for.cond
 
 if.then:                                          ; preds = %for.body
   %7 = load ptr, ptr %ctx.addr, align 8, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %state6 = getelementptr inbounds %struct.ChaCha20_Ctx, ptr %7, i32 0, i32 0
+  call void @llvm.x86.sse2.lfence()
   %arrayidx7 = getelementptr inbounds [16 x i32], ptr %state6, i64 0, i64 13, !BLADE-S !8
   %8 = load i32, ptr %arrayidx7, align 4, !BLADE-T !9
   %inc8 = add i32 %8, 1
   store i32 %inc8, ptr %arrayidx7, align 4
   %9 = load ptr, ptr %ctx.addr, align 8, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %state9 = getelementptr inbounds %struct.ChaCha20_Ctx, ptr %9, i32 0, i32 0
+  call void @llvm.x86.sse2.lfence()
   %arrayidx10 = getelementptr inbounds [16 x i32], ptr %state9, i64 0, i64 13, !BLADE-S !8
   %10 = load i32, ptr %arrayidx10, align 4, !BLADE-T !9
   %cmp11 = icmp ne i32 %10, 0
@@ -266,17 +278,17 @@ if.then18:                                        ; preds = %for.body16
 if.end19:                                         ; preds = %for.body16
   %16 = load ptr, ptr %buffer.addr, align 8, !BLADE-T !9
   %17 = load i64, ptr %j, align 8, !BLADE-T !9
+  call void @llvm.x86.sse2.lfence()
   %arrayidx20 = getelementptr inbounds i8, ptr %16, i64 %17, !BLADE-S !8
   %18 = load i8, ptr %arrayidx20, align 1, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %conv = zext i8 %18 to i32
   %19 = load ptr, ptr %keystream, align 8, !BLADE-T !9
   %20 = load i64, ptr %j, align 8, !BLADE-T !9
   %21 = load i64, ptr %i, align 8, !BLADE-T !9
   %sub = sub i64 %20, %21
+  call void @llvm.x86.sse2.lfence()
   %arrayidx21 = getelementptr inbounds i8, ptr %19, i64 %sub, !BLADE-S !8
   %22 = load i8, ptr %arrayidx21, align 1, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %conv22 = zext i8 %22 to i32
   %xor = xor i32 %conv, %conv22
   %conv23 = trunc i32 %xor to i8
@@ -308,14 +320,19 @@ for.end28:                                        ; preds = %for.cond
 ; Function Attrs: noinline nounwind optnone uwtable
 define internal void @ChaCha20_block_next(ptr noundef %in, ptr noundef %out, ptr noundef %keystream) #0 {
 entry:
+  call void @llvm.x86.sse2.lfence()
   %in.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %out.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %keystream.addr = alloca ptr, align 8, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %i = alloca i32, align 4, !BLADE-S !8
+  call void @llvm.x86.sse2.lfence()
   %i3838 = alloca i32, align 4, !BLADE-S !8
-  store ptr %in, ptr %in.addr, align 8
-  store ptr %out, ptr %out.addr, align 8
-  store ptr %keystream, ptr %keystream.addr, align 8
+  store ptr %in, ptr %in.addr, align 8, !BLADE-T !9
+  store ptr %out, ptr %out.addr, align 8, !BLADE-T !9
+  store ptr %keystream, ptr %keystream.addr, align 8, !BLADE-T !9
   store i32 0, ptr %i, align 4
   br label %for.cond
 
@@ -328,9 +345,9 @@ for.body:                                         ; preds = %for.cond
   %1 = load ptr, ptr %in.addr, align 8, !BLADE-T !9
   %2 = load i32, ptr %i, align 4, !BLADE-T !9
   %idxprom = sext i32 %2 to i64
+  call void @llvm.x86.sse2.lfence()
   %arrayidx = getelementptr inbounds i32, ptr %1, i64 %idxprom, !BLADE-S !8
   %3 = load i32, ptr %arrayidx, align 4, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %4 = load ptr, ptr %out.addr, align 8, !BLADE-T !9
   %5 = load i32, ptr %i, align 4, !BLADE-T !9
   %idxprom1 = sext i32 %5 to i64
@@ -11237,15 +11254,15 @@ for.body3841:                                     ; preds = %for.cond3839
   %4168 = load ptr, ptr %in.addr, align 8, !BLADE-T !9
   %4169 = load i32, ptr %i3838, align 4, !BLADE-T !9
   %idxprom3842 = sext i32 %4169 to i64
+  call void @llvm.x86.sse2.lfence()
   %arrayidx3843 = getelementptr inbounds i32, ptr %4168, i64 %idxprom3842, !BLADE-S !8
   %4170 = load i32, ptr %arrayidx3843, align 4, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %4171 = load ptr, ptr %out.addr, align 8, !BLADE-T !9
   %4172 = load i32, ptr %i3838, align 4, !BLADE-T !9
   %idxprom3844 = sext i32 %4172 to i64
+  call void @llvm.x86.sse2.lfence()
   %arrayidx3845 = getelementptr inbounds i32, ptr %4171, i64 %idxprom3844, !BLADE-S !8
   %4173 = load i32, ptr %arrayidx3845, align 4, !BLADE-T !9
-  call void @llvm.x86.sse2.lfence()
   %add3846 = add i32 %4173, %4170
   store i32 %add3846, ptr %arrayidx3845, align 4
   br label %for.inc3847

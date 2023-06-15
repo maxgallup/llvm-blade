@@ -21,4 +21,19 @@ all-ChaCha20_3,0m29.877s
 base-ChaCha20_0,0m35.107s
 base-ChaCha20_3,0m2.109s
 
+Tests from: 15/06/2023
+
+all-ChaCha20_3,0m3.473s,blade, 30
+ChaCha20_3,0m2.309s,blade, 1
+ChaCha20_3,0m2.123s,base
+
+all-md5_3,0m7.035s,blade, 3
+md5_3,0m1.480s,blade, 0
+md5_3,0m1.451s,base
+
+all-sha256_3,0m0.033s,blade, 77
+sha256_3,0m0.009s,blade, 0
+sha256_3,0m0.008s,base
+
+
 
