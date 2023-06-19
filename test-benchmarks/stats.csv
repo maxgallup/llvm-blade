@@ -1,3 +1,420 @@
-ChaCha20_0,2m37.370s,blade,4259,1950,1933
-ChaCha20_3,0m2.362s,blade,361,30,1
+>>> ChaCha20_3.ll.asfd.asdf.asdf
+ChaCha20_3,2.170,base,0
+ChaCha20_3,2.203,base,0
+ChaCha20_3,2.163,base,0
+ChaCha20_3,2.193,base,0
+ChaCha20_3,2.168,base,0
+ChaCha20_3,2.187,base,0
+ChaCha20_3,2.230,base,0
+ChaCha20_3,2.182,base,0
+ChaCha20_3,2.167,base,0
+ChaCha20_3,2.169,base,0
+>>> aes_3.ll.asfd.asdf.asdf
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+aes_3,0.001,base,0
+>>> arcfour_3.ll.asfd.asdf.asdf
+arcfour_3,0.007,base,0
+arcfour_3,0.005,base,0
+arcfour_3,0.006,base,0
+arcfour_3,0.006,base,0
+arcfour_3,0.006,base,0
+arcfour_3,0.005,base,0
+arcfour_3,0.005,base,0
+arcfour_3,0.006,base,0
+arcfour_3,0.006,base,0
+arcfour_3,0.005,base,0
+>>> base64_3.ll.asfd.asdf.asdf
+base64_3,0.007,base,0
+base64_3,0.006,base,0
+base64_3,0.007,base,0
+base64_3,0.006,base,0
+base64_3,0.006,base,0
+base64_3,0.005,base,0
+base64_3,0.005,base,0
+base64_3,0.005,base,0
+base64_3,0.006,base,0
+base64_3,0.006,base,0
+>>> blowfish_3.ll.asfd.asdf.asdf
+blowfish_3,0.008,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+blowfish_3,0.006,base,0
+>>> md2_3.ll.asfd.asdf.asdf
+md2_3,0.049,base,0
+md2_3,0.048,base,0
+md2_3,0.047,base,0
+md2_3,0.049,base,0
+md2_3,0.048,base,0
+md2_3,0.049,base,0
+md2_3,0.047,base,0
+md2_3,0.047,base,0
+md2_3,0.051,base,0
+md2_3,0.055,base,0
+>>> md5_3.ll.asfd.asdf.asdf
+md5_3,0.071,base,0
+md5_3,0.048,base,0
+md5_3,0.048,base,0
+md5_3,0.048,base,0
+md5_3,0.048,base,0
+md5_3,0.051,base,0
+md5_3,0.048,base,0
+md5_3,0.049,base,0
+md5_3,0.049,base,0
+md5_3,0.049,base,0
+>>> rot-13_3.ll.asfd.asdf.asdf
+rot-13_3,0.053,base,0
+rot-13_3,0.058,base,0
+rot-13_3,0.050,base,0
+rot-13_3,0.051,base,0
+rot-13_3,0.052,base,0
+rot-13_3,0.060,base,0
+rot-13_3,0.065,base,0
+rot-13_3,0.050,base,0
+rot-13_3,0.050,base,0
+rot-13_3,0.050,base,0
+>>> sha1_3.ll.asfd.asdf.asdf
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+sha1_3,0.005,base,0
+>>> sha256_3.ll.asfd.asdf.asdf
+sha256_3,0.008,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+sha256_3,0.007,base,0
+>>> ChaCha20_3.ll.asfd.asdf.asdf
+ChaCha20_3,2.327,blade,1
+ChaCha20_3,2.328,blade,1
+ChaCha20_3,2.320,blade,1
+ChaCha20_3,2.281,blade,1
+ChaCha20_3,2.309,blade,1
+ChaCha20_3,2.302,blade,1
+ChaCha20_3,2.278,blade,1
+ChaCha20_3,2.341,blade,1
+ChaCha20_3,2.294,blade,1
+ChaCha20_3,2.316,blade,1
+>>> aes_3.ll.asfd.asdf.asdf
+aes_3,0.002,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+aes_3,0.001,blade,2
+>>> arcfour_3.ll.asfd.asdf.asdf
+arcfour_3,0.008,blade,0
+arcfour_3,0.007,blade,0
+arcfour_3,0.006,blade,0
+arcfour_3,0.005,blade,0
+arcfour_3,0.006,blade,0
+arcfour_3,0.006,blade,0
+arcfour_3,0.006,blade,0
+arcfour_3,0.006,blade,0
+arcfour_3,0.006,blade,0
+arcfour_3,0.005,blade,0
+>>> base64_3.ll.asfd.asdf.asdf
+base64_3,0.006,blade,9
+base64_3,0.006,blade,9
+base64_3,0.005,blade,9
+base64_3,0.006,blade,9
+base64_3,0.006,blade,9
+base64_3,0.005,blade,9
+base64_3,0.005,blade,9
+base64_3,0.006,blade,9
+base64_3,0.005,blade,9
+base64_3,0.006,blade,9
+>>> blowfish_3.ll.asfd.asdf.asdf
+blowfish_3,0.007,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+blowfish_3,0.006,blade,16
+>>> md2_3.ll.asfd.asdf.asdf
+md2_3,0.048,blade,70
+md2_3,0.048,blade,70
+md2_3,0.047,blade,70
+md2_3,0.047,blade,70
+md2_3,0.048,blade,70
+md2_3,0.050,blade,70
+md2_3,0.047,blade,70
+md2_3,0.050,blade,70
+md2_3,0.047,blade,70
+md2_3,0.047,blade,70
+>>> md5_3.ll.asfd.asdf.asdf
+md5_3,0.048,blade,0
+md5_3,0.050,blade,0
+md5_3,0.049,blade,0
+md5_3,0.048,blade,0
+md5_3,0.047,blade,0
+md5_3,0.047,blade,0
+md5_3,0.047,blade,0
+md5_3,0.047,blade,0
+md5_3,0.047,blade,0
+md5_3,0.050,blade,0
+>>> rot-13_3.ll.asfd.asdf.asdf
+rot-13_3,0.049,blade,0
+rot-13_3,0.052,blade,0
+rot-13_3,0.050,blade,0
+rot-13_3,0.051,blade,0
+rot-13_3,0.056,blade,0
+rot-13_3,0.050,blade,0
+rot-13_3,0.050,blade,0
+rot-13_3,0.051,blade,0
+rot-13_3,0.049,blade,0
+rot-13_3,0.049,blade,0
+>>> sha1_3.ll.asfd.asdf.asdf
+sha1_3,0.005,blade,0
+sha1_3,0.006,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+sha1_3,0.005,blade,0
+>>> sha256_3.ll.asfd.asdf.asdf
+sha256_3,0.008,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.008,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.007,blade,0
+sha256_3,0.007,blade,0
+>>> ChaCha20_3.ll.asfd.asdf.asdf
+ChaCha20_3,3.499,naive,30
+ChaCha20_3,3.470,naive,30
+ChaCha20_3,3.519,naive,30
+ChaCha20_3,3.486,naive,30
+ChaCha20_3,3.466,naive,30
+ChaCha20_3,3.457,naive,30
+ChaCha20_3,3.493,naive,30
+ChaCha20_3,3.456,naive,30
+ChaCha20_3,3.469,naive,30
+ChaCha20_3,3.478,naive,30
+>>> aes_3.ll.asfd.asdf.asdf
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+aes_3,0.001,naive,16
+>>> arcfour_3.ll.asfd.asdf.asdf
+arcfour_3,0.006,naive,3
+arcfour_3,0.006,naive,3
+arcfour_3,0.005,naive,3
+arcfour_3,0.005,naive,3
+arcfour_3,0.006,naive,3
+arcfour_3,0.006,naive,3
+arcfour_3,0.006,naive,3
+arcfour_3,0.006,naive,3
+arcfour_3,0.005,naive,3
+arcfour_3,0.005,naive,3
+>>> base64_3.ll.asfd.asdf.asdf
+base64_3,0.005,naive,15
+base64_3,0.005,naive,15
+base64_3,0.005,naive,15
+base64_3,0.006,naive,15
+base64_3,0.005,naive,15
+base64_3,0.005,naive,15
+base64_3,0.005,naive,15
+base64_3,0.005,naive,15
+base64_3,0.005,naive,15
+base64_3,0.006,naive,15
+>>> blowfish_3.ll.asfd.asdf.asdf
+blowfish_3,0.008,naive,88
+blowfish_3,0.007,naive,88
+blowfish_3,0.006,naive,88
+blowfish_3,0.007,naive,88
+blowfish_3,0.006,naive,88
+blowfish_3,0.007,naive,88
+blowfish_3,0.007,naive,88
+blowfish_3,0.006,naive,88
+blowfish_3,0.006,naive,88
+blowfish_3,0.006,naive,88
+>>> md2_3.ll.asfd.asdf.asdf
+md2_3,0.047,naive,171
+md2_3,0.047,naive,171
+md2_3,0.047,naive,171
+md2_3,0.053,naive,171
+md2_3,0.048,naive,171
+md2_3,0.047,naive,171
+md2_3,0.047,naive,171
+md2_3,0.048,naive,171
+md2_3,0.047,naive,171
+md2_3,0.047,naive,171
+>>> md5_3.ll.asfd.asdf.asdf
+md5_3,0.047,naive,67
+md5_3,0.051,naive,67
+md5_3,0.049,naive,67
+md5_3,0.053,naive,67
+md5_3,0.047,naive,67
+md5_3,0.051,naive,67
+md5_3,0.047,naive,67
+md5_3,0.047,naive,67
+md5_3,0.047,naive,67
+md5_3,0.047,naive,67
+>>> rot-13_3.ll.asfd.asdf.asdf
+rot-13_3,0.049,naive,1
+rot-13_3,0.050,naive,1
+rot-13_3,0.049,naive,1
+rot-13_3,0.049,naive,1
+rot-13_3,0.050,naive,1
+rot-13_3,0.050,naive,1
+rot-13_3,0.049,naive,1
+rot-13_3,0.056,naive,1
+rot-13_3,0.055,naive,1
+rot-13_3,0.050,naive,1
+>>> sha1_3.ll.asfd.asdf.asdf
+sha1_3,0.033,naive,156
+sha1_3,0.031,naive,156
+sha1_3,0.031,naive,156
+sha1_3,0.032,naive,156
+sha1_3,0.032,naive,156
+sha1_3,0.032,naive,156
+sha1_3,0.032,naive,156
+sha1_3,0.031,naive,156
+sha1_3,0.031,naive,156
+sha1_3,0.031,naive,156
+>>> sha256_3.ll.asfd.asdf.asdf
+sha256_3,0.032,naive,77
+sha256_3,0.032,naive,77
+sha256_3,0.031,naive,77
+sha256_3,0.031,naive,77
+sha256_3,0.031,naive,77
+sha256_3,0.031,naive,77
+sha256_3,0.031,naive,77
+sha256_3,0.031,naive,77
+sha256_3,0.032,naive,77
+sha256_3,0.031,naive,77
+
+
+"(2.170 + 2.203 + 2.163 + 2.193 + 2.168 + 2.187 + 2.230+ 2.182 + 2.167 + 2.169 ) / 10"
+
+
+"(0.001 + 0.001 + 0.001 + 0.001 + 0.001 + 0.001 + 0.001+ 0.001 + 0.001 + 0.001 ) / 10"
+
+
+"(0.007 + 0.005 + 0.006 + 0.006 + 0.006 + 0.005 + 0.005+ 0.006 + 0.006 + 0.005 ) / 10"
+
+
+"(0.007 + 0.006 + 0.007 + 0.006 + 0.006 + 0.005 + 0.005+ 0.005 + 0.006 + 0.006 ) / 10"
+
+
+"(0.008 + 0.006 + 0.006 + 0.006 + 0.006 + 0.006 + 0.006+ 0.006 + 0.006 + 0.006 ) / 10"
+
+
+"(0.049 + 0.048 + 0.047 + 0.049 + 0.048 + 0.049 + 0.047+ 0.047 + 0.051 + 0.055 ) / 10"
+
+
+"(0.071 + 0.048 + 0.048 + 0.048 + 0.048 + 0.051 + 0.048+ 0.049 + 0.049 + 0.049 ) / 10"
+
+
+"(0.053 + 0.058 + 0.050 + 0.051 + 0.052 + 0.060 + 0.065+ 0.050 + 0.050 + 0.050 ) / 10"
+
+
+"(0.005 + 0.005 + 0.005 + 0.005 + 0.005 + 0.005 + 0.005+ 0.005 + 0.005 + 0.005 ) / 10"
+
+
+"(0.008 + 0.007 + 0.007 + 0.007 + 0.007 + 0.007 + 0.007+ 0.007 + 0.007 + 0.007 ) / 10"
+
+
+"(2.327 + 2.328 + 2.320 + 2.281 + 2.309 + 2.302 + 2.278+ 2.341 + 2.294 + 2.316 ) / 10"
+
+
+"(0.002 + 0.001 + 0.001 + 0.001 + 0.001 + 0.001 + 0.001+ 0.001 + 0.001 + 0.001 ) / 10"
+
+
+"(0.008 + 0.007 + 0.006 + 0.005 + 0.006 + 0.006 + 0.006+ 0.006 + 0.006 + 0.005 ) / 10"
+
+
+"(0.006 + 0.006 + 0.005 + 0.006 + 0.006 + 0.005 + 0.005+ 0.006 + 0.005 + 0.006 ) / 10"
+
+
+"(0.007 + 0.006 + 0.006 + 0.006 + 0.006 + 0.006 + 0.006+ 0.006 + 0.006 + 0.006 ) / 10"
+
+
+"(0.048 + 0.048 + 0.047 + 0.047 + 0.048 + 0.050 + 0.047+ 0.050 + 0.047 + 0.047 ) / 10"
+
+
+"(0.048 + 0.050 + 0.049 + 0.048 + 0.047 + 0.047 + 0.047+ 0.047 + 0.047 + 0.050 ) / 10"
+
+
+"(0.049 + 0.052 + 0.050 + 0.051 + 0.056 + 0.050 + 0.050+ 0.051 + 0.049 + 0.049 ) / 10"
+
+
+"(0.005 + 0.006 + 0.005 + 0.005 + 0.005 + 0.005 + 0.005+ 0.005 + 0.005 + 0.005 ) / 10"
+
+
+"(0.008 + 0.007 + 0.007 + 0.008 + 0.007 + 0.007 + 0.007+ 0.007 + 0.007 + 0.007 ) / 10"
+
+
+"(3.499 + 3.470 + 3.519 + 3.486 + 3.466 + 3.457 + 3.493+ 3.456 + 3.469 + 3.478 ) / 10"
+
+
+"(0.001 + 0.001 + 0.001 + 0.001 + 0.001 + 0.001 + 0.001+ 0.001 + 0.001 + 0.001 ) / 10"
+
+
+"(0.006 + 0.006 + 0.005 + 0.005 + 0.006 + 0.006 + 0.006+ 0.006 + 0.005 + 0.005 ) / 10"
+
+
+"(0.005 + 0.005 + 0.005 + 0.006 + 0.005 + 0.005 + 0.005+ 0.005 + 0.005 + 0.006 ) / 10"
+
+
+"(0.008 + 0.007 + 0.006 + 0.007 + 0.006 + 0.007 + 0.007+ 0.006 + 0.006 + 0.006 ) / 10"
+
+
+"(0.047 + 0.047 + 0.047 + 0.053 + 0.048 + 0.047 + 0.047+ 0.048 + 0.047 + 0.047 ) / 10"
+
+
+"(0.047 + 0.051 + 0.049 + 0.053 + 0.047 + 0.051 + 0.047+ 0.047 + 0.047 + 0.047 ) / 10"
+
+
+"(0.049 + 0.050 + 0.049 + 0.049 + 0.050 + 0.050 + 0.049+ 0.056 + 0.055 + 0.050 ) / 10"
+
+
+"(0.033 + 0.031 + 0.031 + 0.032 + 0.032 + 0.032 + 0.032+ 0.031 + 0.031 + 0.031 ) / 10"
+
+"(0.032 + 0.032 + 0.031 + 0.031 + 0.031 + 0.031 + 0.031 + 0.031 + 0.032 + 0.031) / 10"
 

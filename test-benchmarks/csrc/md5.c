@@ -1,175 +1,251 @@
-/*
- * Simple MD5 implementation
- *
- * Compile with: gcc -o md5 md5.c
- * https://github.com/pod32g/MD5/blob/master/md5.c
- */
-#include <stdio.h>
+/*********************************************************************
+* Filename:   md5.c
+* Author:     Brad Conte (brad AT bradconte.com)
+* Copyright:
+* Disclaimer: This code is presented "as is" without any guarantees.
+* Details:    Implementation of the MD5 hashing algorithm.
+				  Algorithm specification can be found here:
+				   * http://tools.ietf.org/html/rfc1321
+				  This implementation uses little endian byte order.
+*********************************************************************/
+
+/*************************** HEADER FILES ***************************/
 #include <stdlib.h>
+#include <memory.h>
+#include "md5.h"
+
+/****************************** MACROS ******************************/
+#define ROTLEFT(a,b) ((a << b) | (a >> (32-b)))
+
+#define F(x,y,z) ((x & y) | (~x & z))
+#define G(x,y,z) ((x & z) | (y & ~z))
+#define H(x,y,z) (x ^ y ^ z)
+#define I(x,y,z) (y ^ (x | ~z))
+
+#define FF(a,b,c,d,m,s,t) { a += F(b,c,d) + m + t; \
+                            a = b + ROTLEFT(a,s); }
+#define GG(a,b,c,d,m,s,t) { a += G(b,c,d) + m + t; \
+                            a = b + ROTLEFT(a,s); }
+#define HH(a,b,c,d,m,s,t) { a += H(b,c,d) + m + t; \
+                            a = b + ROTLEFT(a,s); }
+#define II(a,b,c,d,m,s,t) { a += I(b,c,d) + m + t; \
+                            a = b + ROTLEFT(a,s); }
+
+/*********************** FUNCTION DEFINITIONS ***********************/
+void md5_transform(MD5_CTX *ctx, const BYTE data[])
+{
+	WORD a, b, c, d, m[16], i, j;
+
+	// MD5 specifies big endian byte order, but this implementation assumes a little
+	// endian byte order CPU. Reverse all the bytes upon input, and re-reverse them
+	// on output (in md5_final()).
+	for (i = 0, j = 0; i < 16; ++i, j += 4)
+		m[i] = (data[j]) + (data[j + 1] << 8) + (data[j + 2] << 16) + (data[j + 3] << 24);
+
+	a = ctx->state[0];
+	b = ctx->state[1];
+	c = ctx->state[2];
+	d = ctx->state[3];
+
+	FF(a,b,c,d,m[0],  7,0xd76aa478);
+	FF(d,a,b,c,m[1], 12,0xe8c7b756);
+	FF(c,d,a,b,m[2], 17,0x242070db);
+	FF(b,c,d,a,m[3], 22,0xc1bdceee);
+	FF(a,b,c,d,m[4],  7,0xf57c0faf);
+	FF(d,a,b,c,m[5], 12,0x4787c62a);
+	FF(c,d,a,b,m[6], 17,0xa8304613);
+	FF(b,c,d,a,m[7], 22,0xfd469501);
+	FF(a,b,c,d,m[8],  7,0x698098d8);
+	FF(d,a,b,c,m[9], 12,0x8b44f7af);
+	FF(c,d,a,b,m[10],17,0xffff5bb1);
+	FF(b,c,d,a,m[11],22,0x895cd7be);
+	FF(a,b,c,d,m[12], 7,0x6b901122);
+	FF(d,a,b,c,m[13],12,0xfd987193);
+	FF(c,d,a,b,m[14],17,0xa679438e);
+	FF(b,c,d,a,m[15],22,0x49b40821);
+
+	GG(a,b,c,d,m[1],  5,0xf61e2562);
+	GG(d,a,b,c,m[6],  9,0xc040b340);
+	GG(c,d,a,b,m[11],14,0x265e5a51);
+	GG(b,c,d,a,m[0], 20,0xe9b6c7aa);
+	GG(a,b,c,d,m[5],  5,0xd62f105d);
+	GG(d,a,b,c,m[10], 9,0x02441453);
+	GG(c,d,a,b,m[15],14,0xd8a1e681);
+	GG(b,c,d,a,m[4], 20,0xe7d3fbc8);
+	GG(a,b,c,d,m[9],  5,0x21e1cde6);
+	GG(d,a,b,c,m[14], 9,0xc33707d6);
+	GG(c,d,a,b,m[3], 14,0xf4d50d87);
+	GG(b,c,d,a,m[8], 20,0x455a14ed);
+	GG(a,b,c,d,m[13], 5,0xa9e3e905);
+	GG(d,a,b,c,m[2],  9,0xfcefa3f8);
+	GG(c,d,a,b,m[7], 14,0x676f02d9);
+	GG(b,c,d,a,m[12],20,0x8d2a4c8a);
+
+	HH(a,b,c,d,m[5],  4,0xfffa3942);
+	HH(d,a,b,c,m[8], 11,0x8771f681);
+	HH(c,d,a,b,m[11],16,0x6d9d6122);
+	HH(b,c,d,a,m[14],23,0xfde5380c);
+	HH(a,b,c,d,m[1],  4,0xa4beea44);
+	HH(d,a,b,c,m[4], 11,0x4bdecfa9);
+	HH(c,d,a,b,m[7], 16,0xf6bb4b60);
+	HH(b,c,d,a,m[10],23,0xbebfbc70);
+	HH(a,b,c,d,m[13], 4,0x289b7ec6);
+	HH(d,a,b,c,m[0], 11,0xeaa127fa);
+	HH(c,d,a,b,m[3], 16,0xd4ef3085);
+	HH(b,c,d,a,m[6], 23,0x04881d05);
+	HH(a,b,c,d,m[9],  4,0xd9d4d039);
+	HH(d,a,b,c,m[12],11,0xe6db99e5);
+	HH(c,d,a,b,m[15],16,0x1fa27cf8);
+	HH(b,c,d,a,m[2], 23,0xc4ac5665);
+
+	II(a,b,c,d,m[0],  6,0xf4292244);
+	II(d,a,b,c,m[7], 10,0x432aff97);
+	II(c,d,a,b,m[14],15,0xab9423a7);
+	II(b,c,d,a,m[5], 21,0xfc93a039);
+	II(a,b,c,d,m[12], 6,0x655b59c3);
+	II(d,a,b,c,m[3], 10,0x8f0ccc92);
+	II(c,d,a,b,m[10],15,0xffeff47d);
+	II(b,c,d,a,m[1], 21,0x85845dd1);
+	II(a,b,c,d,m[8],  6,0x6fa87e4f);
+	II(d,a,b,c,m[15],10,0xfe2ce6e0);
+	II(c,d,a,b,m[6], 15,0xa3014314);
+	II(b,c,d,a,m[13],21,0x4e0811a1);
+	II(a,b,c,d,m[4],  6,0xf7537e82);
+	II(d,a,b,c,m[11],10,0xbd3af235);
+	II(c,d,a,b,m[2], 15,0x2ad7d2bb);
+	II(b,c,d,a,m[9], 21,0xeb86d391);
+
+	ctx->state[0] += a;
+	ctx->state[1] += b;
+	ctx->state[2] += c;
+	ctx->state[3] += d;
+}
+
+void md5_init(MD5_CTX *ctx)
+{
+	ctx->datalen = 0;
+	ctx->bitlen = 0;
+	ctx->state[0] = 0x67452301;
+	ctx->state[1] = 0xEFCDAB89;
+	ctx->state[2] = 0x98BADCFE;
+	ctx->state[3] = 0x10325476;
+}
+
+void md5_update(MD5_CTX *ctx, const BYTE data[], size_t len)
+{
+	size_t i;
+
+	for (i = 0; i < len; ++i) {
+		ctx->data[ctx->datalen] = data[i];
+		ctx->datalen++;
+		if (ctx->datalen == 64) {
+			md5_transform(ctx, ctx->data);
+			ctx->bitlen += 512;
+			ctx->datalen = 0;
+		}
+	}
+}
+
+void md5_final(MD5_CTX *ctx, BYTE hash[])
+{
+	size_t i;
+
+	i = ctx->datalen;
+
+	// Pad whatever data is left in the buffer.
+	if (ctx->datalen < 56) {
+		ctx->data[i++] = 0x80;
+		while (i < 56)
+			ctx->data[i++] = 0x00;
+	}
+	else if (ctx->datalen >= 56) {
+		ctx->data[i++] = 0x80;
+		while (i < 64)
+			ctx->data[i++] = 0x00;
+		md5_transform(ctx, ctx->data);
+		memset(ctx->data, 0, 56);
+	}
+
+	// Append to the padding the total message's length in bits and transform.
+	ctx->bitlen += ctx->datalen * 8;
+	ctx->data[56] = ctx->bitlen;
+	ctx->data[57] = ctx->bitlen >> 8;
+	ctx->data[58] = ctx->bitlen >> 16;
+	ctx->data[59] = ctx->bitlen >> 24;
+	ctx->data[60] = ctx->bitlen >> 32;
+	ctx->data[61] = ctx->bitlen >> 40;
+	ctx->data[62] = ctx->bitlen >> 48;
+	ctx->data[63] = ctx->bitlen >> 56;
+	md5_transform(ctx, ctx->data);
+
+	// Since this implementation uses little endian byte ordering and MD uses big endian,
+	// reverse all the bytes when copying the final state to the output hash.
+	for (i = 0; i < 4; ++i) {
+		hash[i]      = (ctx->state[0] >> (i * 8)) & 0x000000ff;
+		hash[i + 4]  = (ctx->state[1] >> (i * 8)) & 0x000000ff;
+		hash[i + 8]  = (ctx->state[2] >> (i * 8)) & 0x000000ff;
+		hash[i + 12] = (ctx->state[3] >> (i * 8)) & 0x000000ff;
+	}
+}
+/*********************************************************************
+* Filename:   md5_test.c
+* Author:     Brad Conte (brad AT bradconte.com)
+* Copyright:
+* Disclaimer: This code is presented "as is" without any guarantees.
+* Details:    Performs known-answer tests on the corresponding MD5
+	          implementation. These tests do not encompass the full
+	          range of available test vectors, however, if the tests
+	          pass it is very, very likely that the code is correct
+	          and was compiled properly. This code also serves as
+	          example usage of the functions.
+*********************************************************************/
+
+/*************************** HEADER FILES ***************************/
+#include <stdio.h>
+#include <memory.h>
 #include <string.h>
-#include <stdint.h>
- 
-// Constants are the integer part of the sines of integers (in radians) * 2^32.
-const uint32_t k[64] = {
-0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee ,
-0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501 ,
-0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be ,
-0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821 ,
-0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa ,
-0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8 ,
-0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed ,
-0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a ,
-0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c ,
-0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70 ,
-0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05 ,
-0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665 ,
-0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039 ,
-0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1 ,
-0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1 ,
-0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391 };
- 
-// r specifies the per-round shift amounts
-const uint32_t r[] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
-                      5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,
-                      4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
-                      6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21};
- 
-// leftrotate function definition
-#define LEFTROTATE(x, c) (((x) << (c)) | ((x) >> (32 - (c))))
- 
-void to_bytes(uint32_t val, uint8_t *bytes)
+#include "md5.h"
+
+/*********************** FUNCTION DEFINITIONS ***********************/
+int md5_test()
 {
-    bytes[0] = (uint8_t) val;
-    bytes[1] = (uint8_t) (val >> 8);
-    bytes[2] = (uint8_t) (val >> 16);
-    bytes[3] = (uint8_t) (val >> 24);
+	BYTE text1[] = {""};
+	BYTE text2[] = {"abc"};
+	BYTE text3_1[] = {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcde"};
+	BYTE text3_2[] = {"fghijklmnopqrstuvwxyz0123456789"};
+	BYTE hash1[MD5_BLOCK_SIZE] = {0xd4,0x1d,0x8c,0xd9,0x8f,0x00,0xb2,0x04,0xe9,0x80,0x09,0x98,0xec,0xf8,0x42,0x7e};
+	BYTE hash2[MD5_BLOCK_SIZE] = {0x90,0x01,0x50,0x98,0x3c,0xd2,0x4f,0xb0,0xd6,0x96,0x3f,0x7d,0x28,0xe1,0x7f,0x72};
+	BYTE hash3[MD5_BLOCK_SIZE] = {0xd1,0x74,0xab,0x98,0xd2,0x77,0xd9,0xf5,0xa5,0x61,0x1c,0x2c,0x9f,0x41,0x9d,0x9f};
+	BYTE buf[16];
+	MD5_CTX ctx;
+	int pass = 1;
+
+	md5_init(&ctx);
+	md5_update(&ctx, text1, strlen(text1));
+	md5_final(&ctx, buf);
+	pass = pass && !memcmp(hash1, buf, MD5_BLOCK_SIZE);
+
+	// Note the MD5 object can be reused.
+	md5_init(&ctx);
+	md5_update(&ctx, text2, strlen(text2));
+	md5_final(&ctx, buf);
+	pass = pass && !memcmp(hash2, buf, MD5_BLOCK_SIZE);
+
+	// Note the data is being added in two chunks.
+	md5_init(&ctx);
+	md5_update(&ctx, text3_1, strlen(text3_1));
+	md5_update(&ctx, text3_2, strlen(text3_2));
+	md5_final(&ctx, buf);
+	pass = pass && !memcmp(hash3, buf, MD5_BLOCK_SIZE);
+
+	return(pass);
 }
- 
-uint32_t to_int32(const uint8_t *bytes)
+
+int main()
 {
-    return (uint32_t) bytes[0]
-        | ((uint32_t) bytes[1] << 8)
-        | ((uint32_t) bytes[2] << 16)
-        | ((uint32_t) bytes[3] << 24);
-}
- 
-void md5(const uint8_t *initial_msg, size_t initial_len, uint8_t *digest) {
- 
-    // These vars will contain the hash
-    uint32_t h0, h1, h2, h3;
- 
-    // Message (to prepare)
-    uint8_t *msg = NULL;
- 
-    size_t new_len, offset;
-    uint32_t w[16];
-    uint32_t a, b, c, d, i, f, g, temp;
- 
-    // Initialize variables - simple count in nibbles:
-    h0 = 0x67452301;
-    h1 = 0xefcdab89;
-    h2 = 0x98badcfe;
-    h3 = 0x10325476;
- 
-    //Pre-processing:
-    //append "1" bit to message    
-    //append "0" bits until message length in bits ≡ 448 (mod 512)
-    //append length mod (2^64) to message
- 
-    for (new_len = initial_len + 1; new_len % (512/8) != 448/8; new_len++)
-        ;
- 
-    msg = (uint8_t*)malloc(new_len + 8);
-    memcpy(msg, initial_msg, initial_len);
-    msg[initial_len] = 0x80; // append the "1" bit; most significant bit is "first"
-    for (offset = initial_len + 1; offset < new_len; offset++)
-        msg[offset] = 0; // append "0" bits
- 
-    // append the len in bits at the end of the buffer.
-    to_bytes(initial_len*8, msg + new_len);
-    // initial_len>>29 == initial_len*8>>32, but avoids overflow.
-    to_bytes(initial_len>>29, msg + new_len + 4);
- 
-    // Process the message in successive 512-bit chunks:
-    //for each 512-bit chunk of message:
-    for(offset=0; offset<new_len; offset += (512/8)) {
- 
-        // break chunk into sixteen 32-bit words w[j], 0 ≤ j ≤ 15
-        for (i = 0; i < 16; i++)
-            w[i] = to_int32(msg + offset + i*4);
- 
-        // Initialize hash value for this chunk:
-        a = h0;
-        b = h1;
-        c = h2;
-        d = h3;
- 
-        // Main loop:
-        for(i = 0; i<64; i++) {
- 
-            if (i < 16) {
-                f = (b & c) | ((~b) & d);
-                g = i;
-            } else if (i < 32) {
-                f = (d & b) | ((~d) & c);
-                g = (5*i + 1) % 16;
-            } else if (i < 48) {
-                f = b ^ c ^ d;
-                g = (3*i + 5) % 16;          
-            } else {
-                f = c ^ (b | (~d));
-                g = (7*i) % 16;
-            }
- 
-            temp = d;
-            d = c;
-            c = b;
-            b = b + LEFTROTATE((a + f + k[i] + w[g]), r[i]);
-            a = temp;
- 
-        }
- 
-        // Add this chunk's hash to result so far:
-        h0 += a;
-        h1 += b;
-        h2 += c;
-        h3 += d;
- 
-    }
- 
-    // cleanup
-    free(msg);
- 
-    //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)
-    to_bytes(h0, digest);
-    to_bytes(h1, digest + 4);
-    to_bytes(h2, digest + 8);
-    to_bytes(h3, digest + 12);
-}
- 
-int main(int argc, char **argv) {
-    char *msg = "RandomBenchmarkExampleTestLOLOLSuperLongStringLOLOLThisWillRepeatForAGoodLittleWhileRandomBenchmarkExampleTestLOLOLSuperLongStringLOLOLThisWillRepeatForAGoodLittleWhileRandomBenchmarkExampleTestLOLOLSuperLongStringLOLOLThisWillRepeatForAGoodLittleWhileRandomBenchmarkExampleTestLOLOLSuperLongStringLOLOLThisWillRepeatForAGoodLittleWhile";
-    size_t len;
-    int i;
-    uint8_t result[16];
- 
-    // if (argc < 2) {
-    //     printf("usage: %s 'string'\n", argv[0]);
-    //     return 1;
-    // }
-    // msg = argv[1];
- 
-    len = strlen(msg);
- 
-    // benchmark
-    for (i = 0; i < 1000000; i++) {
-        md5((uint8_t*)msg, len, result);
-    }
- 
-    // display result
-    for (i = 0; i < 16; i++)
-        printf("%2.2x", result[i]);
-    puts("");
- 
-    return 0;
+	for (int i = 0; i < 1000000; i++) {
+		printf("MD5 tests: %s\n", md5_test() ? "SUCCEEDED" : "FAILED");
+	}
+	
+	return(0);
 }

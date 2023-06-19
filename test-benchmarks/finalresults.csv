@@ -1,7 +1,79 @@
-ChaCha20_0, 203.150s
-ChaCha20_3, 2.289s
-all-ChaCha20_0, 358.681s
-all-ChaCha20_3, 29.877s
-base-ChaCha20_0, 35.107s
-base-ChaCha20_3, 2.109s
 
+
+
+ChaCha20_3,2.185,base,0,0,0
+aes_3,0.001,base,0,0,0
+arcfour_3,0.001,base,0,0,0
+base64_3,0.000,base,0,0,0
+blowfish_3,0.001,base,0,0,0
+md2_3,0.001,base,0,0,0
+md5_3,0.001,base,0,0,0
+rot-13_3,0.001,base,0,0,0
+sha1_3,0.005,base,0,0,0
+sha256_3,0.007,base,0,0,0
+
+
+ChaCha20_3,2.303,blade,405,30,1
+aes_3,0.001,blade,45,16,2
+arcfour_3,0.001,blade,23,3,0
+base64_3,0.001,blade,55,15,9
+blowfish_3,0.001,blade,171,88,16
+md2_3,0.001,blade,322,171,70
+md5_3,0.001,blade,199,67,0
+rot-13_3,0.001,blade,3,1,0
+sha1_3,0.005,blade,392,156,0
+sha256_3,0.008,blade,161,77,0
+ChaCha20_3,3.477,naive,405,30,30
+aes_3,0.001,naive,45,16,16
+arcfour_3,0.001,naive,23,3,3
+base64_3,0.001,naive,55,15,15
+blowfish_3,0.001,naive,171,88,88
+md2_3,0.001,naive,322,171,171
+md5_3,0.001,naive,199,67,67
+rot-13_3,0.001,naive,3,1,1
+sha1_3,0.033,naive,392,156,156
+sha256_3,0.033,naive,161,77,77
+
+
+
+ChaCha20_3,1.054,blade,405,30,1
+aes_3,1.0,blade,45,16,2
+arcfour_3,1.0,blade,23,3,0
+base64_3,1.0,blade,55,15,9
+blowfish_3,1.0,blade,171,88,16
+md2_3,1.0,blade,322,171,70
+md5_3,1.0,blade,199,67,0
+rot-13_3,1.0,blade,3,1,0
+sha1_3,1.0,blade,392,156,0
+sha256_3,1.142,blade,161,77,0
+ChaCha20_3,1.591,naive,405,30,30
+aes_3,1.0,naive,45,16,16
+arcfour_3,1.0,naive,23,3,3
+base64_3,1.0,naive,55,15,15
+blowfish_3,1.0,naive,171,88,88
+md2_3,1.0,naive,322,171,171
+md5_3,1.0,naive,199,67,67
+rot-13_3,1.0,naive,3,1,1
+sha1_3,6.600,naive,392,156,156
+sha256_3,4.714,naive,161,77,77
+
+1.054
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+1.142
+1.591
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+6.600
+4.714

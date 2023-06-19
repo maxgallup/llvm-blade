@@ -13,42 +13,47 @@ ninja -C /home/devblade/build opt || exit 1
 cd $MAINDIR
 
 
+
 function run_benchmark() {
 	echo "Running Benchmarks for $1"
-	$MAINDIR/scripts/c-to-llvm.sh $MAINDIR/test-benchmarks/csrc
-	cd $MAINDIR/test-benchmarks/ll/
 	
 	file=$1
 
 	echo ">>> $file"
+	echo ">>> $file" >> $MAINDIR/test-benchmarks/results.csv
 	file_core=${file%%.*}
 	export UBSAN_OPTIONS=print_stacktrace=true
-	# echo "compiling $file -> ../out/out-$file_core.ll"
-	# STATS=$(/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/out-$file_core.ll 2>&1)
-	/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/out-$file_core.ll
-	
-	# MyBlade binary
-	# echo "compiling out-$file -> ../bin/$file_core"
-	clang ../out/out-$file -o ../bin/$file_core
 
-	# Baseline binary
-	# echo "compiling $file -> ../bin/base-$file_core"
-	clang $file -o ../bin/base-$file_core
+	if [ $2 == "base" ]; then
+		STATS="0,0,0"
+		FILENAME="base-$file_core"
+		clang $file -o ../bin/base-$file_core
+	fi
 
-	TIME=$( (time ../bin/$file_core ) 2>&1 >> ../bin/$file_core.log | grep real | awk '{print $2}')
-	TIME_BASE=$( (time ../bin/base-$file_core ) 2>&1 >> ../bin/$file_core.log | grep real | awk '{print $2}')
+	if [ $2 == "blade" ]; then
+		FILENAME="blade-$file_core"
+		STATS=$(/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/$FILENAME.ll 2>&1)
+		clang ../out/$FILENAME.ll -o ../bin/$FILENAME
+	fi
+
+	if [ $2 == "naive" ]; then
+		FILENAME="naive-$file_core"
+		STATS=$(/home/devblade/build/bin/opt -S -p blade $file -o $MAINDIR/test-benchmarks/out/$FILENAME.ll 2>&1)
+		clang ../out/$FILENAME.ll -o ../bin/$FILENAME
+	fi
 	
-	# echo "$file_core,$STATS,$TIME"
-	echo "$file_core,$TIME,blade" >> $MAINDIR/test-benchmarks/results.csv
-	echo "$file_core,$TIME_BASE,base" >> $MAINDIR/test-benchmarks/results.csv
+	for i in $(seq 1 10); do
+		TIME=$( (time ../bin/$FILENAME ) 2>&1 >> ../bin/$file_core.log | grep real | awk '{print $2}')
+		echo "$file_core,$TIME,$2,$STATS" >> $MAINDIR/test-benchmarks/results.csv
+	done
 }
 
 function benchmark_binaries() {
-	echo "Benchmarking all binaries"
-	cd $MAINDIR/test-benchmarks/bin
-	
+	cd $MAINDIR/test-benchmarks/ll/
+
 	for file in * ; do
-		execute_bin $file
+		echo $file
+		run_benchmark $file $1
 	done
 
 	exit 0
@@ -92,14 +97,21 @@ if [ -z $1 ]; then
 	done
 
 elif [ $1 == "bench" ]; then
-	if [ -z $2 ]; then
-		# for file in * ; do
-		# 	run_benchmark $file
-		# done
-		benchmark_binaries
-	else
-		run_benchmark $2.ll
+	echo "Benchmarking" $2
+	$MAINDIR/scripts/c-to-llvm.sh $MAINDIR/test-benchmarks/csrc
+
+	if [ $2 == "base" ]; then
+		benchmark_binaries "base"
 	fi
+
+	if [ $2 == "blade" ]; then
+		benchmark_binaries "blade"
+	fi
+
+	if [ $2 == "naive" ]; then
+		benchmark_binaries "naive"
+	fi
+
 else
 	$MAINDIR/scripts/c-to-llvm.sh $MAINDIR/test/csrc
 	cd $MAINDIR/test/ll/

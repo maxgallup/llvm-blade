@@ -1,34 +1,32 @@
 /*********************************************************************
-* Filename:   sha256.h
+* Filename:   blowfish.h
 * Author:     Brad Conte (brad AT bradconte.com)
 * Copyright:
 * Disclaimer: This code is presented "as is" without any guarantees.
-* Details:    Defines the API for the corresponding SHA1 implementation.
+* Details:    Defines the API for the corresponding Blowfish implementation.
 *********************************************************************/
 
-#ifndef SHA256_H
-#define SHA256_H
+#ifndef BLOWFISH_H
+#define BLOWFISH_H
 
 /*************************** HEADER FILES ***************************/
 #include <stddef.h>
 
 /****************************** MACROS ******************************/
-#define SHA256_BLOCK_SIZE 32            // SHA256 outputs a 32 byte digest
+#define BLOWFISH_BLOCK_SIZE 8           // Blowfish operates on 8 bytes at a time
 
 /**************************** DATA TYPES ****************************/
 typedef unsigned char BYTE;             // 8-bit byte
 typedef unsigned int  WORD;             // 32-bit word, change to "long" for 16-bit machines
 
 typedef struct {
-	BYTE data[64];
-	WORD datalen;
-	unsigned long long bitlen;
-	WORD state[8];
-} SHA256_CTX;
+   WORD p[18];
+   WORD s[4][256];
+} BLOWFISH_KEY;
 
 /*********************** FUNCTION DECLARATIONS **********************/
-void sha256_init(SHA256_CTX *ctx);
-void sha256_update(SHA256_CTX *ctx, const BYTE data[], size_t len);
-void sha256_final(SHA256_CTX *ctx, BYTE hash[]);
+void blowfish_key_setup(const BYTE user_key[], BLOWFISH_KEY *keystruct, size_t len);
+void blowfish_encrypt(const BYTE in[], BYTE out[], const BLOWFISH_KEY *keystruct);
+void blowfish_decrypt(const BYTE in[], BYTE out[], const BLOWFISH_KEY *keystruct);
 
-#endif   // SHA256_H
+#endif   // BLOWFISH_H

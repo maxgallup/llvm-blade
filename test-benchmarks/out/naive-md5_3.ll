@@ -1,4 +1,4 @@
-; ModuleID = 'md5.c'
+; ModuleID = 'md5_3.ll'
 source_filename = "md5.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
@@ -17,301 +17,368 @@ target triple = "x86_64-unknown-linux-gnu"
 ; Function Attrs: nofree nosync nounwind memory(argmem: readwrite) uwtable
 define dso_local void @md5_transform(ptr nocapture noundef %ctx, ptr nocapture noundef readonly %data) local_unnamed_addr #0 {
 entry:
-  %0 = load i8, ptr %data, align 1, !tbaa !7
+  %0 = load i8, ptr %data, align 1, !tbaa !7, !BLADE-T !10
   %conv = zext i8 %0 to i32
-  %arrayidx2 = getelementptr inbounds i8, ptr %data, i64 1
-  %1 = load i8, ptr %arrayidx2, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2 = getelementptr inbounds i8, ptr %data, i64 1, !BLADE-T !10, !BLADE-S !11
+  %1 = load i8, ptr %arrayidx2, align 1, !tbaa !7, !BLADE-T !10
   %conv3 = zext i8 %1 to i32
   %shl = shl nuw nsw i32 %conv3, 8
   %add4 = or i32 %shl, %conv
-  %arrayidx7 = getelementptr inbounds i8, ptr %data, i64 2
-  %2 = load i8, ptr %arrayidx7, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7 = getelementptr inbounds i8, ptr %data, i64 2, !BLADE-T !10, !BLADE-S !11
+  %2 = load i8, ptr %arrayidx7, align 1, !tbaa !7, !BLADE-T !10
   %conv8 = zext i8 %2 to i32
   %shl9 = shl nuw nsw i32 %conv8, 16
   %add10 = or i32 %add4, %shl9
-  %arrayidx13 = getelementptr inbounds i8, ptr %data, i64 3
-  %3 = load i8, ptr %arrayidx13, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13 = getelementptr inbounds i8, ptr %data, i64 3, !BLADE-T !10, !BLADE-S !11
+  %3 = load i8, ptr %arrayidx13, align 1, !tbaa !7, !BLADE-T !10
   %conv14 = zext i8 %3 to i32
   %shl15 = shl nuw i32 %conv14, 24
   %add16 = or i32 %add10, %shl15
-  %arrayidx.1 = getelementptr inbounds i8, ptr %data, i64 4
-  %4 = load i8, ptr %arrayidx.1, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.1 = getelementptr inbounds i8, ptr %data, i64 4, !BLADE-T !10, !BLADE-S !11
+  %4 = load i8, ptr %arrayidx.1, align 1, !tbaa !7, !BLADE-T !10
   %conv.1 = zext i8 %4 to i32
-  %arrayidx2.1 = getelementptr inbounds i8, ptr %data, i64 5
-  %5 = load i8, ptr %arrayidx2.1, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.1 = getelementptr inbounds i8, ptr %data, i64 5, !BLADE-T !10, !BLADE-S !11
+  %5 = load i8, ptr %arrayidx2.1, align 1, !tbaa !7, !BLADE-T !10
   %conv3.1 = zext i8 %5 to i32
   %shl.1 = shl nuw nsw i32 %conv3.1, 8
   %add4.1 = or i32 %shl.1, %conv.1
-  %arrayidx7.1 = getelementptr inbounds i8, ptr %data, i64 6
-  %6 = load i8, ptr %arrayidx7.1, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.1 = getelementptr inbounds i8, ptr %data, i64 6, !BLADE-T !10, !BLADE-S !11
+  %6 = load i8, ptr %arrayidx7.1, align 1, !tbaa !7, !BLADE-T !10
   %conv8.1 = zext i8 %6 to i32
   %shl9.1 = shl nuw nsw i32 %conv8.1, 16
   %add10.1 = or i32 %add4.1, %shl9.1
-  %arrayidx13.1 = getelementptr inbounds i8, ptr %data, i64 7
-  %7 = load i8, ptr %arrayidx13.1, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.1 = getelementptr inbounds i8, ptr %data, i64 7, !BLADE-T !10, !BLADE-S !11
+  %7 = load i8, ptr %arrayidx13.1, align 1, !tbaa !7, !BLADE-T !10
   %conv14.1 = zext i8 %7 to i32
   %shl15.1 = shl nuw i32 %conv14.1, 24
   %add16.1 = or i32 %add10.1, %shl15.1
-  %arrayidx.2 = getelementptr inbounds i8, ptr %data, i64 8
-  %8 = load i8, ptr %arrayidx.2, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.2 = getelementptr inbounds i8, ptr %data, i64 8, !BLADE-T !10, !BLADE-S !11
+  %8 = load i8, ptr %arrayidx.2, align 1, !tbaa !7, !BLADE-T !10
   %conv.2 = zext i8 %8 to i32
-  %arrayidx2.2 = getelementptr inbounds i8, ptr %data, i64 9
-  %9 = load i8, ptr %arrayidx2.2, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.2 = getelementptr inbounds i8, ptr %data, i64 9, !BLADE-T !10, !BLADE-S !11
+  %9 = load i8, ptr %arrayidx2.2, align 1, !tbaa !7, !BLADE-T !10
   %conv3.2 = zext i8 %9 to i32
   %shl.2 = shl nuw nsw i32 %conv3.2, 8
   %add4.2 = or i32 %shl.2, %conv.2
-  %arrayidx7.2 = getelementptr inbounds i8, ptr %data, i64 10
-  %10 = load i8, ptr %arrayidx7.2, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.2 = getelementptr inbounds i8, ptr %data, i64 10, !BLADE-T !10, !BLADE-S !11
+  %10 = load i8, ptr %arrayidx7.2, align 1, !tbaa !7, !BLADE-T !10
   %conv8.2 = zext i8 %10 to i32
   %shl9.2 = shl nuw nsw i32 %conv8.2, 16
   %add10.2 = or i32 %add4.2, %shl9.2
-  %arrayidx13.2 = getelementptr inbounds i8, ptr %data, i64 11
-  %11 = load i8, ptr %arrayidx13.2, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.2 = getelementptr inbounds i8, ptr %data, i64 11, !BLADE-T !10, !BLADE-S !11
+  %11 = load i8, ptr %arrayidx13.2, align 1, !tbaa !7, !BLADE-T !10
   %conv14.2 = zext i8 %11 to i32
   %shl15.2 = shl nuw i32 %conv14.2, 24
   %add16.2 = or i32 %add10.2, %shl15.2
-  %arrayidx.3 = getelementptr inbounds i8, ptr %data, i64 12
-  %12 = load i8, ptr %arrayidx.3, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.3 = getelementptr inbounds i8, ptr %data, i64 12, !BLADE-T !10, !BLADE-S !11
+  %12 = load i8, ptr %arrayidx.3, align 1, !tbaa !7, !BLADE-T !10
   %conv.3 = zext i8 %12 to i32
-  %arrayidx2.3 = getelementptr inbounds i8, ptr %data, i64 13
-  %13 = load i8, ptr %arrayidx2.3, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.3 = getelementptr inbounds i8, ptr %data, i64 13, !BLADE-T !10, !BLADE-S !11
+  %13 = load i8, ptr %arrayidx2.3, align 1, !tbaa !7, !BLADE-T !10
   %conv3.3 = zext i8 %13 to i32
   %shl.3 = shl nuw nsw i32 %conv3.3, 8
   %add4.3 = or i32 %shl.3, %conv.3
-  %arrayidx7.3 = getelementptr inbounds i8, ptr %data, i64 14
-  %14 = load i8, ptr %arrayidx7.3, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.3 = getelementptr inbounds i8, ptr %data, i64 14, !BLADE-T !10, !BLADE-S !11
+  %14 = load i8, ptr %arrayidx7.3, align 1, !tbaa !7, !BLADE-T !10
   %conv8.3 = zext i8 %14 to i32
   %shl9.3 = shl nuw nsw i32 %conv8.3, 16
   %add10.3 = or i32 %add4.3, %shl9.3
-  %arrayidx13.3 = getelementptr inbounds i8, ptr %data, i64 15
-  %15 = load i8, ptr %arrayidx13.3, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.3 = getelementptr inbounds i8, ptr %data, i64 15, !BLADE-T !10, !BLADE-S !11
+  %15 = load i8, ptr %arrayidx13.3, align 1, !tbaa !7, !BLADE-T !10
   %conv14.3 = zext i8 %15 to i32
   %shl15.3 = shl nuw i32 %conv14.3, 24
   %add16.3 = or i32 %add10.3, %shl15.3
-  %arrayidx.4 = getelementptr inbounds i8, ptr %data, i64 16
-  %16 = load i8, ptr %arrayidx.4, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.4 = getelementptr inbounds i8, ptr %data, i64 16, !BLADE-T !10, !BLADE-S !11
+  %16 = load i8, ptr %arrayidx.4, align 1, !tbaa !7, !BLADE-T !10
   %conv.4 = zext i8 %16 to i32
-  %arrayidx2.4 = getelementptr inbounds i8, ptr %data, i64 17
-  %17 = load i8, ptr %arrayidx2.4, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.4 = getelementptr inbounds i8, ptr %data, i64 17, !BLADE-T !10, !BLADE-S !11
+  %17 = load i8, ptr %arrayidx2.4, align 1, !tbaa !7, !BLADE-T !10
   %conv3.4 = zext i8 %17 to i32
   %shl.4 = shl nuw nsw i32 %conv3.4, 8
   %add4.4 = or i32 %shl.4, %conv.4
-  %arrayidx7.4 = getelementptr inbounds i8, ptr %data, i64 18
-  %18 = load i8, ptr %arrayidx7.4, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.4 = getelementptr inbounds i8, ptr %data, i64 18, !BLADE-T !10, !BLADE-S !11
+  %18 = load i8, ptr %arrayidx7.4, align 1, !tbaa !7, !BLADE-T !10
   %conv8.4 = zext i8 %18 to i32
   %shl9.4 = shl nuw nsw i32 %conv8.4, 16
   %add10.4 = or i32 %add4.4, %shl9.4
-  %arrayidx13.4 = getelementptr inbounds i8, ptr %data, i64 19
-  %19 = load i8, ptr %arrayidx13.4, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.4 = getelementptr inbounds i8, ptr %data, i64 19, !BLADE-T !10, !BLADE-S !11
+  %19 = load i8, ptr %arrayidx13.4, align 1, !tbaa !7, !BLADE-T !10
   %conv14.4 = zext i8 %19 to i32
   %shl15.4 = shl nuw i32 %conv14.4, 24
   %add16.4 = or i32 %add10.4, %shl15.4
-  %arrayidx.5 = getelementptr inbounds i8, ptr %data, i64 20
-  %20 = load i8, ptr %arrayidx.5, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.5 = getelementptr inbounds i8, ptr %data, i64 20, !BLADE-T !10, !BLADE-S !11
+  %20 = load i8, ptr %arrayidx.5, align 1, !tbaa !7, !BLADE-T !10
   %conv.5 = zext i8 %20 to i32
-  %arrayidx2.5 = getelementptr inbounds i8, ptr %data, i64 21
-  %21 = load i8, ptr %arrayidx2.5, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.5 = getelementptr inbounds i8, ptr %data, i64 21, !BLADE-T !10, !BLADE-S !11
+  %21 = load i8, ptr %arrayidx2.5, align 1, !tbaa !7, !BLADE-T !10
   %conv3.5 = zext i8 %21 to i32
   %shl.5 = shl nuw nsw i32 %conv3.5, 8
   %add4.5 = or i32 %shl.5, %conv.5
-  %arrayidx7.5 = getelementptr inbounds i8, ptr %data, i64 22
-  %22 = load i8, ptr %arrayidx7.5, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.5 = getelementptr inbounds i8, ptr %data, i64 22, !BLADE-T !10, !BLADE-S !11
+  %22 = load i8, ptr %arrayidx7.5, align 1, !tbaa !7, !BLADE-T !10
   %conv8.5 = zext i8 %22 to i32
   %shl9.5 = shl nuw nsw i32 %conv8.5, 16
   %add10.5 = or i32 %add4.5, %shl9.5
-  %arrayidx13.5 = getelementptr inbounds i8, ptr %data, i64 23
-  %23 = load i8, ptr %arrayidx13.5, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.5 = getelementptr inbounds i8, ptr %data, i64 23, !BLADE-T !10, !BLADE-S !11
+  %23 = load i8, ptr %arrayidx13.5, align 1, !tbaa !7, !BLADE-T !10
   %conv14.5 = zext i8 %23 to i32
   %shl15.5 = shl nuw i32 %conv14.5, 24
   %add16.5 = or i32 %add10.5, %shl15.5
-  %arrayidx.6 = getelementptr inbounds i8, ptr %data, i64 24
-  %24 = load i8, ptr %arrayidx.6, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.6 = getelementptr inbounds i8, ptr %data, i64 24, !BLADE-T !10, !BLADE-S !11
+  %24 = load i8, ptr %arrayidx.6, align 1, !tbaa !7, !BLADE-T !10
   %conv.6 = zext i8 %24 to i32
-  %arrayidx2.6 = getelementptr inbounds i8, ptr %data, i64 25
-  %25 = load i8, ptr %arrayidx2.6, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.6 = getelementptr inbounds i8, ptr %data, i64 25, !BLADE-T !10, !BLADE-S !11
+  %25 = load i8, ptr %arrayidx2.6, align 1, !tbaa !7, !BLADE-T !10
   %conv3.6 = zext i8 %25 to i32
   %shl.6 = shl nuw nsw i32 %conv3.6, 8
   %add4.6 = or i32 %shl.6, %conv.6
-  %arrayidx7.6 = getelementptr inbounds i8, ptr %data, i64 26
-  %26 = load i8, ptr %arrayidx7.6, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.6 = getelementptr inbounds i8, ptr %data, i64 26, !BLADE-T !10, !BLADE-S !11
+  %26 = load i8, ptr %arrayidx7.6, align 1, !tbaa !7, !BLADE-T !10
   %conv8.6 = zext i8 %26 to i32
   %shl9.6 = shl nuw nsw i32 %conv8.6, 16
   %add10.6 = or i32 %add4.6, %shl9.6
-  %arrayidx13.6 = getelementptr inbounds i8, ptr %data, i64 27
-  %27 = load i8, ptr %arrayidx13.6, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.6 = getelementptr inbounds i8, ptr %data, i64 27, !BLADE-T !10, !BLADE-S !11
+  %27 = load i8, ptr %arrayidx13.6, align 1, !tbaa !7, !BLADE-T !10
   %conv14.6 = zext i8 %27 to i32
   %shl15.6 = shl nuw i32 %conv14.6, 24
   %add16.6 = or i32 %add10.6, %shl15.6
-  %arrayidx.7 = getelementptr inbounds i8, ptr %data, i64 28
-  %28 = load i8, ptr %arrayidx.7, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.7 = getelementptr inbounds i8, ptr %data, i64 28, !BLADE-T !10, !BLADE-S !11
+  %28 = load i8, ptr %arrayidx.7, align 1, !tbaa !7, !BLADE-T !10
   %conv.7 = zext i8 %28 to i32
-  %arrayidx2.7 = getelementptr inbounds i8, ptr %data, i64 29
-  %29 = load i8, ptr %arrayidx2.7, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.7 = getelementptr inbounds i8, ptr %data, i64 29, !BLADE-T !10, !BLADE-S !11
+  %29 = load i8, ptr %arrayidx2.7, align 1, !tbaa !7, !BLADE-T !10
   %conv3.7 = zext i8 %29 to i32
   %shl.7 = shl nuw nsw i32 %conv3.7, 8
   %add4.7 = or i32 %shl.7, %conv.7
-  %arrayidx7.7 = getelementptr inbounds i8, ptr %data, i64 30
-  %30 = load i8, ptr %arrayidx7.7, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.7 = getelementptr inbounds i8, ptr %data, i64 30, !BLADE-T !10, !BLADE-S !11
+  %30 = load i8, ptr %arrayidx7.7, align 1, !tbaa !7, !BLADE-T !10
   %conv8.7 = zext i8 %30 to i32
   %shl9.7 = shl nuw nsw i32 %conv8.7, 16
   %add10.7 = or i32 %add4.7, %shl9.7
-  %arrayidx13.7 = getelementptr inbounds i8, ptr %data, i64 31
-  %31 = load i8, ptr %arrayidx13.7, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.7 = getelementptr inbounds i8, ptr %data, i64 31, !BLADE-T !10, !BLADE-S !11
+  %31 = load i8, ptr %arrayidx13.7, align 1, !tbaa !7, !BLADE-T !10
   %conv14.7 = zext i8 %31 to i32
   %shl15.7 = shl nuw i32 %conv14.7, 24
   %add16.7 = or i32 %add10.7, %shl15.7
-  %arrayidx.8 = getelementptr inbounds i8, ptr %data, i64 32
-  %32 = load i8, ptr %arrayidx.8, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.8 = getelementptr inbounds i8, ptr %data, i64 32, !BLADE-T !10, !BLADE-S !11
+  %32 = load i8, ptr %arrayidx.8, align 1, !tbaa !7, !BLADE-T !10
   %conv.8 = zext i8 %32 to i32
-  %arrayidx2.8 = getelementptr inbounds i8, ptr %data, i64 33
-  %33 = load i8, ptr %arrayidx2.8, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.8 = getelementptr inbounds i8, ptr %data, i64 33, !BLADE-T !10, !BLADE-S !11
+  %33 = load i8, ptr %arrayidx2.8, align 1, !tbaa !7, !BLADE-T !10
   %conv3.8 = zext i8 %33 to i32
   %shl.8 = shl nuw nsw i32 %conv3.8, 8
   %add4.8 = or i32 %shl.8, %conv.8
-  %arrayidx7.8 = getelementptr inbounds i8, ptr %data, i64 34
-  %34 = load i8, ptr %arrayidx7.8, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.8 = getelementptr inbounds i8, ptr %data, i64 34, !BLADE-T !10, !BLADE-S !11
+  %34 = load i8, ptr %arrayidx7.8, align 1, !tbaa !7, !BLADE-T !10
   %conv8.8 = zext i8 %34 to i32
   %shl9.8 = shl nuw nsw i32 %conv8.8, 16
   %add10.8 = or i32 %add4.8, %shl9.8
-  %arrayidx13.8 = getelementptr inbounds i8, ptr %data, i64 35
-  %35 = load i8, ptr %arrayidx13.8, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.8 = getelementptr inbounds i8, ptr %data, i64 35, !BLADE-T !10, !BLADE-S !11
+  %35 = load i8, ptr %arrayidx13.8, align 1, !tbaa !7, !BLADE-T !10
   %conv14.8 = zext i8 %35 to i32
   %shl15.8 = shl nuw i32 %conv14.8, 24
   %add16.8 = or i32 %add10.8, %shl15.8
-  %arrayidx.9 = getelementptr inbounds i8, ptr %data, i64 36
-  %36 = load i8, ptr %arrayidx.9, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.9 = getelementptr inbounds i8, ptr %data, i64 36, !BLADE-T !10, !BLADE-S !11
+  %36 = load i8, ptr %arrayidx.9, align 1, !tbaa !7, !BLADE-T !10
   %conv.9 = zext i8 %36 to i32
-  %arrayidx2.9 = getelementptr inbounds i8, ptr %data, i64 37
-  %37 = load i8, ptr %arrayidx2.9, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.9 = getelementptr inbounds i8, ptr %data, i64 37, !BLADE-T !10, !BLADE-S !11
+  %37 = load i8, ptr %arrayidx2.9, align 1, !tbaa !7, !BLADE-T !10
   %conv3.9 = zext i8 %37 to i32
   %shl.9 = shl nuw nsw i32 %conv3.9, 8
   %add4.9 = or i32 %shl.9, %conv.9
-  %arrayidx7.9 = getelementptr inbounds i8, ptr %data, i64 38
-  %38 = load i8, ptr %arrayidx7.9, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.9 = getelementptr inbounds i8, ptr %data, i64 38, !BLADE-T !10, !BLADE-S !11
+  %38 = load i8, ptr %arrayidx7.9, align 1, !tbaa !7, !BLADE-T !10
   %conv8.9 = zext i8 %38 to i32
   %shl9.9 = shl nuw nsw i32 %conv8.9, 16
   %add10.9 = or i32 %add4.9, %shl9.9
-  %arrayidx13.9 = getelementptr inbounds i8, ptr %data, i64 39
-  %39 = load i8, ptr %arrayidx13.9, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.9 = getelementptr inbounds i8, ptr %data, i64 39, !BLADE-T !10, !BLADE-S !11
+  %39 = load i8, ptr %arrayidx13.9, align 1, !tbaa !7, !BLADE-T !10
   %conv14.9 = zext i8 %39 to i32
   %shl15.9 = shl nuw i32 %conv14.9, 24
   %add16.9 = or i32 %add10.9, %shl15.9
-  %arrayidx.10 = getelementptr inbounds i8, ptr %data, i64 40
-  %40 = load i8, ptr %arrayidx.10, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.10 = getelementptr inbounds i8, ptr %data, i64 40, !BLADE-T !10, !BLADE-S !11
+  %40 = load i8, ptr %arrayidx.10, align 1, !tbaa !7, !BLADE-T !10
   %conv.10 = zext i8 %40 to i32
-  %arrayidx2.10 = getelementptr inbounds i8, ptr %data, i64 41
-  %41 = load i8, ptr %arrayidx2.10, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.10 = getelementptr inbounds i8, ptr %data, i64 41, !BLADE-T !10, !BLADE-S !11
+  %41 = load i8, ptr %arrayidx2.10, align 1, !tbaa !7, !BLADE-T !10
   %conv3.10 = zext i8 %41 to i32
   %shl.10 = shl nuw nsw i32 %conv3.10, 8
   %add4.10 = or i32 %shl.10, %conv.10
-  %arrayidx7.10 = getelementptr inbounds i8, ptr %data, i64 42
-  %42 = load i8, ptr %arrayidx7.10, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.10 = getelementptr inbounds i8, ptr %data, i64 42, !BLADE-T !10, !BLADE-S !11
+  %42 = load i8, ptr %arrayidx7.10, align 1, !tbaa !7, !BLADE-T !10
   %conv8.10 = zext i8 %42 to i32
   %shl9.10 = shl nuw nsw i32 %conv8.10, 16
   %add10.10 = or i32 %add4.10, %shl9.10
-  %arrayidx13.10 = getelementptr inbounds i8, ptr %data, i64 43
-  %43 = load i8, ptr %arrayidx13.10, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.10 = getelementptr inbounds i8, ptr %data, i64 43, !BLADE-T !10, !BLADE-S !11
+  %43 = load i8, ptr %arrayidx13.10, align 1, !tbaa !7, !BLADE-T !10
   %conv14.10 = zext i8 %43 to i32
   %shl15.10 = shl nuw i32 %conv14.10, 24
   %add16.10 = or i32 %add10.10, %shl15.10
-  %arrayidx.11 = getelementptr inbounds i8, ptr %data, i64 44
-  %44 = load i8, ptr %arrayidx.11, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.11 = getelementptr inbounds i8, ptr %data, i64 44, !BLADE-T !10, !BLADE-S !11
+  %44 = load i8, ptr %arrayidx.11, align 1, !tbaa !7, !BLADE-T !10
   %conv.11 = zext i8 %44 to i32
-  %arrayidx2.11 = getelementptr inbounds i8, ptr %data, i64 45
-  %45 = load i8, ptr %arrayidx2.11, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.11 = getelementptr inbounds i8, ptr %data, i64 45, !BLADE-T !10, !BLADE-S !11
+  %45 = load i8, ptr %arrayidx2.11, align 1, !tbaa !7, !BLADE-T !10
   %conv3.11 = zext i8 %45 to i32
   %shl.11 = shl nuw nsw i32 %conv3.11, 8
   %add4.11 = or i32 %shl.11, %conv.11
-  %arrayidx7.11 = getelementptr inbounds i8, ptr %data, i64 46
-  %46 = load i8, ptr %arrayidx7.11, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.11 = getelementptr inbounds i8, ptr %data, i64 46, !BLADE-T !10, !BLADE-S !11
+  %46 = load i8, ptr %arrayidx7.11, align 1, !tbaa !7, !BLADE-T !10
   %conv8.11 = zext i8 %46 to i32
   %shl9.11 = shl nuw nsw i32 %conv8.11, 16
   %add10.11 = or i32 %add4.11, %shl9.11
-  %arrayidx13.11 = getelementptr inbounds i8, ptr %data, i64 47
-  %47 = load i8, ptr %arrayidx13.11, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.11 = getelementptr inbounds i8, ptr %data, i64 47, !BLADE-T !10, !BLADE-S !11
+  %47 = load i8, ptr %arrayidx13.11, align 1, !tbaa !7, !BLADE-T !10
   %conv14.11 = zext i8 %47 to i32
   %shl15.11 = shl nuw i32 %conv14.11, 24
   %add16.11 = or i32 %add10.11, %shl15.11
-  %arrayidx.12 = getelementptr inbounds i8, ptr %data, i64 48
-  %48 = load i8, ptr %arrayidx.12, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.12 = getelementptr inbounds i8, ptr %data, i64 48, !BLADE-T !10, !BLADE-S !11
+  %48 = load i8, ptr %arrayidx.12, align 1, !tbaa !7, !BLADE-T !10
   %conv.12 = zext i8 %48 to i32
-  %arrayidx2.12 = getelementptr inbounds i8, ptr %data, i64 49
-  %49 = load i8, ptr %arrayidx2.12, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.12 = getelementptr inbounds i8, ptr %data, i64 49, !BLADE-T !10, !BLADE-S !11
+  %49 = load i8, ptr %arrayidx2.12, align 1, !tbaa !7, !BLADE-T !10
   %conv3.12 = zext i8 %49 to i32
   %shl.12 = shl nuw nsw i32 %conv3.12, 8
   %add4.12 = or i32 %shl.12, %conv.12
-  %arrayidx7.12 = getelementptr inbounds i8, ptr %data, i64 50
-  %50 = load i8, ptr %arrayidx7.12, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.12 = getelementptr inbounds i8, ptr %data, i64 50, !BLADE-T !10, !BLADE-S !11
+  %50 = load i8, ptr %arrayidx7.12, align 1, !tbaa !7, !BLADE-T !10
   %conv8.12 = zext i8 %50 to i32
   %shl9.12 = shl nuw nsw i32 %conv8.12, 16
   %add10.12 = or i32 %add4.12, %shl9.12
-  %arrayidx13.12 = getelementptr inbounds i8, ptr %data, i64 51
-  %51 = load i8, ptr %arrayidx13.12, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.12 = getelementptr inbounds i8, ptr %data, i64 51, !BLADE-T !10, !BLADE-S !11
+  %51 = load i8, ptr %arrayidx13.12, align 1, !tbaa !7, !BLADE-T !10
   %conv14.12 = zext i8 %51 to i32
   %shl15.12 = shl nuw i32 %conv14.12, 24
   %add16.12 = or i32 %add10.12, %shl15.12
-  %arrayidx.13 = getelementptr inbounds i8, ptr %data, i64 52
-  %52 = load i8, ptr %arrayidx.13, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.13 = getelementptr inbounds i8, ptr %data, i64 52, !BLADE-T !10, !BLADE-S !11
+  %52 = load i8, ptr %arrayidx.13, align 1, !tbaa !7, !BLADE-T !10
   %conv.13 = zext i8 %52 to i32
-  %arrayidx2.13 = getelementptr inbounds i8, ptr %data, i64 53
-  %53 = load i8, ptr %arrayidx2.13, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.13 = getelementptr inbounds i8, ptr %data, i64 53, !BLADE-T !10, !BLADE-S !11
+  %53 = load i8, ptr %arrayidx2.13, align 1, !tbaa !7, !BLADE-T !10
   %conv3.13 = zext i8 %53 to i32
   %shl.13 = shl nuw nsw i32 %conv3.13, 8
   %add4.13 = or i32 %shl.13, %conv.13
-  %arrayidx7.13 = getelementptr inbounds i8, ptr %data, i64 54
-  %54 = load i8, ptr %arrayidx7.13, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.13 = getelementptr inbounds i8, ptr %data, i64 54, !BLADE-T !10, !BLADE-S !11
+  %54 = load i8, ptr %arrayidx7.13, align 1, !tbaa !7, !BLADE-T !10
   %conv8.13 = zext i8 %54 to i32
   %shl9.13 = shl nuw nsw i32 %conv8.13, 16
   %add10.13 = or i32 %add4.13, %shl9.13
-  %arrayidx13.13 = getelementptr inbounds i8, ptr %data, i64 55
-  %55 = load i8, ptr %arrayidx13.13, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.13 = getelementptr inbounds i8, ptr %data, i64 55, !BLADE-T !10, !BLADE-S !11
+  %55 = load i8, ptr %arrayidx13.13, align 1, !tbaa !7, !BLADE-T !10
   %conv14.13 = zext i8 %55 to i32
   %shl15.13 = shl nuw i32 %conv14.13, 24
   %add16.13 = or i32 %add10.13, %shl15.13
-  %arrayidx.14 = getelementptr inbounds i8, ptr %data, i64 56
-  %56 = load i8, ptr %arrayidx.14, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.14 = getelementptr inbounds i8, ptr %data, i64 56, !BLADE-T !10, !BLADE-S !11
+  %56 = load i8, ptr %arrayidx.14, align 1, !tbaa !7, !BLADE-T !10
   %conv.14 = zext i8 %56 to i32
-  %arrayidx2.14 = getelementptr inbounds i8, ptr %data, i64 57
-  %57 = load i8, ptr %arrayidx2.14, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.14 = getelementptr inbounds i8, ptr %data, i64 57, !BLADE-T !10, !BLADE-S !11
+  %57 = load i8, ptr %arrayidx2.14, align 1, !tbaa !7, !BLADE-T !10
   %conv3.14 = zext i8 %57 to i32
   %shl.14 = shl nuw nsw i32 %conv3.14, 8
   %add4.14 = or i32 %shl.14, %conv.14
-  %arrayidx7.14 = getelementptr inbounds i8, ptr %data, i64 58
-  %58 = load i8, ptr %arrayidx7.14, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.14 = getelementptr inbounds i8, ptr %data, i64 58, !BLADE-T !10, !BLADE-S !11
+  %58 = load i8, ptr %arrayidx7.14, align 1, !tbaa !7, !BLADE-T !10
   %conv8.14 = zext i8 %58 to i32
   %shl9.14 = shl nuw nsw i32 %conv8.14, 16
   %add10.14 = or i32 %add4.14, %shl9.14
-  %arrayidx13.14 = getelementptr inbounds i8, ptr %data, i64 59
-  %59 = load i8, ptr %arrayidx13.14, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.14 = getelementptr inbounds i8, ptr %data, i64 59, !BLADE-T !10, !BLADE-S !11
+  %59 = load i8, ptr %arrayidx13.14, align 1, !tbaa !7, !BLADE-T !10
   %conv14.14 = zext i8 %59 to i32
   %shl15.14 = shl nuw i32 %conv14.14, 24
   %add16.14 = or i32 %add10.14, %shl15.14
-  %arrayidx.15 = getelementptr inbounds i8, ptr %data, i64 60
-  %60 = load i8, ptr %arrayidx.15, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx.15 = getelementptr inbounds i8, ptr %data, i64 60, !BLADE-T !10, !BLADE-S !11
+  %60 = load i8, ptr %arrayidx.15, align 1, !tbaa !7, !BLADE-T !10
   %conv.15 = zext i8 %60 to i32
-  %arrayidx2.15 = getelementptr inbounds i8, ptr %data, i64 61
-  %61 = load i8, ptr %arrayidx2.15, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx2.15 = getelementptr inbounds i8, ptr %data, i64 61, !BLADE-T !10, !BLADE-S !11
+  %61 = load i8, ptr %arrayidx2.15, align 1, !tbaa !7, !BLADE-T !10
   %conv3.15 = zext i8 %61 to i32
   %shl.15 = shl nuw nsw i32 %conv3.15, 8
   %add4.15 = or i32 %shl.15, %conv.15
-  %arrayidx7.15 = getelementptr inbounds i8, ptr %data, i64 62
-  %62 = load i8, ptr %arrayidx7.15, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx7.15 = getelementptr inbounds i8, ptr %data, i64 62, !BLADE-T !10, !BLADE-S !11
+  %62 = load i8, ptr %arrayidx7.15, align 1, !tbaa !7, !BLADE-T !10
   %conv8.15 = zext i8 %62 to i32
   %shl9.15 = shl nuw nsw i32 %conv8.15, 16
   %add10.15 = or i32 %add4.15, %shl9.15
-  %arrayidx13.15 = getelementptr inbounds i8, ptr %data, i64 63
-  %63 = load i8, ptr %arrayidx13.15, align 1, !tbaa !7
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx13.15 = getelementptr inbounds i8, ptr %data, i64 63, !BLADE-T !10, !BLADE-S !11
+  %63 = load i8, ptr %arrayidx13.15, align 1, !tbaa !7, !BLADE-T !10
   %conv14.15 = zext i8 %63 to i32
   %shl15.15 = shl nuw i32 %conv14.15, 24
   %add16.15 = or i32 %add10.15, %shl15.15
-  %state = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3
-  %64 = load i32, ptr %state, align 8, !tbaa !10
-  %arrayidx22 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 1
-  %65 = load i32, ptr %arrayidx22, align 4, !tbaa !10
-  %arrayidx24 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 2
-  %66 = load i32, ptr %arrayidx24, align 8, !tbaa !10
-  %arrayidx26 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 3
-  %67 = load i32, ptr %arrayidx26, align 4, !tbaa !10
+  call void @llvm.x86.sse2.lfence()
+  %state = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, !BLADE-T !10, !BLADE-S !11
+  %64 = load i32, ptr %state, align 8, !tbaa !12, !BLADE-T !10
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx22 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 1, !BLADE-T !10, !BLADE-S !11
+  %65 = load i32, ptr %arrayidx22, align 4, !tbaa !12, !BLADE-T !10
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx24 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 2, !BLADE-T !10, !BLADE-S !11
+  %66 = load i32, ptr %arrayidx24, align 8, !tbaa !12, !BLADE-T !10
+  call void @llvm.x86.sse2.lfence()
+  %arrayidx26 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 3, !BLADE-T !10, !BLADE-S !11
+  %67 = load i32, ptr %arrayidx26, align 4, !tbaa !12, !BLADE-T !10
   %and = and i32 %66, %65
   %not = xor i32 %65, -1
   %and27 = and i32 %67, %not
@@ -319,7 +386,7 @@ entry:
   %add29 = add i32 %or, %and
   %add30 = add i32 %add29, %and27
   %add31 = add i32 %add30, %add16
-  %or33 = tail call i32 @llvm.fshl.i32(i32 %add31, i32 %add31, i32 7)
+  %or33 = tail call i32 @llvm.fshl.i32(i32 %add31, i32 %add31, i32 7), !BLADE-T !10
   %add34 = add i32 %or33, %65
   %and35 = and i32 %add34, %65
   %not36 = xor i32 %add34, -1
@@ -328,7 +395,7 @@ entry:
   %add40 = add i32 %or38, %add16.1
   %add41 = add i32 %add40, %and37
   %add42 = add i32 %add41, %and35
-  %or45 = tail call i32 @llvm.fshl.i32(i32 %add42, i32 %add42, i32 12)
+  %or45 = tail call i32 @llvm.fshl.i32(i32 %add42, i32 %add42, i32 12), !BLADE-T !10
   %add46 = add i32 %or45, %add34
   %and47 = and i32 %add46, %add34
   %not48 = xor i32 %add46, -1
@@ -337,7 +404,7 @@ entry:
   %add52 = add i32 %or50, %add16.2
   %add53 = add i32 %add52, %and49
   %add54 = add i32 %add53, %and47
-  %or57 = tail call i32 @llvm.fshl.i32(i32 %add54, i32 %add54, i32 17)
+  %or57 = tail call i32 @llvm.fshl.i32(i32 %add54, i32 %add54, i32 17), !BLADE-T !10
   %add58 = add i32 %or57, %add46
   %and59 = and i32 %add58, %add46
   %not60 = xor i32 %add58, -1
@@ -346,7 +413,7 @@ entry:
   %add64 = add i32 %or62, %add16.3
   %add65 = add i32 %add64, %and61
   %add66 = add i32 %add65, %and59
-  %or69 = tail call i32 @llvm.fshl.i32(i32 %add66, i32 %add66, i32 22)
+  %or69 = tail call i32 @llvm.fshl.i32(i32 %add66, i32 %add66, i32 22), !BLADE-T !10
   %add70 = add i32 %or69, %add58
   %and71 = and i32 %add70, %add58
   %not72 = xor i32 %add70, -1
@@ -355,7 +422,7 @@ entry:
   %add76 = add i32 %or74, %add34
   %add77 = add i32 %add76, %and73
   %add78 = add i32 %add77, %and71
-  %or81 = tail call i32 @llvm.fshl.i32(i32 %add78, i32 %add78, i32 7)
+  %or81 = tail call i32 @llvm.fshl.i32(i32 %add78, i32 %add78, i32 7), !BLADE-T !10
   %add82 = add i32 %or81, %add70
   %and83 = and i32 %add82, %add70
   %not84 = xor i32 %add82, -1
@@ -364,7 +431,7 @@ entry:
   %add88 = add i32 %or86, %add46
   %add89 = add i32 %add88, %and85
   %add90 = add i32 %add89, %and83
-  %or93 = tail call i32 @llvm.fshl.i32(i32 %add90, i32 %add90, i32 12)
+  %or93 = tail call i32 @llvm.fshl.i32(i32 %add90, i32 %add90, i32 12), !BLADE-T !10
   %add94 = add i32 %or93, %add82
   %and95 = and i32 %add94, %add82
   %not96 = xor i32 %add94, -1
@@ -373,7 +440,7 @@ entry:
   %add100 = add i32 %or98, %add58
   %add101 = add i32 %add100, %and97
   %add102 = add i32 %add101, %and95
-  %or105 = tail call i32 @llvm.fshl.i32(i32 %add102, i32 %add102, i32 17)
+  %or105 = tail call i32 @llvm.fshl.i32(i32 %add102, i32 %add102, i32 17), !BLADE-T !10
   %add106 = add i32 %or105, %add94
   %and107 = and i32 %add106, %add94
   %not108 = xor i32 %add106, -1
@@ -382,7 +449,7 @@ entry:
   %add112 = add i32 %or110, %add70
   %add113 = add i32 %add112, %and109
   %add114 = add i32 %add113, %and107
-  %or117 = tail call i32 @llvm.fshl.i32(i32 %add114, i32 %add114, i32 22)
+  %or117 = tail call i32 @llvm.fshl.i32(i32 %add114, i32 %add114, i32 22), !BLADE-T !10
   %add118 = add i32 %or117, %add106
   %and119 = and i32 %add118, %add106
   %not120 = xor i32 %add118, -1
@@ -391,7 +458,7 @@ entry:
   %add124 = add i32 %or122, %add82
   %add125 = add i32 %add124, %and121
   %add126 = add i32 %add125, %and119
-  %or129 = tail call i32 @llvm.fshl.i32(i32 %add126, i32 %add126, i32 7)
+  %or129 = tail call i32 @llvm.fshl.i32(i32 %add126, i32 %add126, i32 7), !BLADE-T !10
   %add130 = add i32 %or129, %add118
   %and131 = and i32 %add130, %add118
   %not132 = xor i32 %add130, -1
@@ -400,7 +467,7 @@ entry:
   %add136 = add i32 %or134, %add94
   %add137 = add i32 %add136, %and133
   %add138 = add i32 %add137, %and131
-  %or141 = tail call i32 @llvm.fshl.i32(i32 %add138, i32 %add138, i32 12)
+  %or141 = tail call i32 @llvm.fshl.i32(i32 %add138, i32 %add138, i32 12), !BLADE-T !10
   %add142 = add i32 %or141, %add130
   %and143 = and i32 %add142, %add130
   %not144 = xor i32 %add142, -1
@@ -409,7 +476,7 @@ entry:
   %add148 = add i32 %or146, %add106
   %add149 = add i32 %add148, %and145
   %add150 = add i32 %add149, %and143
-  %or153 = tail call i32 @llvm.fshl.i32(i32 %add150, i32 %add150, i32 17)
+  %or153 = tail call i32 @llvm.fshl.i32(i32 %add150, i32 %add150, i32 17), !BLADE-T !10
   %add154 = add i32 %or153, %add142
   %and155 = and i32 %add154, %add142
   %not156 = xor i32 %add154, -1
@@ -418,7 +485,7 @@ entry:
   %add160 = add i32 %or158, %add118
   %add161 = add i32 %add160, %and157
   %add162 = add i32 %add161, %and155
-  %or165 = tail call i32 @llvm.fshl.i32(i32 %add162, i32 %add162, i32 22)
+  %or165 = tail call i32 @llvm.fshl.i32(i32 %add162, i32 %add162, i32 22), !BLADE-T !10
   %add166 = add i32 %or165, %add154
   %and167 = and i32 %add166, %add154
   %not168 = xor i32 %add166, -1
@@ -427,7 +494,7 @@ entry:
   %add172 = add i32 %or170, %add130
   %add173 = add i32 %add172, %and169
   %add174 = add i32 %add173, %and167
-  %or177 = tail call i32 @llvm.fshl.i32(i32 %add174, i32 %add174, i32 7)
+  %or177 = tail call i32 @llvm.fshl.i32(i32 %add174, i32 %add174, i32 7), !BLADE-T !10
   %add178 = add i32 %or177, %add166
   %and179 = and i32 %add178, %add166
   %not180 = xor i32 %add178, -1
@@ -436,7 +503,7 @@ entry:
   %add184 = add i32 %or182, %add142
   %add185 = add i32 %add184, %and181
   %add186 = add i32 %add185, %and179
-  %or189 = tail call i32 @llvm.fshl.i32(i32 %add186, i32 %add186, i32 12)
+  %or189 = tail call i32 @llvm.fshl.i32(i32 %add186, i32 %add186, i32 12), !BLADE-T !10
   %add190 = add i32 %or189, %add178
   %and191 = and i32 %add190, %add178
   %not192 = xor i32 %add190, -1
@@ -445,7 +512,7 @@ entry:
   %add196 = add i32 %or194, %add154
   %add197 = add i32 %add196, %and193
   %add198 = add i32 %add197, %and191
-  %or201 = tail call i32 @llvm.fshl.i32(i32 %add198, i32 %add198, i32 17)
+  %or201 = tail call i32 @llvm.fshl.i32(i32 %add198, i32 %add198, i32 17), !BLADE-T !10
   %add202 = add i32 %or201, %add190
   %and203 = and i32 %add202, %add190
   %not204 = xor i32 %add202, -1
@@ -454,7 +521,7 @@ entry:
   %add208 = add i32 %or206, %add166
   %add209 = add i32 %add208, %and205
   %add210 = add i32 %add209, %and203
-  %or213 = tail call i32 @llvm.fshl.i32(i32 %add210, i32 %add210, i32 22)
+  %or213 = tail call i32 @llvm.fshl.i32(i32 %add210, i32 %add210, i32 22), !BLADE-T !10
   %add214 = add i32 %or213, %add202
   %and215 = and i32 %add214, %add190
   %and217 = and i32 %add202, %not192
@@ -462,7 +529,7 @@ entry:
   %add220 = add i32 %or218, %add178
   %add221 = add i32 %add220, %and217
   %add222 = add i32 %add221, %and215
-  %or225 = tail call i32 @llvm.fshl.i32(i32 %add222, i32 %add222, i32 5)
+  %or225 = tail call i32 @llvm.fshl.i32(i32 %add222, i32 %add222, i32 5), !BLADE-T !10
   %add226 = add i32 %or225, %add214
   %and227 = and i32 %add226, %add202
   %and229 = and i32 %add214, %not204
@@ -470,7 +537,7 @@ entry:
   %add232 = add i32 %or230, %add190
   %add233 = add i32 %add232, %and229
   %add234 = add i32 %add233, %and227
-  %or237 = tail call i32 @llvm.fshl.i32(i32 %add234, i32 %add234, i32 9)
+  %or237 = tail call i32 @llvm.fshl.i32(i32 %add234, i32 %add234, i32 9), !BLADE-T !10
   %add238 = add i32 %or237, %add226
   %and239 = and i32 %add238, %add214
   %not240 = xor i32 %add214, -1
@@ -479,7 +546,7 @@ entry:
   %add244 = add i32 %or242, %add202
   %add245 = add i32 %add244, %and241
   %add246 = add i32 %add245, %and239
-  %or249 = tail call i32 @llvm.fshl.i32(i32 %add246, i32 %add246, i32 14)
+  %or249 = tail call i32 @llvm.fshl.i32(i32 %add246, i32 %add246, i32 14), !BLADE-T !10
   %add250 = add i32 %or249, %add238
   %and251 = and i32 %add250, %add226
   %not252 = xor i32 %add226, -1
@@ -488,7 +555,7 @@ entry:
   %add256 = add i32 %or254, %add214
   %add257 = add i32 %add256, %and253
   %add258 = add i32 %add257, %and251
-  %or261 = tail call i32 @llvm.fshl.i32(i32 %add258, i32 %add258, i32 20)
+  %or261 = tail call i32 @llvm.fshl.i32(i32 %add258, i32 %add258, i32 20), !BLADE-T !10
   %add262 = add i32 %or261, %add250
   %and263 = and i32 %add262, %add238
   %not264 = xor i32 %add238, -1
@@ -497,7 +564,7 @@ entry:
   %add268 = add i32 %or266, %add226
   %add269 = add i32 %add268, %and265
   %add270 = add i32 %add269, %and263
-  %or273 = tail call i32 @llvm.fshl.i32(i32 %add270, i32 %add270, i32 5)
+  %or273 = tail call i32 @llvm.fshl.i32(i32 %add270, i32 %add270, i32 5), !BLADE-T !10
   %add274 = add i32 %or273, %add262
   %and275 = and i32 %add274, %add250
   %not276 = xor i32 %add250, -1
@@ -506,7 +573,7 @@ entry:
   %add280 = add i32 %or278, %add238
   %add281 = add i32 %add280, %and277
   %add282 = add i32 %add281, %and275
-  %or285 = tail call i32 @llvm.fshl.i32(i32 %add282, i32 %add282, i32 9)
+  %or285 = tail call i32 @llvm.fshl.i32(i32 %add282, i32 %add282, i32 9), !BLADE-T !10
   %add286 = add i32 %or285, %add274
   %and287 = and i32 %add286, %add262
   %not288 = xor i32 %add262, -1
@@ -515,7 +582,7 @@ entry:
   %add292 = add i32 %or290, %add250
   %add293 = add i32 %add292, %and289
   %add294 = add i32 %add293, %and287
-  %or297 = tail call i32 @llvm.fshl.i32(i32 %add294, i32 %add294, i32 14)
+  %or297 = tail call i32 @llvm.fshl.i32(i32 %add294, i32 %add294, i32 14), !BLADE-T !10
   %add298 = add i32 %or297, %add286
   %and299 = and i32 %add298, %add274
   %not300 = xor i32 %add274, -1
@@ -524,7 +591,7 @@ entry:
   %add304 = add i32 %or302, %add262
   %add305 = add i32 %add304, %and301
   %add306 = add i32 %add305, %and299
-  %or309 = tail call i32 @llvm.fshl.i32(i32 %add306, i32 %add306, i32 20)
+  %or309 = tail call i32 @llvm.fshl.i32(i32 %add306, i32 %add306, i32 20), !BLADE-T !10
   %add310 = add i32 %or309, %add298
   %and311 = and i32 %add310, %add286
   %not312 = xor i32 %add286, -1
@@ -533,7 +600,7 @@ entry:
   %add316 = add i32 %or314, %add274
   %add317 = add i32 %add316, %and313
   %add318 = add i32 %add317, %and311
-  %or321 = tail call i32 @llvm.fshl.i32(i32 %add318, i32 %add318, i32 5)
+  %or321 = tail call i32 @llvm.fshl.i32(i32 %add318, i32 %add318, i32 5), !BLADE-T !10
   %add322 = add i32 %or321, %add310
   %and323 = and i32 %add322, %add298
   %not324 = xor i32 %add298, -1
@@ -542,7 +609,7 @@ entry:
   %add328 = add i32 %or326, %add286
   %add329 = add i32 %add328, %and325
   %add330 = add i32 %add329, %and323
-  %or333 = tail call i32 @llvm.fshl.i32(i32 %add330, i32 %add330, i32 9)
+  %or333 = tail call i32 @llvm.fshl.i32(i32 %add330, i32 %add330, i32 9), !BLADE-T !10
   %add334 = add i32 %or333, %add322
   %and335 = and i32 %add334, %add310
   %not336 = xor i32 %add310, -1
@@ -551,7 +618,7 @@ entry:
   %add340 = add i32 %or338, %add298
   %add341 = add i32 %add340, %and337
   %add342 = add i32 %add341, %and335
-  %or345 = tail call i32 @llvm.fshl.i32(i32 %add342, i32 %add342, i32 14)
+  %or345 = tail call i32 @llvm.fshl.i32(i32 %add342, i32 %add342, i32 14), !BLADE-T !10
   %add346 = add i32 %or345, %add334
   %and347 = and i32 %add346, %add322
   %not348 = xor i32 %add322, -1
@@ -560,7 +627,7 @@ entry:
   %add352 = add i32 %or350, %add310
   %add353 = add i32 %add352, %and349
   %add354 = add i32 %add353, %and347
-  %or357 = tail call i32 @llvm.fshl.i32(i32 %add354, i32 %add354, i32 20)
+  %or357 = tail call i32 @llvm.fshl.i32(i32 %add354, i32 %add354, i32 20), !BLADE-T !10
   %add358 = add i32 %or357, %add346
   %and359 = and i32 %add358, %add334
   %not360 = xor i32 %add334, -1
@@ -569,7 +636,7 @@ entry:
   %add364 = add i32 %or362, %add322
   %add365 = add i32 %add364, %and361
   %add366 = add i32 %add365, %and359
-  %or369 = tail call i32 @llvm.fshl.i32(i32 %add366, i32 %add366, i32 5)
+  %or369 = tail call i32 @llvm.fshl.i32(i32 %add366, i32 %add366, i32 5), !BLADE-T !10
   %add370 = add i32 %or369, %add358
   %and371 = and i32 %add370, %add346
   %not372 = xor i32 %add346, -1
@@ -578,7 +645,7 @@ entry:
   %add376 = add i32 %or374, %add334
   %add377 = add i32 %add376, %and373
   %add378 = add i32 %add377, %and371
-  %or381 = tail call i32 @llvm.fshl.i32(i32 %add378, i32 %add378, i32 9)
+  %or381 = tail call i32 @llvm.fshl.i32(i32 %add378, i32 %add378, i32 9), !BLADE-T !10
   %add382 = add i32 %or381, %add370
   %and383 = and i32 %add382, %add358
   %not384 = xor i32 %add358, -1
@@ -587,7 +654,7 @@ entry:
   %add388 = add i32 %or386, %add346
   %add389 = add i32 %add388, %and385
   %add390 = add i32 %add389, %and383
-  %or393 = tail call i32 @llvm.fshl.i32(i32 %add390, i32 %add390, i32 14)
+  %or393 = tail call i32 @llvm.fshl.i32(i32 %add390, i32 %add390, i32 14), !BLADE-T !10
   %add394 = add i32 %or393, %add382
   %and395 = and i32 %add394, %add370
   %not396 = xor i32 %add370, -1
@@ -596,118 +663,118 @@ entry:
   %add400 = add i32 %or398, %add358
   %add401 = add i32 %add400, %and397
   %add402 = add i32 %add401, %and395
-  %or405 = tail call i32 @llvm.fshl.i32(i32 %add402, i32 %add402, i32 20)
+  %or405 = tail call i32 @llvm.fshl.i32(i32 %add402, i32 %add402, i32 20), !BLADE-T !10
   %add406 = add i32 %or405, %add394
   %xor = xor i32 %add406, %add394
   %xor407 = xor i32 %xor, %add382
   %add409 = add i32 %add16.5, -378558
   %add410 = add i32 %add409, %add370
   %add411 = add i32 %add410, %xor407
-  %or414 = tail call i32 @llvm.fshl.i32(i32 %add411, i32 %add411, i32 4)
+  %or414 = tail call i32 @llvm.fshl.i32(i32 %add411, i32 %add411, i32 4), !BLADE-T !10
   %add415 = add i32 %or414, %add406
   %xor417 = xor i32 %xor, %add415
   %add419 = add i32 %add16.8, -2022574463
   %add420 = add i32 %add419, %add382
   %add421 = add i32 %add420, %xor417
-  %or424 = tail call i32 @llvm.fshl.i32(i32 %add421, i32 %add421, i32 11)
+  %or424 = tail call i32 @llvm.fshl.i32(i32 %add421, i32 %add421, i32 11), !BLADE-T !10
   %add425 = add i32 %or424, %add415
   %xor426 = xor i32 %add415, %add406
   %xor427 = xor i32 %xor426, %add425
   %add429 = add i32 %add16.11, 1839030562
   %add430 = add i32 %add429, %add394
   %add431 = add i32 %add430, %xor427
-  %or434 = tail call i32 @llvm.fshl.i32(i32 %add431, i32 %add431, i32 16)
+  %or434 = tail call i32 @llvm.fshl.i32(i32 %add431, i32 %add431, i32 16), !BLADE-T !10
   %add435 = add i32 %or434, %add425
   %xor436 = xor i32 %add425, %add415
   %xor437 = xor i32 %xor436, %add435
   %add439 = add i32 %add16.14, -35309556
   %add440 = add i32 %add439, %add406
   %add441 = add i32 %add440, %xor437
-  %or444 = tail call i32 @llvm.fshl.i32(i32 %add441, i32 %add441, i32 23)
+  %or444 = tail call i32 @llvm.fshl.i32(i32 %add441, i32 %add441, i32 23), !BLADE-T !10
   %add445 = add i32 %or444, %add435
   %xor446 = xor i32 %add435, %add425
   %xor447 = xor i32 %xor446, %add445
   %add449 = add i32 %add16.1, -1530992060
   %add450 = add i32 %add449, %add415
   %add451 = add i32 %add450, %xor447
-  %or454 = tail call i32 @llvm.fshl.i32(i32 %add451, i32 %add451, i32 4)
+  %or454 = tail call i32 @llvm.fshl.i32(i32 %add451, i32 %add451, i32 4), !BLADE-T !10
   %add455 = add i32 %or454, %add445
   %xor456 = xor i32 %add445, %add435
   %xor457 = xor i32 %xor456, %add455
   %add459 = add i32 %add16.4, 1272893353
   %add460 = add i32 %add459, %add425
   %add461 = add i32 %add460, %xor457
-  %or464 = tail call i32 @llvm.fshl.i32(i32 %add461, i32 %add461, i32 11)
+  %or464 = tail call i32 @llvm.fshl.i32(i32 %add461, i32 %add461, i32 11), !BLADE-T !10
   %add465 = add i32 %or464, %add455
   %xor466 = xor i32 %add455, %add445
   %xor467 = xor i32 %xor466, %add465
   %add469 = add i32 %add16.7, -155497632
   %add470 = add i32 %add469, %add435
   %add471 = add i32 %add470, %xor467
-  %or474 = tail call i32 @llvm.fshl.i32(i32 %add471, i32 %add471, i32 16)
+  %or474 = tail call i32 @llvm.fshl.i32(i32 %add471, i32 %add471, i32 16), !BLADE-T !10
   %add475 = add i32 %or474, %add465
   %xor476 = xor i32 %add465, %add455
   %xor477 = xor i32 %xor476, %add475
   %add479 = add i32 %add16.10, -1094730640
   %add480 = add i32 %add479, %add445
   %add481 = add i32 %add480, %xor477
-  %or484 = tail call i32 @llvm.fshl.i32(i32 %add481, i32 %add481, i32 23)
+  %or484 = tail call i32 @llvm.fshl.i32(i32 %add481, i32 %add481, i32 23), !BLADE-T !10
   %add485 = add i32 %or484, %add475
   %xor486 = xor i32 %add475, %add465
   %xor487 = xor i32 %xor486, %add485
   %add489 = add i32 %add16.13, 681279174
   %add490 = add i32 %add489, %add455
   %add491 = add i32 %add490, %xor487
-  %or494 = tail call i32 @llvm.fshl.i32(i32 %add491, i32 %add491, i32 4)
+  %or494 = tail call i32 @llvm.fshl.i32(i32 %add491, i32 %add491, i32 4), !BLADE-T !10
   %add495 = add i32 %or494, %add485
   %xor496 = xor i32 %add485, %add475
   %xor497 = xor i32 %xor496, %add495
   %add499 = add i32 %add16, -358537222
   %add500 = add i32 %add499, %add465
   %add501 = add i32 %add500, %xor497
-  %or504 = tail call i32 @llvm.fshl.i32(i32 %add501, i32 %add501, i32 11)
+  %or504 = tail call i32 @llvm.fshl.i32(i32 %add501, i32 %add501, i32 11), !BLADE-T !10
   %add505 = add i32 %or504, %add495
   %xor506 = xor i32 %add495, %add485
   %xor507 = xor i32 %xor506, %add505
   %add509 = add i32 %add16.3, -722521979
   %add510 = add i32 %add509, %add475
   %add511 = add i32 %add510, %xor507
-  %or514 = tail call i32 @llvm.fshl.i32(i32 %add511, i32 %add511, i32 16)
+  %or514 = tail call i32 @llvm.fshl.i32(i32 %add511, i32 %add511, i32 16), !BLADE-T !10
   %add515 = add i32 %or514, %add505
   %xor516 = xor i32 %add505, %add495
   %xor517 = xor i32 %xor516, %add515
   %add519 = add i32 %add16.6, 76029189
   %add520 = add i32 %add519, %add485
   %add521 = add i32 %add520, %xor517
-  %or524 = tail call i32 @llvm.fshl.i32(i32 %add521, i32 %add521, i32 23)
+  %or524 = tail call i32 @llvm.fshl.i32(i32 %add521, i32 %add521, i32 23), !BLADE-T !10
   %add525 = add i32 %or524, %add515
   %xor526 = xor i32 %add515, %add505
   %xor527 = xor i32 %xor526, %add525
   %add529 = add i32 %add16.9, -640364487
   %add530 = add i32 %add529, %add495
   %add531 = add i32 %add530, %xor527
-  %or534 = tail call i32 @llvm.fshl.i32(i32 %add531, i32 %add531, i32 4)
+  %or534 = tail call i32 @llvm.fshl.i32(i32 %add531, i32 %add531, i32 4), !BLADE-T !10
   %add535 = add i32 %or534, %add525
   %xor536 = xor i32 %add525, %add515
   %xor537 = xor i32 %xor536, %add535
   %add539 = add i32 %add16.12, -421815835
   %add540 = add i32 %add539, %add505
   %add541 = add i32 %add540, %xor537
-  %or544 = tail call i32 @llvm.fshl.i32(i32 %add541, i32 %add541, i32 11)
+  %or544 = tail call i32 @llvm.fshl.i32(i32 %add541, i32 %add541, i32 11), !BLADE-T !10
   %add545 = add i32 %or544, %add535
   %xor546 = xor i32 %add535, %add525
   %xor547 = xor i32 %xor546, %add545
   %add549 = add i32 %add16.15, 530742520
   %add550 = add i32 %add549, %add515
   %add551 = add i32 %add550, %xor547
-  %or554 = tail call i32 @llvm.fshl.i32(i32 %add551, i32 %add551, i32 16)
+  %or554 = tail call i32 @llvm.fshl.i32(i32 %add551, i32 %add551, i32 16), !BLADE-T !10
   %add555 = add i32 %or554, %add545
   %xor556 = xor i32 %add545, %add535
   %xor557 = xor i32 %xor556, %add555
   %add559 = add i32 %add16.2, -995338651
   %add560 = add i32 %add559, %add525
   %add561 = add i32 %add560, %xor557
-  %or564 = tail call i32 @llvm.fshl.i32(i32 %add561, i32 %add561, i32 23)
+  %or564 = tail call i32 @llvm.fshl.i32(i32 %add561, i32 %add561, i32 23), !BLADE-T !10
   %add565 = add i32 %or564, %add555
   %not566 = xor i32 %add545, -1
   %or567 = or i32 %add565, %not566
@@ -715,7 +782,7 @@ entry:
   %add570 = add i32 %add16, -198630844
   %add571 = add i32 %add570, %add535
   %add572 = add i32 %add571, %xor568
-  %or575 = tail call i32 @llvm.fshl.i32(i32 %add572, i32 %add572, i32 6)
+  %or575 = tail call i32 @llvm.fshl.i32(i32 %add572, i32 %add572, i32 6), !BLADE-T !10
   %add576 = add i32 %or575, %add565
   %not577 = xor i32 %add555, -1
   %or578 = or i32 %add576, %not577
@@ -723,7 +790,7 @@ entry:
   %add581 = add i32 %add16.7, 1126891415
   %add582 = add i32 %add581, %add545
   %add583 = add i32 %add582, %xor579
-  %or586 = tail call i32 @llvm.fshl.i32(i32 %add583, i32 %add583, i32 10)
+  %or586 = tail call i32 @llvm.fshl.i32(i32 %add583, i32 %add583, i32 10), !BLADE-T !10
   %add587 = add i32 %or586, %add576
   %not588 = xor i32 %add565, -1
   %or589 = or i32 %add587, %not588
@@ -731,7 +798,7 @@ entry:
   %add592 = add i32 %add16.14, -1416354905
   %add593 = add i32 %add592, %add555
   %add594 = add i32 %add593, %xor590
-  %or597 = tail call i32 @llvm.fshl.i32(i32 %add594, i32 %add594, i32 15)
+  %or597 = tail call i32 @llvm.fshl.i32(i32 %add594, i32 %add594, i32 15), !BLADE-T !10
   %add598 = add i32 %or597, %add587
   %not599 = xor i32 %add576, -1
   %or600 = or i32 %add598, %not599
@@ -739,7 +806,7 @@ entry:
   %add603 = add i32 %add16.5, -57434055
   %add604 = add i32 %add603, %add565
   %add605 = add i32 %add604, %xor601
-  %or608 = tail call i32 @llvm.fshl.i32(i32 %add605, i32 %add605, i32 21)
+  %or608 = tail call i32 @llvm.fshl.i32(i32 %add605, i32 %add605, i32 21), !BLADE-T !10
   %add609 = add i32 %or608, %add598
   %not610 = xor i32 %add587, -1
   %or611 = or i32 %add609, %not610
@@ -747,7 +814,7 @@ entry:
   %add614 = add i32 %add16.12, 1700485571
   %add615 = add i32 %add614, %add576
   %add616 = add i32 %add615, %xor612
-  %or619 = tail call i32 @llvm.fshl.i32(i32 %add616, i32 %add616, i32 6)
+  %or619 = tail call i32 @llvm.fshl.i32(i32 %add616, i32 %add616, i32 6), !BLADE-T !10
   %add620 = add i32 %or619, %add609
   %not621 = xor i32 %add598, -1
   %or622 = or i32 %add620, %not621
@@ -755,7 +822,7 @@ entry:
   %add625 = add i32 %add16.3, -1894986606
   %add626 = add i32 %add625, %add587
   %add627 = add i32 %add626, %xor623
-  %or630 = tail call i32 @llvm.fshl.i32(i32 %add627, i32 %add627, i32 10)
+  %or630 = tail call i32 @llvm.fshl.i32(i32 %add627, i32 %add627, i32 10), !BLADE-T !10
   %add631 = add i32 %or630, %add620
   %not632 = xor i32 %add609, -1
   %or633 = or i32 %add631, %not632
@@ -763,7 +830,7 @@ entry:
   %add636 = add i32 %add16.10, -1051523
   %add637 = add i32 %add636, %add598
   %add638 = add i32 %add637, %xor634
-  %or641 = tail call i32 @llvm.fshl.i32(i32 %add638, i32 %add638, i32 15)
+  %or641 = tail call i32 @llvm.fshl.i32(i32 %add638, i32 %add638, i32 15), !BLADE-T !10
   %add642 = add i32 %or641, %add631
   %not643 = xor i32 %add620, -1
   %or644 = or i32 %add642, %not643
@@ -771,7 +838,7 @@ entry:
   %add647 = add i32 %add16.1, -2054922799
   %add648 = add i32 %add647, %add609
   %add649 = add i32 %add648, %xor645
-  %or652 = tail call i32 @llvm.fshl.i32(i32 %add649, i32 %add649, i32 21)
+  %or652 = tail call i32 @llvm.fshl.i32(i32 %add649, i32 %add649, i32 21), !BLADE-T !10
   %add653 = add i32 %or652, %add642
   %not654 = xor i32 %add631, -1
   %or655 = or i32 %add653, %not654
@@ -779,7 +846,7 @@ entry:
   %add658 = add i32 %add16.8, 1873313359
   %add659 = add i32 %add658, %add620
   %add660 = add i32 %add659, %xor656
-  %or663 = tail call i32 @llvm.fshl.i32(i32 %add660, i32 %add660, i32 6)
+  %or663 = tail call i32 @llvm.fshl.i32(i32 %add660, i32 %add660, i32 6), !BLADE-T !10
   %add664 = add i32 %or663, %add653
   %not665 = xor i32 %add642, -1
   %or666 = or i32 %add664, %not665
@@ -787,7 +854,7 @@ entry:
   %add669 = add i32 %add16.15, -30611744
   %add670 = add i32 %add669, %add631
   %add671 = add i32 %add670, %xor667
-  %or674 = tail call i32 @llvm.fshl.i32(i32 %add671, i32 %add671, i32 10)
+  %or674 = tail call i32 @llvm.fshl.i32(i32 %add671, i32 %add671, i32 10), !BLADE-T !10
   %add675 = add i32 %or674, %add664
   %not676 = xor i32 %add653, -1
   %or677 = or i32 %add675, %not676
@@ -795,7 +862,7 @@ entry:
   %add680 = add i32 %add16.6, -1560198380
   %add681 = add i32 %add680, %add642
   %add682 = add i32 %add681, %xor678
-  %or685 = tail call i32 @llvm.fshl.i32(i32 %add682, i32 %add682, i32 15)
+  %or685 = tail call i32 @llvm.fshl.i32(i32 %add682, i32 %add682, i32 15), !BLADE-T !10
   %add686 = add i32 %or685, %add675
   %not687 = xor i32 %add664, -1
   %or688 = or i32 %add686, %not687
@@ -803,7 +870,7 @@ entry:
   %add691 = add i32 %add16.13, 1309151649
   %add692 = add i32 %add691, %add653
   %add693 = add i32 %add692, %xor689
-  %or696 = tail call i32 @llvm.fshl.i32(i32 %add693, i32 %add693, i32 21)
+  %or696 = tail call i32 @llvm.fshl.i32(i32 %add693, i32 %add693, i32 21), !BLADE-T !10
   %add697 = add i32 %or696, %add686
   %not698 = xor i32 %add675, -1
   %or699 = or i32 %add697, %not698
@@ -811,7 +878,7 @@ entry:
   %add702 = add i32 %add16.4, -145523070
   %add703 = add i32 %add702, %add664
   %add704 = add i32 %add703, %xor700
-  %or707 = tail call i32 @llvm.fshl.i32(i32 %add704, i32 %add704, i32 6)
+  %or707 = tail call i32 @llvm.fshl.i32(i32 %add704, i32 %add704, i32 6), !BLADE-T !10
   %add708 = add i32 %or707, %add697
   %not709 = xor i32 %add686, -1
   %or710 = or i32 %add708, %not709
@@ -819,7 +886,7 @@ entry:
   %add713 = add i32 %add16.11, -1120210379
   %add714 = add i32 %add713, %add675
   %add715 = add i32 %add714, %xor711
-  %or718 = tail call i32 @llvm.fshl.i32(i32 %add715, i32 %add715, i32 10)
+  %or718 = tail call i32 @llvm.fshl.i32(i32 %add715, i32 %add715, i32 10), !BLADE-T !10
   %add719 = add i32 %or718, %add708
   %not720 = xor i32 %add697, -1
   %or721 = or i32 %add719, %not720
@@ -827,7 +894,7 @@ entry:
   %add724 = add i32 %add16.2, 718787259
   %add725 = add i32 %add724, %add686
   %add726 = add i32 %add725, %xor722
-  %or729 = tail call i32 @llvm.fshl.i32(i32 %add726, i32 %add726, i32 15)
+  %or729 = tail call i32 @llvm.fshl.i32(i32 %add726, i32 %add726, i32 15), !BLADE-T !10
   %add730 = add i32 %or729, %add719
   %not731 = xor i32 %add708, -1
   %or732 = or i32 %add730, %not731
@@ -835,34 +902,34 @@ entry:
   %add735 = add i32 %add16.9, -343485551
   %add736 = add i32 %add735, %add697
   %add737 = add i32 %add736, %xor733
-  %or740 = tail call i32 @llvm.fshl.i32(i32 %add737, i32 %add737, i32 21)
+  %or740 = tail call i32 @llvm.fshl.i32(i32 %add737, i32 %add737, i32 21), !BLADE-T !10
   %add744 = add i32 %add708, %64
-  store i32 %add744, ptr %state, align 8, !tbaa !10
+  store i32 %add744, ptr %state, align 8, !tbaa !12
   %add741 = add i32 %add730, %65
   %add747 = add i32 %add741, %or740
-  store i32 %add747, ptr %arrayidx22, align 4, !tbaa !10
+  store i32 %add747, ptr %arrayidx22, align 4, !tbaa !12
   %add750 = add i32 %add730, %66
-  store i32 %add750, ptr %arrayidx24, align 8, !tbaa !10
+  store i32 %add750, ptr %arrayidx24, align 8, !tbaa !12
   %add753 = add i32 %add719, %67
-  store i32 %add753, ptr %arrayidx26, align 4, !tbaa !10
+  store i32 %add753, ptr %arrayidx26, align 4, !tbaa !12
   ret void
 }
 
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
+; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
 declare void @llvm.lifetime.start.p0(i64 immarg, ptr nocapture) #1
 
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
+; Function Attrs: nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
 declare void @llvm.lifetime.end.p0(i64 immarg, ptr nocapture) #1
 
 ; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(argmem: write) uwtable
 define dso_local void @md5_init(ptr nocapture noundef writeonly %ctx) local_unnamed_addr #2 {
 entry:
   %datalen = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 1
-  store i32 0, ptr %datalen, align 8, !tbaa !12
+  store i32 0, ptr %datalen, align 8, !tbaa !14
   %bitlen = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 2
-  store i64 0, ptr %bitlen, align 8, !tbaa !15
+  store i64 0, ptr %bitlen, align 8, !tbaa !17
   %state = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3
-  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state, align 8, !tbaa !10
+  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state, align 8, !tbaa !12
   ret void
 }
 
@@ -875,10 +942,10 @@ entry:
 for.body.lr.ph:                                   ; preds = %entry
   %datalen = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 1
   %bitlen = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 2
-  %.pre = load i32, ptr %datalen, align 8, !tbaa !12
+  %.pre = load i32, ptr %datalen, align 8, !tbaa !14
   br label %for.body
 
-for.body:                                         ; preds = %for.body.lr.ph, %for.inc
+for.body:                                         ; preds = %for.inc, %for.body.lr.ph
   %0 = phi i32 [ %.pre, %for.body.lr.ph ], [ %4, %for.inc ]
   %i.019 = phi i64 [ 0, %for.body.lr.ph ], [ %inc8, %for.inc ]
   %arrayidx = getelementptr inbounds i8, ptr %data, i64 %i.019
@@ -886,25 +953,25 @@ for.body:                                         ; preds = %for.body.lr.ph, %fo
   %idxprom = zext i32 %0 to i64
   %arrayidx2 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom
   store i8 %1, ptr %arrayidx2, align 1, !tbaa !7
-  %2 = load i32, ptr %datalen, align 8, !tbaa !12
+  %2 = load i32, ptr %datalen, align 8, !tbaa !14
   %inc = add i32 %2, 1
-  store i32 %inc, ptr %datalen, align 8, !tbaa !12
+  store i32 %inc, ptr %datalen, align 8, !tbaa !14
   %cmp5 = icmp eq i32 %inc, 64
   br i1 %cmp5, label %if.then, label %for.inc
 
 if.then:                                          ; preds = %for.body
   tail call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %3 = load i64, ptr %bitlen, align 8, !tbaa !15
+  %3 = load i64, ptr %bitlen, align 8, !tbaa !17
   %add = add i64 %3, 512
-  store i64 %add, ptr %bitlen, align 8, !tbaa !15
-  store i32 0, ptr %datalen, align 8, !tbaa !12
+  store i64 %add, ptr %bitlen, align 8, !tbaa !17
+  store i32 0, ptr %datalen, align 8, !tbaa !14
   br label %for.inc
 
-for.inc:                                          ; preds = %for.body, %if.then
+for.inc:                                          ; preds = %if.then, %for.body
   %4 = phi i32 [ %inc, %for.body ], [ 0, %if.then ]
   %inc8 = add nuw i64 %i.019, 1
   %exitcond.not = icmp eq i64 %inc8, %len
-  br i1 %exitcond.not, label %for.end, label %for.body, !llvm.loop !16
+  br i1 %exitcond.not, label %for.end, label %for.body, !llvm.loop !18
 
 for.end:                                          ; preds = %for.inc, %entry
   ret void
@@ -914,7 +981,7 @@ for.end:                                          ; preds = %for.inc, %entry
 define dso_local void @md5_final(ptr nocapture noundef %ctx, ptr nocapture noundef writeonly %hash) local_unnamed_addr #0 {
 entry:
   %datalen = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 1
-  %0 = load i32, ptr %datalen, align 8, !tbaa !12
+  %0 = load i32, ptr %datalen, align 8, !tbaa !14
   %conv = zext i32 %0 to i64
   %cmp = icmp ult i32 %0, 56
   %arrayidx = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %conv
@@ -948,14 +1015,14 @@ while.end22:                                      ; preds = %while.body18.prehea
   tail call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(56) %ctx, i8 0, i64 56, i1 false)
   br label %if.end26
 
-if.end26:                                         ; preds = %while.body.preheader, %if.then, %while.end22
-  %3 = load i32, ptr %datalen, align 8, !tbaa !12
+if.end26:                                         ; preds = %while.end22, %while.body.preheader, %if.then
+  %3 = load i32, ptr %datalen, align 8, !tbaa !14
   %mul = shl i32 %3, 3
   %conv28 = zext i32 %mul to i64
   %bitlen = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 2
-  %4 = load i64, ptr %bitlen, align 8, !tbaa !15
+  %4 = load i64, ptr %bitlen, align 8, !tbaa !17
   %add = add i64 %4, %conv28
-  store i64 %add, ptr %bitlen, align 8, !tbaa !15
+  store i64 %add, ptr %bitlen, align 8, !tbaa !17
   %conv30 = trunc i64 %add to i8
   %arrayidx32 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 56
   store i8 %conv30, ptr %arrayidx32, align 8, !tbaa !7
@@ -992,77 +1059,77 @@ if.end26:                                         ; preds = %while.body.preheade
   %arrayidx77 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 1
   %arrayidx86 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 2
   %arrayidx95 = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3, i64 3
-  %5 = load i32, ptr %state, align 8, !tbaa !10
+  %5 = load i32, ptr %state, align 8, !tbaa !12
   %conv74 = trunc i32 %5 to i8
   store i8 %conv74, ptr %hash, align 1, !tbaa !7
-  %6 = load i32, ptr %arrayidx77, align 4, !tbaa !10
+  %6 = load i32, ptr %arrayidx77, align 4, !tbaa !12
   %conv82 = trunc i32 %6 to i8
   %arrayidx84 = getelementptr inbounds i8, ptr %hash, i64 4
   store i8 %conv82, ptr %arrayidx84, align 1, !tbaa !7
-  %7 = load i32, ptr %arrayidx86, align 8, !tbaa !10
+  %7 = load i32, ptr %arrayidx86, align 8, !tbaa !12
   %conv91 = trunc i32 %7 to i8
   %arrayidx93 = getelementptr inbounds i8, ptr %hash, i64 8
   store i8 %conv91, ptr %arrayidx93, align 1, !tbaa !7
-  %8 = load i32, ptr %arrayidx95, align 4, !tbaa !10
+  %8 = load i32, ptr %arrayidx95, align 4, !tbaa !12
   %conv100 = trunc i32 %8 to i8
   %arrayidx102 = getelementptr inbounds i8, ptr %hash, i64 12
   store i8 %conv100, ptr %arrayidx102, align 1, !tbaa !7
-  %9 = load i32, ptr %state, align 8, !tbaa !10
+  %9 = load i32, ptr %state, align 8, !tbaa !12
   %shr73.1 = lshr i32 %9, 8
   %conv74.1 = trunc i32 %shr73.1 to i8
   %arrayidx75.1 = getelementptr inbounds i8, ptr %hash, i64 1
   store i8 %conv74.1, ptr %arrayidx75.1, align 1, !tbaa !7
-  %10 = load i32, ptr %arrayidx77, align 4, !tbaa !10
+  %10 = load i32, ptr %arrayidx77, align 4, !tbaa !12
   %shr80.1 = lshr i32 %10, 8
   %conv82.1 = trunc i32 %shr80.1 to i8
   %arrayidx84.1 = getelementptr inbounds i8, ptr %hash, i64 5
   store i8 %conv82.1, ptr %arrayidx84.1, align 1, !tbaa !7
-  %11 = load i32, ptr %arrayidx86, align 8, !tbaa !10
+  %11 = load i32, ptr %arrayidx86, align 8, !tbaa !12
   %shr89.1 = lshr i32 %11, 8
   %conv91.1 = trunc i32 %shr89.1 to i8
   %arrayidx93.1 = getelementptr inbounds i8, ptr %hash, i64 9
   store i8 %conv91.1, ptr %arrayidx93.1, align 1, !tbaa !7
-  %12 = load i32, ptr %arrayidx95, align 4, !tbaa !10
+  %12 = load i32, ptr %arrayidx95, align 4, !tbaa !12
   %shr98.1 = lshr i32 %12, 8
   %conv100.1 = trunc i32 %shr98.1 to i8
   %arrayidx102.1 = getelementptr inbounds i8, ptr %hash, i64 13
   store i8 %conv100.1, ptr %arrayidx102.1, align 1, !tbaa !7
-  %13 = load i32, ptr %state, align 8, !tbaa !10
+  %13 = load i32, ptr %state, align 8, !tbaa !12
   %shr73.2 = lshr i32 %13, 16
   %conv74.2 = trunc i32 %shr73.2 to i8
   %arrayidx75.2 = getelementptr inbounds i8, ptr %hash, i64 2
   store i8 %conv74.2, ptr %arrayidx75.2, align 1, !tbaa !7
-  %14 = load i32, ptr %arrayidx77, align 4, !tbaa !10
+  %14 = load i32, ptr %arrayidx77, align 4, !tbaa !12
   %shr80.2 = lshr i32 %14, 16
   %conv82.2 = trunc i32 %shr80.2 to i8
   %arrayidx84.2 = getelementptr inbounds i8, ptr %hash, i64 6
   store i8 %conv82.2, ptr %arrayidx84.2, align 1, !tbaa !7
-  %15 = load i32, ptr %arrayidx86, align 8, !tbaa !10
+  %15 = load i32, ptr %arrayidx86, align 8, !tbaa !12
   %shr89.2 = lshr i32 %15, 16
   %conv91.2 = trunc i32 %shr89.2 to i8
   %arrayidx93.2 = getelementptr inbounds i8, ptr %hash, i64 10
   store i8 %conv91.2, ptr %arrayidx93.2, align 1, !tbaa !7
-  %16 = load i32, ptr %arrayidx95, align 4, !tbaa !10
+  %16 = load i32, ptr %arrayidx95, align 4, !tbaa !12
   %shr98.2 = lshr i32 %16, 16
   %conv100.2 = trunc i32 %shr98.2 to i8
   %arrayidx102.2 = getelementptr inbounds i8, ptr %hash, i64 14
   store i8 %conv100.2, ptr %arrayidx102.2, align 1, !tbaa !7
-  %17 = load i32, ptr %state, align 8, !tbaa !10
+  %17 = load i32, ptr %state, align 8, !tbaa !12
   %shr73.3 = lshr i32 %17, 24
   %conv74.3 = trunc i32 %shr73.3 to i8
   %arrayidx75.3 = getelementptr inbounds i8, ptr %hash, i64 3
   store i8 %conv74.3, ptr %arrayidx75.3, align 1, !tbaa !7
-  %18 = load i32, ptr %arrayidx77, align 4, !tbaa !10
+  %18 = load i32, ptr %arrayidx77, align 4, !tbaa !12
   %shr80.3 = lshr i32 %18, 24
   %conv82.3 = trunc i32 %shr80.3 to i8
   %arrayidx84.3 = getelementptr inbounds i8, ptr %hash, i64 7
   store i8 %conv82.3, ptr %arrayidx84.3, align 1, !tbaa !7
-  %19 = load i32, ptr %arrayidx86, align 8, !tbaa !10
+  %19 = load i32, ptr %arrayidx86, align 8, !tbaa !12
   %shr89.3 = lshr i32 %19, 24
   %conv91.3 = trunc i32 %shr89.3 to i8
   %arrayidx93.3 = getelementptr inbounds i8, ptr %hash, i64 11
   store i8 %conv91.3, ptr %arrayidx93.3, align 1, !tbaa !7
-  %20 = load i32, ptr %arrayidx95, align 4, !tbaa !10
+  %20 = load i32, ptr %arrayidx95, align 4, !tbaa !12
   %shr98.3 = lshr i32 %20, 24
   %conv100.3 = trunc i32 %shr98.3 to i8
   %arrayidx102.3 = getelementptr inbounds i8, ptr %hash, i64 15
@@ -1070,7 +1137,7 @@ if.end26:                                         ; preds = %while.body.preheade
   ret void
 }
 
-; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: write)
+; Function Attrs: nocallback nofree nounwind willreturn memory(argmem: write)
 declare void @llvm.memset.p0.i64(ptr nocapture writeonly, i8, i64, i1 immarg) #3
 
 ; Function Attrs: nofree nosync nounwind memory(none) uwtable
@@ -1087,53 +1154,53 @@ entry:
   call void @llvm.lifetime.start.p0(i64 16, ptr nonnull %buf) #10
   call void @llvm.lifetime.start.p0(i64 96, ptr nonnull %ctx) #10
   %datalen.i = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 1
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   %bitlen.i = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 2
-  store i64 0, ptr %bitlen.i, align 8, !tbaa !15
+  store i64 0, ptr %bitlen.i, align 8, !tbaa !17
   %state.i = getelementptr inbounds %struct.MD5_CTX, ptr %ctx, i64 0, i32 3
-  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !10
+  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !12
   %call = call i64 @strlen(ptr noundef nonnull dereferenceable(1) %text1) #11
   %cmp18.not.i = icmp eq i64 %call, 0
   br i1 %cmp18.not.i, label %md5_update.exit, label %for.body.i
 
-for.body.i:                                       ; preds = %entry, %for.inc.i
+for.body.i:                                       ; preds = %for.inc.i, %entry
   %0 = phi i32 [ %3, %for.inc.i ], [ 0, %entry ]
   %i.019.i = phi i64 [ %inc8.i, %for.inc.i ], [ 0, %entry ]
   %idxprom.i = zext i32 %0 to i64
   %arrayidx2.i43 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom.i
   store i8 0, ptr %arrayidx2.i43, align 1, !tbaa !7
-  %1 = load i32, ptr %datalen.i, align 8, !tbaa !12
+  %1 = load i32, ptr %datalen.i, align 8, !tbaa !14
   %inc.i = add i32 %1, 1
-  store i32 %inc.i, ptr %datalen.i, align 8, !tbaa !12
+  store i32 %inc.i, ptr %datalen.i, align 8, !tbaa !14
   %cmp5.i = icmp eq i32 %inc.i, 64
   br i1 %cmp5.i, label %if.then.i, label %for.inc.i
 
 if.then.i:                                        ; preds = %for.body.i
   call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %2 = load i64, ptr %bitlen.i, align 8, !tbaa !15
+  %2 = load i64, ptr %bitlen.i, align 8, !tbaa !17
   %add.i = add i64 %2, 512
-  store i64 %add.i, ptr %bitlen.i, align 8, !tbaa !15
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i64 %add.i, ptr %bitlen.i, align 8, !tbaa !17
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   br label %for.inc.i
 
 for.inc.i:                                        ; preds = %if.then.i, %for.body.i
   %3 = phi i32 [ %inc.i, %for.body.i ], [ 0, %if.then.i ]
   %inc8.i = add nuw i64 %i.019.i, 1
   %exitcond.not.i = icmp eq i64 %inc8.i, %call
-  br i1 %exitcond.not.i, label %md5_update.exit, label %for.body.i, !llvm.loop !16
+  br i1 %exitcond.not.i, label %md5_update.exit, label %for.body.i, !llvm.loop !18
 
 md5_update.exit:                                  ; preds = %for.inc.i, %entry
   call void @md5_final(ptr noundef nonnull %ctx, ptr noundef nonnull %buf)
   %bcmp = call i32 @bcmp(ptr noundef nonnull dereferenceable(16) @__const.md5_test.hash1, ptr noundef nonnull dereferenceable(16) %buf, i64 16)
   %tobool6.not = icmp eq i32 %bcmp, 0
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
-  store i64 0, ptr %bitlen.i, align 8, !tbaa !15
-  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !10
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
+  store i64 0, ptr %bitlen.i, align 8, !tbaa !17
+  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !12
   %call9 = call i64 @strlen(ptr noundef nonnull dereferenceable(1) %text2) #11
   %cmp18.not.i50 = icmp eq i64 %call9, 0
   br i1 %cmp18.not.i50, label %md5_update.exit67, label %for.body.i61
 
-for.body.i61:                                     ; preds = %md5_update.exit, %for.inc.i66
+for.body.i61:                                     ; preds = %for.inc.i66, %md5_update.exit
   %4 = phi i32 [ %8, %for.inc.i66 ], [ 0, %md5_update.exit ]
   %i.019.i55 = phi i64 [ %inc8.i64, %for.inc.i66 ], [ 0, %md5_update.exit ]
   %arrayidx.i56 = getelementptr inbounds i8, ptr %text2, i64 %i.019.i55
@@ -1141,25 +1208,25 @@ for.body.i61:                                     ; preds = %md5_update.exit, %f
   %idxprom.i57 = zext i32 %4 to i64
   %arrayidx2.i58 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom.i57
   store i8 %5, ptr %arrayidx2.i58, align 1, !tbaa !7
-  %6 = load i32, ptr %datalen.i, align 8, !tbaa !12
+  %6 = load i32, ptr %datalen.i, align 8, !tbaa !14
   %inc.i59 = add i32 %6, 1
-  store i32 %inc.i59, ptr %datalen.i, align 8, !tbaa !12
+  store i32 %inc.i59, ptr %datalen.i, align 8, !tbaa !14
   %cmp5.i60 = icmp eq i32 %inc.i59, 64
   br i1 %cmp5.i60, label %if.then.i63, label %for.inc.i66
 
 if.then.i63:                                      ; preds = %for.body.i61
   call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %7 = load i64, ptr %bitlen.i, align 8, !tbaa !15
+  %7 = load i64, ptr %bitlen.i, align 8, !tbaa !17
   %add.i62 = add i64 %7, 512
-  store i64 %add.i62, ptr %bitlen.i, align 8, !tbaa !15
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i64 %add.i62, ptr %bitlen.i, align 8, !tbaa !17
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   br label %for.inc.i66
 
 for.inc.i66:                                      ; preds = %if.then.i63, %for.body.i61
   %8 = phi i32 [ %inc.i59, %for.body.i61 ], [ 0, %if.then.i63 ]
   %inc8.i64 = add nuw i64 %i.019.i55, 1
   %exitcond.not.i65 = icmp eq i64 %inc8.i64, %call9
-  br i1 %exitcond.not.i65, label %md5_update.exit67, label %for.body.i61, !llvm.loop !16
+  br i1 %exitcond.not.i65, label %md5_update.exit67, label %for.body.i61, !llvm.loop !18
 
 md5_update.exit67:                                ; preds = %for.inc.i66, %md5_update.exit
   call void @md5_final(ptr noundef nonnull %ctx, ptr noundef nonnull %buf)
@@ -1167,12 +1234,12 @@ md5_update.exit67:                                ; preds = %for.inc.i66, %md5_u
 
 land.rhs12:                                       ; preds = %md5_update.exit67
   %bcmp40 = call i32 @bcmp(ptr noundef nonnull dereferenceable(16) @__const.md5_test.hash2, ptr noundef nonnull dereferenceable(16) %buf, i64 16)
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
-  store i64 0, ptr %bitlen.i, align 8, !tbaa !15
-  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !10
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
+  store i64 0, ptr %bitlen.i, align 8, !tbaa !17
+  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !12
   br label %for.body.i85
 
-for.body.i85:                                     ; preds = %land.rhs12, %for.inc.i90
+for.body.i85:                                     ; preds = %for.inc.i90, %land.rhs12
   %9 = phi i32 [ %.pre.i95, %for.inc.i90 ], [ 0, %land.rhs12 ]
   %i.019.i79 = phi i64 [ %inc8.i88, %for.inc.i90 ], [ 0, %land.rhs12 ]
   %arrayidx.i80 = getelementptr inbounds i8, ptr @__const.md5_test.text3_1, i64 %i.019.i79
@@ -1180,27 +1247,27 @@ for.body.i85:                                     ; preds = %land.rhs12, %for.in
   %idxprom.i81 = zext i32 %9 to i64
   %arrayidx2.i82 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom.i81
   store i8 %10, ptr %arrayidx2.i82, align 1, !tbaa !7
-  %11 = load i32, ptr %datalen.i, align 8, !tbaa !12
+  %11 = load i32, ptr %datalen.i, align 8, !tbaa !14
   %inc.i83 = add i32 %11, 1
-  store i32 %inc.i83, ptr %datalen.i, align 8, !tbaa !12
+  store i32 %inc.i83, ptr %datalen.i, align 8, !tbaa !14
   %cmp5.i84 = icmp eq i32 %inc.i83, 64
   br i1 %cmp5.i84, label %if.then.i87, label %for.inc.i90
 
 if.then.i87:                                      ; preds = %for.body.i85
   call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %12 = load i64, ptr %bitlen.i, align 8, !tbaa !15
+  %12 = load i64, ptr %bitlen.i, align 8, !tbaa !17
   %add.i86 = add i64 %12, 512
-  store i64 %add.i86, ptr %bitlen.i, align 8, !tbaa !15
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i64 %add.i86, ptr %bitlen.i, align 8, !tbaa !17
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   br label %for.inc.i90
 
 for.inc.i90:                                      ; preds = %if.then.i87, %for.body.i85
   %.pre.i95 = phi i32 [ %inc.i83, %for.body.i85 ], [ 0, %if.then.i87 ]
   %inc8.i88 = add nuw nsw i64 %i.019.i79, 1
   %exitcond.not.i89 = icmp eq i64 %inc8.i88, 31
-  br i1 %exitcond.not.i89, label %for.body.i103, label %for.body.i85, !llvm.loop !16
+  br i1 %exitcond.not.i89, label %for.body.i103, label %for.body.i85, !llvm.loop !18
 
-for.body.i103:                                    ; preds = %for.inc.i90, %for.inc.i108
+for.body.i103:                                    ; preds = %for.inc.i108, %for.inc.i90
   %13 = phi i32 [ %17, %for.inc.i108 ], [ %.pre.i95, %for.inc.i90 ]
   %i.019.i97 = phi i64 [ %inc8.i106, %for.inc.i108 ], [ 0, %for.inc.i90 ]
   %arrayidx.i98 = getelementptr inbounds i8, ptr @__const.md5_test.text3_2, i64 %i.019.i97
@@ -1208,25 +1275,25 @@ for.body.i103:                                    ; preds = %for.inc.i90, %for.i
   %idxprom.i99 = zext i32 %13 to i64
   %arrayidx2.i100 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom.i99
   store i8 %14, ptr %arrayidx2.i100, align 1, !tbaa !7
-  %15 = load i32, ptr %datalen.i, align 8, !tbaa !12
+  %15 = load i32, ptr %datalen.i, align 8, !tbaa !14
   %inc.i101 = add i32 %15, 1
-  store i32 %inc.i101, ptr %datalen.i, align 8, !tbaa !12
+  store i32 %inc.i101, ptr %datalen.i, align 8, !tbaa !14
   %cmp5.i102 = icmp eq i32 %inc.i101, 64
   br i1 %cmp5.i102, label %if.then.i105, label %for.inc.i108
 
 if.then.i105:                                     ; preds = %for.body.i103
   call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %16 = load i64, ptr %bitlen.i, align 8, !tbaa !15
+  %16 = load i64, ptr %bitlen.i, align 8, !tbaa !17
   %add.i104 = add i64 %16, 512
-  store i64 %add.i104, ptr %bitlen.i, align 8, !tbaa !15
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i64 %add.i104, ptr %bitlen.i, align 8, !tbaa !17
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   br label %for.inc.i108
 
 for.inc.i108:                                     ; preds = %if.then.i105, %for.body.i103
   %17 = phi i32 [ %inc.i101, %for.body.i103 ], [ 0, %if.then.i105 ]
   %inc8.i106 = add nuw nsw i64 %i.019.i97, 1
   %exitcond.not.i107 = icmp eq i64 %inc8.i106, 31
-  br i1 %exitcond.not.i107, label %md5_update.exit109, label %for.body.i103, !llvm.loop !16
+  br i1 %exitcond.not.i107, label %md5_update.exit109, label %for.body.i103, !llvm.loop !18
 
 md5_update.exit109:                               ; preds = %for.inc.i108
   %tobool16.not = icmp eq i32 %bcmp40, 0
@@ -1240,12 +1307,12 @@ land.rhs28:                                       ; preds = %md5_update.exit109
   br label %land.end34
 
 land.end34.critedge:                              ; preds = %md5_update.exit67
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
-  store i64 0, ptr %bitlen.i, align 8, !tbaa !15
-  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !10
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
+  store i64 0, ptr %bitlen.i, align 8, !tbaa !17
+  store <4 x i32> <i32 1732584193, i32 -271733879, i32 -1732584194, i32 271733878>, ptr %state.i, align 8, !tbaa !12
   br label %for.body.i127
 
-for.body.i127:                                    ; preds = %land.end34.critedge, %for.inc.i132
+for.body.i127:                                    ; preds = %for.inc.i132, %land.end34.critedge
   %19 = phi i32 [ %.pre.i137, %for.inc.i132 ], [ 0, %land.end34.critedge ]
   %i.019.i121 = phi i64 [ %inc8.i130, %for.inc.i132 ], [ 0, %land.end34.critedge ]
   %arrayidx.i122 = getelementptr inbounds i8, ptr @__const.md5_test.text3_1, i64 %i.019.i121
@@ -1253,27 +1320,27 @@ for.body.i127:                                    ; preds = %land.end34.critedge
   %idxprom.i123 = zext i32 %19 to i64
   %arrayidx2.i124 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom.i123
   store i8 %20, ptr %arrayidx2.i124, align 1, !tbaa !7
-  %21 = load i32, ptr %datalen.i, align 8, !tbaa !12
+  %21 = load i32, ptr %datalen.i, align 8, !tbaa !14
   %inc.i125 = add i32 %21, 1
-  store i32 %inc.i125, ptr %datalen.i, align 8, !tbaa !12
+  store i32 %inc.i125, ptr %datalen.i, align 8, !tbaa !14
   %cmp5.i126 = icmp eq i32 %inc.i125, 64
   br i1 %cmp5.i126, label %if.then.i129, label %for.inc.i132
 
 if.then.i129:                                     ; preds = %for.body.i127
   call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %22 = load i64, ptr %bitlen.i, align 8, !tbaa !15
+  %22 = load i64, ptr %bitlen.i, align 8, !tbaa !17
   %add.i128 = add i64 %22, 512
-  store i64 %add.i128, ptr %bitlen.i, align 8, !tbaa !15
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i64 %add.i128, ptr %bitlen.i, align 8, !tbaa !17
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   br label %for.inc.i132
 
 for.inc.i132:                                     ; preds = %if.then.i129, %for.body.i127
   %.pre.i137 = phi i32 [ %inc.i125, %for.body.i127 ], [ 0, %if.then.i129 ]
   %inc8.i130 = add nuw nsw i64 %i.019.i121, 1
   %exitcond.not.i131 = icmp eq i64 %inc8.i130, 31
-  br i1 %exitcond.not.i131, label %for.body.i145, label %for.body.i127, !llvm.loop !16
+  br i1 %exitcond.not.i131, label %for.body.i145, label %for.body.i127, !llvm.loop !18
 
-for.body.i145:                                    ; preds = %for.inc.i132, %for.inc.i150
+for.body.i145:                                    ; preds = %for.inc.i150, %for.inc.i132
   %23 = phi i32 [ %27, %for.inc.i150 ], [ %.pre.i137, %for.inc.i132 ]
   %i.019.i139 = phi i64 [ %inc8.i148, %for.inc.i150 ], [ 0, %for.inc.i132 ]
   %arrayidx.i140 = getelementptr inbounds i8, ptr @__const.md5_test.text3_2, i64 %i.019.i139
@@ -1281,25 +1348,25 @@ for.body.i145:                                    ; preds = %for.inc.i132, %for.
   %idxprom.i141 = zext i32 %23 to i64
   %arrayidx2.i142 = getelementptr inbounds [64 x i8], ptr %ctx, i64 0, i64 %idxprom.i141
   store i8 %24, ptr %arrayidx2.i142, align 1, !tbaa !7
-  %25 = load i32, ptr %datalen.i, align 8, !tbaa !12
+  %25 = load i32, ptr %datalen.i, align 8, !tbaa !14
   %inc.i143 = add i32 %25, 1
-  store i32 %inc.i143, ptr %datalen.i, align 8, !tbaa !12
+  store i32 %inc.i143, ptr %datalen.i, align 8, !tbaa !14
   %cmp5.i144 = icmp eq i32 %inc.i143, 64
   br i1 %cmp5.i144, label %if.then.i147, label %for.inc.i150
 
 if.then.i147:                                     ; preds = %for.body.i145
   call void @md5_transform(ptr noundef nonnull %ctx, ptr noundef nonnull %ctx)
-  %26 = load i64, ptr %bitlen.i, align 8, !tbaa !15
+  %26 = load i64, ptr %bitlen.i, align 8, !tbaa !17
   %add.i146 = add i64 %26, 512
-  store i64 %add.i146, ptr %bitlen.i, align 8, !tbaa !15
-  store i32 0, ptr %datalen.i, align 8, !tbaa !12
+  store i64 %add.i146, ptr %bitlen.i, align 8, !tbaa !17
+  store i32 0, ptr %datalen.i, align 8, !tbaa !14
   br label %for.inc.i150
 
 for.inc.i150:                                     ; preds = %if.then.i147, %for.body.i145
   %27 = phi i32 [ %inc.i143, %for.body.i145 ], [ 0, %if.then.i147 ]
   %inc8.i148 = add nuw nsw i64 %i.019.i139, 1
   %exitcond.not.i149 = icmp eq i64 %inc8.i148, 31
-  br i1 %exitcond.not.i149, label %md5_update.exit151, label %for.body.i145, !llvm.loop !16
+  br i1 %exitcond.not.i149, label %md5_update.exit151, label %for.body.i145, !llvm.loop !18
 
 md5_update.exit151:                               ; preds = %for.inc.i150
   call void @md5_final(ptr noundef nonnull %ctx, ptr noundef nonnull %buf)
@@ -1328,12 +1395,12 @@ entry:
 for.cond.cleanup:                                 ; preds = %for.body
   ret i32 0
 
-for.body:                                         ; preds = %entry, %for.body
+for.body:                                         ; preds = %for.body, %entry
   %i.03 = phi i32 [ 0, %entry ], [ %inc, %for.body ]
   %call1 = tail call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str, ptr noundef nonnull %cond)
   %inc = add nuw nsw i32 %i.03, 1
   %exitcond.not = icmp eq i32 %inc, 1000000
-  br i1 %exitcond.not, label %for.cond.cleanup, label %for.body, !llvm.loop !18
+  br i1 %exitcond.not, label %for.cond.cleanup, label %for.body, !llvm.loop !20
 }
 
 ; Function Attrs: nofree nounwind
@@ -1345,10 +1412,13 @@ declare i32 @llvm.fshl.i32(i32, i32, i32) #8
 ; Function Attrs: nofree nounwind willreturn memory(argmem: read)
 declare i32 @bcmp(ptr nocapture, ptr nocapture, i64) local_unnamed_addr #9
 
+; Function Attrs: nounwind
+declare void @llvm.x86.sse2.lfence() #10
+
 attributes #0 = { nofree nosync nounwind memory(argmem: readwrite) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #1 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
+attributes #1 = { nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
 attributes #2 = { mustprogress nofree norecurse nosync nounwind willreturn memory(argmem: write) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #3 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: write) }
+attributes #3 = { nocallback nofree nounwind willreturn memory(argmem: write) }
 attributes #4 = { nofree nosync nounwind memory(none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #5 = { mustprogress nofree nounwind willreturn memory(argmem: read) "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #6 = { nofree nounwind uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
@@ -1371,33 +1441,14 @@ attributes #11 = { nounwind willreturn memory(read) }
 !7 = !{!8, !8, i64 0}
 !8 = !{!"omnipotent char", !9, i64 0}
 !9 = !{!"Simple C/C++ TBAA"}
-!10 = !{!11, !11, i64 0}
-!11 = !{!"int", !8, i64 0}
-!12 = !{!13, !11, i64 64}
-!13 = !{!"", !8, i64 0, !11, i64 64, !14, i64 72, !8, i64 80}
-!14 = !{!"long long", !8, i64 0}
-!15 = !{!13, !14, i64 72}
-!16 = distinct !{!16, !17}
-!17 = !{!"llvm.loop.mustprogress"}
-!18 = distinct !{!18, !17}
-
-^0 = module: (path: "", hash: (0, 0, 0, 0, 0))
-^1 = gv: (name: "strlen") ; guid = 2965136410638013299
-^2 = gv: (name: "__const.md5_test.hash2", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 3849026852800879970
-^3 = gv: (name: ".str.2", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 4048924087493215681
-^4 = gv: (name: "md5_test", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 184, funcFlags: (readNone: 1, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^1, relbf: 512), (callee: ^9, relbf: 13500), (callee: ^15, relbf: 768), (callee: ^7, relbf: 388)), refs: (^10, ^2, ^11, ^16, ^13)))) ; guid = 5918908701554000839
-^5 = gv: (name: "md5_init", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 7, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 1, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0)))) ; guid = 6755852929810864679
-^6 = gv: (name: "printf") ; guid = 7383291119112528047
-^7 = gv: (name: "bcmp") ; guid = 8597674443648877653
-^8 = gv: (name: ".str", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 9992323333244625329
-^9 = gv: (name: "md5_transform", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 829, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0)))) ; guid = 10652515529359729976
-^10 = gv: (name: "__const.md5_test.hash1", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 11600945491769361374
-^11 = gv: (name: "__const.md5_test.text3_1", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 11976833728998753725
-^12 = gv: (name: "md5_update", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 29, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^9, relbf: 2709))))) ; guid = 14944354228035186051
-^13 = gv: (name: "__const.md5_test.hash3", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 15253828067281285328
-^14 = gv: (name: "main", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 10, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^4, relbf: 256), (callee: ^6, relbf: 8160)), refs: (^3, ^17, ^8)))) ; guid = 15822663052811949562
-^15 = gv: (name: "md5_final", summaries: (function: (module: ^0, flags: (linkage: external, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), insts: 143, funcFlags: (readNone: 0, readOnly: 0, noRecurse: 0, returnDoesNotAlias: 0, noInline: 0, alwaysInline: 0, noUnwind: 1, mayThrow: 0, hasUnknownCall: 0, mustBeUnreachable: 0), calls: ((callee: ^9, relbf: 384))))) ; guid = 16433322566773670791
-^16 = gv: (name: "__const.md5_test.text3_2", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 16768327139726987815
-^17 = gv: (name: ".str.1", summaries: (variable: (module: ^0, flags: (linkage: private, visibility: default, notEligibleToImport: 1, live: 0, dsoLocal: 1, canAutoHide: 0), varFlags: (readonly: 1, writeonly: 0, constant: 1)))) ; guid = 17892648605736848100
-^18 = flags: 8
-^19 = blockcount: 45
+!10 = !{!"Blade Transient"}
+!11 = !{!"Blade Stable"}
+!12 = !{!13, !13, i64 0}
+!13 = !{!"int", !8, i64 0}
+!14 = !{!15, !13, i64 64}
+!15 = !{!"", !8, i64 0, !13, i64 64, !16, i64 72, !8, i64 80}
+!16 = !{!"long long", !8, i64 0}
+!17 = !{!15, !16, i64 72}
+!18 = distinct !{!18, !19}
+!19 = !{!"llvm.loop.mustprogress"}
+!20 = distinct !{!20, !19}
