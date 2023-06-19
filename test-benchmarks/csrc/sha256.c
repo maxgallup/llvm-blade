@@ -156,10 +156,6 @@ void sha256_final(SHA256_CTX *ctx, BYTE hash[])
 		hash[i + 28] = (ctx->state[7] >> (24 - i * 8)) & 0x000000ff;
 	}
 }
-
-
-
-
 /*********************************************************************
 * Filename:   sha256.c
 * Author:     Brad Conte (brad AT bradconte.com)
@@ -177,7 +173,7 @@ void sha256_final(SHA256_CTX *ctx, BYTE hash[])
 #include <stdio.h>
 #include <memory.h>
 #include <string.h>
-
+#include "sha256.h"
 
 /*********************** FUNCTION DEFINITIONS ***********************/
 int sha256_test()
@@ -217,7 +213,9 @@ int sha256_test()
 
 int main()
 {
-	printf("SHA-256 tests: %s\n", sha256_test() ? "SUCCEEDED" : "FAILED");
-
+	for (int i = 0; i < 1000; i++) {
+		printf("SHA-256 tests: %s\n", sha256_test() ? "SUCCEEDED" : "FAILED");
+	}
+	
 	return(0);
 }
