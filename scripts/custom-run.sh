@@ -43,6 +43,17 @@ function run_benchmark() {
 	echo "$file_core,$TIME_BASE,base" >> $MAINDIR/test-benchmarks/results.csv
 }
 
+function benchmark_binaries() {
+	echo "Benchmarking all binaries"
+	cd $MAINDIR/test-benchmarks/bin
+	
+	for file in * ; do
+		execute_bin $file
+	done
+
+	exit 0
+}
+
 function run_tests() {
 	file=$1
 	echo ">>> $file"
@@ -54,6 +65,8 @@ function run_tests() {
 function execute_bin() {
 	file_core=$1
 	cd $MAINDIR/test-benchmarks/bin/
+
+	echo "Running $file_core"
 
 	TIME=$( (time ../bin/$file_core ) 2>&1 >> ../bin-log/$file_core.log | grep real | awk '{print $2}')
 
@@ -80,9 +93,10 @@ if [ -z $1 ]; then
 
 elif [ $1 == "bench" ]; then
 	if [ -z $2 ]; then
-		for file in * ; do
-			run_benchmark $file
-		done
+		# for file in * ; do
+		# 	run_benchmark $file
+		# done
+		benchmark_binaries
 	else
 		run_benchmark $2.ll
 	fi
