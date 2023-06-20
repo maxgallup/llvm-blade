@@ -79,6 +79,7 @@ function execute_bin() {
 	
 }
 
+
 if [ $1 == "runs" ]; then
 	cd $MAINDIR/test-benchmarks/bin/
 	for file in * ; do 
