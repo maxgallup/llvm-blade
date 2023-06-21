@@ -796,7 +796,7 @@ PassPluginLibraryInfo getPassPluginInfo() {
       });
   };
   
-  return {LLVM_PLUGIN_API_VERSION, "name", "0.0.1", callback};
+  return {LLVM_PLUGIN_API_VERSION, "Blade", "0.0.1", callback};
 }
 
 extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
