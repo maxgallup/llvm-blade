@@ -8,7 +8,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "llvm/Transforms/Utils/Blade.h"
+
+#include "llvm/IR/PassManager.h"
+#include "llvm/Passes/PassBuilder.h"
+#include "llvm/Passes/PassPlugin.h"
+#include "llvm/Support/raw_ostream.h"
+
 #include "llvm/ADT/Statistic.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/SetVector.h"
@@ -17,8 +22,10 @@
 #include "llvm/IR/IntrinsicsX86.h"
 #include <queue>
 #include <stack>
+#include <iostream>
 
 using namespace llvm;
+
 
 #define DEBUG_TYPE "blade"
 #define BLADE_DEBUG 1
@@ -764,16 +771,34 @@ void runFenceEverywhere(Module &M) {
   }
 }
 
-/// @brief Main entry point for the LLVM-Blade optimization pass.
-/// @return Currently not considering return value TODO
-PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
-  runBladePerFunction(M);
-  // runFenceEverywhere(M);
+namespace {
+  struct BladePass : public PassInfoMixin<BladePass> {
 
-  printSummary();
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &FAM) {
+      runBladePerFunction(M);
+      // runFenceEverywhere(M);
+      printSummary();
+      return PreservedAnalyses::all();
+    }
+  };
+} // namespace
 
 
 
-  return PreservedAnalyses::all();
+
+
+PassPluginLibraryInfo getPassPluginInfo() {
+  const auto callback = [](PassBuilder &PB) {
+      PB.registerOptimizerLastEPCallback([&](ModulePassManager &MPM, auto) {
+          MPM.addPass(BladePass());
+          return true;
+      });
+  };
+  
+  return {LLVM_PLUGIN_API_VERSION, "name", "0.0.1", callback};
+}
+
+extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
+  return getPassPluginInfo();
 }

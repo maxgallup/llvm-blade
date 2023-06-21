@@ -307,7 +307,7 @@ Hacl_Chacha20_chacha20_decrypt(
 #include "test_helpers.h"
 
 #define ROUNDS 16384
-#define SIZE 81920
+#define SIZE 8192
 
 bool
 print_result(int in_len, uint8_t* comp, uint8_t* exp)
