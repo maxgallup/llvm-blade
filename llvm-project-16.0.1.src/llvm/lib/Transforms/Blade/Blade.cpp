@@ -202,7 +202,6 @@ void findStableIteratively(Instruction *start, BladeNode *parent, SmallVector<Bl
       iters.top()++;
       continue;
     }
-
     auto user = *iters.top();
 
     if (Instruction* current_inst = dyn_cast<Instruction>(user)) {
@@ -642,13 +641,22 @@ SmallSetVector<Instruction*, 16> findCutSet(InstVec2D *leaky_paths) {
 /// runs Ford-Fulkerson's Max-Flow Min-Cut Algorithm over it to find the cutset.
 SmallSetVector<Instruction*, 16> findCutSet(Function &F) {
   int num_instructions = F.getInstructionCount();
-
+  
   auto table = InstVec1D();
   table.resize(num_instructions);
+
+  auto cutset = SmallSetVector<Instruction*, 16>();
+  if (num_instructions == 0) {
+    return cutset;
+  }
 
   auto current_inst = 0;
   for (BasicBlock &BB : F) {
     for (Instruction &I : BB) {
+      // super weird bug during compilation
+      if (current_inst == num_instructions) {
+        break;
+      }
       table[current_inst] = &I;
       current_inst++;
     }
@@ -661,7 +669,7 @@ SmallSetVector<Instruction*, 16> findCutSet(Function &F) {
   populateGraph(table, graph, num_vertices, og_num_vertices);
 
   auto cutset_ids = minCut(graph, 0, num_vertices - 1, num_vertices);
-  auto cutset = SmallSetVector<Instruction*, 16>();
+  
 
   for (auto n : cutset_ids) {
     cutset.insert(table[n]);
@@ -740,12 +748,10 @@ void runBladePerFunction(Module &M) {
     // gatherLeaksWrapper(F, &leaky_paths);
     // printLeakyPaths(&leaky_paths);
     // auto cutset = findCutSet(&leaky_paths);
-
-    // use this function for "prod"
+    
     auto cutset = findCutSet(F);
 
-    auto M = F.getParent();
-    insertProtections(*M, &cutset, FENCE);
+    insertProtections(M, &cutset, FENCE);
   }
 }
 
@@ -802,3 +808,10 @@ PassPluginLibraryInfo getPassPluginInfo() {
 extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
   return getPassPluginInfo();
 }
+
+
+
+
+
+
+
