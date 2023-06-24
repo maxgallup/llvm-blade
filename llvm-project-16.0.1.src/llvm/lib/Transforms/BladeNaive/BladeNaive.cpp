@@ -33,7 +33,7 @@ using namespace llvm;
 #define D(X)   if(BLADE_DEBUG) errs() << "🟣 " << X << "\n"
 #define S(X)   if(BLADE_DEBUG) errs() << "🟢 " << X << "\n"
 #define N(X)   if(BLADE_DEBUG) errs() << "   " << X << "\n"
-#define RAW(X) if(BLADE_DEBUG) errs() << X
+#define RAW(X) errs() << X
 
 STATISTIC(NumTransient, "Number of transient Nodes added.");
 STATISTIC(NumStable, "Number of stable Nodes added.");
@@ -287,7 +287,7 @@ void printSummary() {
 
 /// @brief Used for command line data collection
 void printSummaryData() {
-  RAW(NumTransient << "," << NumStable << "," << NumLeaks << "," << NumCuts << "\n");
+  RAW("🟢 BladeSummaryData:" << NumTransient << "," << NumStable << "," << NumCuts << "\n");
 }
 
 /// @brief Print all instructions that make up the cutset.
@@ -759,7 +759,7 @@ void runFenceEverywhere(Module &M) {
     auto cutset = SmallSetVector<Instruction*, 16>();
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        if (isStableInstruction(&I)) {
+        if (isTransientInstruction(&I)) {
           cutset.insert(&I);
           NumLeaks++;
         }
@@ -777,7 +777,7 @@ namespace {
 
     PreservedAnalyses run(Module &M, ModuleAnalysisManager &FAM) {
       runFenceEverywhere(M);
-      printSummary();
+      printSummaryData();
       return PreservedAnalyses::all();
     }
   };

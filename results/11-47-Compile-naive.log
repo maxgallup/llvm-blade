@@ -1,121 +1,236 @@
+clang    -c -o aesgcm-x86_64-linux.o aesgcm-x86_64-linux.S
+clang    -c -o cpuid-x86_64-linux.o cpuid-x86_64-linux.S
+clang    -c -o curve25519-x86_64-linux.o curve25519-x86_64-linux.S
+clang    -c -o poly1305-x86_64-linux.o poly1305-x86_64-linux.S
+clang    -c -o sha256-x86_64-linux.o sha256-x86_64-linux.S
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_AEAD.o EverCrypt_AEAD.c
+🟢 BladeSummaryData:3,0,3
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_AutoConfig2.o EverCrypt_AutoConfig2.c
+🟢 BladeSummaryData:43,0,43
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Chacha20Poly1305.o EverCrypt_Chacha20Poly1305.c
+🟢 BladeSummaryData:19,0,19
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Cipher.o EverCrypt_Cipher.c
+🟢 BladeSummaryData:12,0,12
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Curve25519.o EverCrypt_Curve25519.c
+🟢 BladeSummaryData:8,0,8
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_DRBG.o EverCrypt_DRBG.c
+🟢 BladeSummaryData:6,1,6
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Ed25519.o EverCrypt_Ed25519.c
+🟢 BladeSummaryData:3,0,3
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_HKDF.o EverCrypt_HKDF.c
+🟢 BladeSummaryData:17,0,17
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_HMAC.o EverCrypt_HMAC.c
+🟢 BladeSummaryData:3,0,3
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Hash.o EverCrypt_Hash.c
+🟢 BladeSummaryData:13,0,13
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Poly1305.o EverCrypt_Poly1305.c
+🟢 BladeSummaryData:41,0,41
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum.o Hacl_Bignum.c
+🟢 BladeSummaryData:1262,199,1262
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum256.o Hacl_Bignum256.c
+🟢 BladeSummaryData:42,6,42
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum256_32.o Hacl_Bignum256_32.c
+🟢 BladeSummaryData:85,14,85
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum32.o Hacl_Bignum32.c
+🟢 BladeSummaryData:102,14,102
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum4096.o Hacl_Bignum4096.c
+🟢 BladeSummaryData:659,126,659
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum4096_32.o Hacl_Bignum4096_32.c
+🟢 BladeSummaryData:46,8,46
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum64.o Hacl_Bignum64.c
+🟢 BladeSummaryData:102,14,102
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Chacha20.o Hacl_Chacha20.c
+🟢 BladeSummaryData:119,9,119
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Chacha20Poly1305_128.o Hacl_Chacha20Poly1305_128.c
+🟢 BladeSummaryData:168,14,168
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Chacha20Poly1305_256.o Hacl_Chacha20Poly1305_256.c
+🟢 BladeSummaryData:168,14,168
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Chacha20Poly1305_32.o Hacl_Chacha20Poly1305_32.c
+🟢 BladeSummaryData:16,0,16
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Chacha20_Vec128.o Hacl_Chacha20_Vec128.c
+🟢 BladeSummaryData:566,73,566
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Chacha20_Vec256.o Hacl_Chacha20_Vec256.c
+🟢 BladeSummaryData:726,73,726
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Chacha20_Vec32.o Hacl_Chacha20_Vec32.c
+🟢 BladeSummaryData:454,42,454
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Curve25519_51.o Hacl_Curve25519_51.c
+🟢 BladeSummaryData:11,0,11
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Curve25519_64.o Hacl_Curve25519_64.c
+🟢 BladeSummaryData:2664,9,2664
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_EC_Ed25519.o Hacl_EC_Ed25519.c
+🟢 BladeSummaryData:36,4,36
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_EC_K256.o Hacl_EC_K256.c
+🟢 BladeSummaryData:2,0,2
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Ed25519.o Hacl_Ed25519.c
+🟢 BladeSummaryData:34,4,34
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_FFDHE.o Hacl_FFDHE.c
+🟢 BladeSummaryData:8,1,8
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo1344.o Hacl_Frodo1344.c
+🟢 BladeSummaryData:204,16,204
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo64.o Hacl_Frodo64.c
+🟢 BladeSummaryData:188,14,188
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo640.o Hacl_Frodo640.c
+🟢 BladeSummaryData:188,14,188
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo976.o Hacl_Frodo976.c
+🟢 BladeSummaryData:183,14,183
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo_KEM.o Hacl_Frodo_KEM.c
+🟢 BladeSummaryData:4,0,4
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_GenericField32.o Hacl_GenericField32.c
+🟢 BladeSummaryData:4,0,4
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_GenericField64.o Hacl_GenericField64.c
+🟢 BladeSummaryData:4,0,4
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HKDF.o Hacl_HKDF.c
+🟢 BladeSummaryData:46,0,46
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_HKDF_Blake2b_256.o Hacl_HKDF_Blake2b_256.c
+🟢 BladeSummaryData:46,0,46
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_HKDF_Blake2s_128.o Hacl_HKDF_Blake2s_128.c
+🟢 BladeSummaryData:46,0,46
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HMAC.o Hacl_HMAC.c
+🟢 BladeSummaryData:82,15,82
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_HMAC_Blake2b_256.o Hacl_HMAC_Blake2b_256.c
+🟢 BladeSummaryData:116,15,116
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_HMAC_Blake2s_128.o Hacl_HMAC_Blake2s_128.c
+🟢 BladeSummaryData:104,7,104
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HMAC_DRBG.o Hacl_HMAC_DRBG.c
+🟢 BladeSummaryData:6,1,6
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP128_SHA256.o Hacl_HPKE_Curve51_CP128_SHA256.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP128_SHA512.o Hacl_HPKE_Curve51_CP128_SHA512.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP256_SHA256.o Hacl_HPKE_Curve51_CP256_SHA256.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP256_SHA512.o Hacl_HPKE_Curve51_CP256_SHA512.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP32_SHA256.o Hacl_HPKE_Curve51_CP32_SHA256.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP32_SHA512.o Hacl_HPKE_Curve51_CP32_SHA512.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP128_SHA256.o Hacl_HPKE_Curve64_CP128_SHA256.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP128_SHA512.o Hacl_HPKE_Curve64_CP128_SHA512.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP256_SHA256.o Hacl_HPKE_Curve64_CP256_SHA256.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP256_SHA512.o Hacl_HPKE_Curve64_CP256_SHA512.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP32_SHA256.o Hacl_HPKE_Curve64_CP32_SHA256.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP32_SHA512.o Hacl_HPKE_Curve64_CP32_SHA512.c
+🟢 BladeSummaryData:364,4,364
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_P256_CP128_SHA256.o Hacl_HPKE_P256_CP128_SHA256.c
+🟢 BladeSummaryData:182,3,182
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_P256_CP256_SHA256.o Hacl_HPKE_P256_CP256_SHA256.c
+🟢 BladeSummaryData:182,3,182
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_P256_CP32_SHA256.o Hacl_HPKE_P256_CP32_SHA256.c
+🟢 BladeSummaryData:182,3,182
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_Base.o Hacl_Hash_Base.c
+🟢 BladeSummaryData:7,1,7
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_Blake2.o Hacl_Hash_Blake2.c
+🟢 BladeSummaryData:35,0,35
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Hash_Blake2b_256.o Hacl_Hash_Blake2b_256.c
+🟢 BladeSummaryData:23,0,23
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Hash_Blake2s_128.o Hacl_Hash_Blake2s_128.c
+🟢 BladeSummaryData:23,0,23
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_MD5.o Hacl_Hash_MD5.c
+🟢 BladeSummaryData:7,0,7
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_SHA1.o Hacl_Hash_SHA1.c
+🟢 BladeSummaryData:9,0,9
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_SHA2.o Hacl_Hash_SHA2.c
+🟢 BladeSummaryData:28,0,28
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_SHA3.o Hacl_Hash_SHA3.c
+🟢 BladeSummaryData:24,3,24
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_K256_ECD.o Hacl_K256_ECDSA.c
+🟢 BladeSummaryData:8,0,8
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_NaCl.o Hacl_NaCl.c
+🟢 BladeSummaryData:7,0,7
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_P256.o Hacl_P256.c
+🟢 BladeSummaryData:133,3,133
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Poly1305_128.o Hacl_Poly1305_128.c
+🟢 BladeSummaryData:68,5,68
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Poly1305_256.o Hacl_Poly1305_256.c
+🟢 BladeSummaryData:82,5,82
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Poly1305_32.o Hacl_Poly1305_32.c
+🟢 BladeSummaryData:58,1,58
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_RSAPSS.o Hacl_RSAPSS.c
+🟢 BladeSummaryData:94,10,94
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_SHA2_Vec128.o Hacl_SHA2_Vec128.c
+🟢 BladeSummaryData:268,8,268
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_SHA2_Vec256.o Hacl_SHA2_Vec256.c
+🟢 BladeSummaryData:408,8,408
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Salsa20.o Hacl_Salsa20.c
+🟢 BladeSummaryData:660,17,660
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Streaming_Blake2.o Hacl_Streaming_Blake2.c
+🟢 BladeSummaryData:15,0,15
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Streaming_Blake2b_256.o Hacl_Streaming_Blake2b_256.c
+🟢 BladeSummaryData:17,0,17
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Streaming_Blake2s_128.o Hacl_Streaming_Blake2s_128.c
+🟢 BladeSummaryData:17,0,17
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Streaming_Poly1305_128.o Hacl_Streaming_Poly1305_128.c
+🟢 BladeSummaryData:18,0,18
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Streaming_Poly1305_256.o Hacl_Streaming_Poly1305_256.c
+🟢 BladeSummaryData:18,0,18
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Streaming_Poly1305_32.o Hacl_Streaming_Poly1305_32.c
+🟢 BladeSummaryData:17,0,17
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Vale.o Vale.c
+🟢 BladeSummaryData:0,0,0
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Lib_Memzero0.o Lib_Memzero0.c
+🟢 BladeSummaryData:4,0,4
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Lib_PrintBuffer.o Lib_PrintBuffer.c
+🟢 BladeSummaryData:11,1,11
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Lib_RandomBuffer_System.o Lib_RandomBuffer_System.c
+🟢 BladeSummaryData:8,0,8
+ar cr libevercrypt.a aesgcm-x86_64-linux.o cpuid-x86_64-linux.o curve25519-x86_64-linux.o poly1305-x86_64-linux.o sha256-x86_64-linux.o EverCrypt_AEAD.o EverCrypt_AutoConfig2.o EverCrypt_Chacha20Poly1305.o EverCrypt_Cipher.o EverCrypt_Curve25519.o EverCrypt_DRBG.o EverCrypt_Ed25519.o EverCrypt_HKDF.o EverCrypt_HMAC.o EverCrypt_Hash.o EverCrypt_Poly1305.o Hacl_Bignum.o Hacl_Bignum256.o Hacl_Bignum256_32.o Hacl_Bignum32.o Hacl_Bignum4096.o Hacl_Bignum4096_32.o Hacl_Bignum64.o Hacl_Chacha20.o Hacl_Chacha20Poly1305_128.o Hacl_Chacha20Poly1305_256.o Hacl_Chacha20Poly1305_32.o Hacl_Chacha20_Vec128.o Hacl_Chacha20_Vec256.o Hacl_Chacha20_Vec32.o Hacl_Curve25519_51.o Hacl_Curve25519_64.o Hacl_EC_Ed25519.o Hacl_EC_K256.o Hacl_Ed25519.o Hacl_FFDHE.o Hacl_Frodo1344.o Hacl_Frodo64.o Hacl_Frodo640.o Hacl_Frodo976.o Hacl_Frodo_KEM.o Hacl_GenericField32.o Hacl_GenericField64.o Hacl_HKDF.o Hacl_HKDF_Blake2b_256.o Hacl_HKDF_Blake2s_128.o Hacl_HMAC.o Hacl_HMAC_Blake2b_256.o Hacl_HMAC_Blake2s_128.o Hacl_HMAC_DRBG.o Hacl_HPKE_Curve51_CP128_SHA256.o Hacl_HPKE_Curve51_CP128_SHA512.o Hacl_HPKE_Curve51_CP256_SHA256.o Hacl_HPKE_Curve51_CP256_SHA512.o Hacl_HPKE_Curve51_CP32_SHA256.o Hacl_HPKE_Curve51_CP32_SHA512.o Hacl_HPKE_Curve64_CP128_SHA256.o Hacl_HPKE_Curve64_CP128_SHA512.o Hacl_HPKE_Curve64_CP256_SHA256.o Hacl_HPKE_Curve64_CP256_SHA512.o Hacl_HPKE_Curve64_CP32_SHA256.o Hacl_HPKE_Curve64_CP32_SHA512.o Hacl_HPKE_P256_CP128_SHA256.o Hacl_HPKE_P256_CP256_SHA256.o Hacl_HPKE_P256_CP32_SHA256.o Hacl_Hash_Base.o Hacl_Hash_Blake2.o Hacl_Hash_Blake2b_256.o Hacl_Hash_Blake2s_128.o Hacl_Hash_MD5.o Hacl_Hash_SHA1.o Hacl_Hash_SHA2.o Hacl_Hash_SHA3.o Hacl_K256_ECDSA.o Hacl_NaCl.o Hacl_P256.o Hacl_Poly1305_128.o Hacl_Poly1305_256.o Hacl_Poly1305_32.o Hacl_RSAPSS.o Hacl_SHA2_Vec128.o Hacl_SHA2_Vec256.o Hacl_Salsa20.o Hacl_Streaming_Blake2.o Hacl_Streaming_Blake2b_256.o Hacl_Streaming_Blake2s_128.o Hacl_Streaming_Poly1305_128.o Hacl_Streaming_Poly1305_256.o Hacl_Streaming_Poly1305_32.o Vale.o Lib_Memzero0.o Lib_PrintBuffer.o Lib_RandomBuffer_System.o
+clang -fPIC -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -shared -o libevercrypt.so aesgcm-x86_64-linux.o cpuid-x86_64-linux.o curve25519-x86_64-linux.o poly1305-x86_64-linux.o sha256-x86_64-linux.o EverCrypt_AEAD.o EverCrypt_AutoConfig2.o EverCrypt_Chacha20Poly1305.o EverCrypt_Cipher.o EverCrypt_Curve25519.o EverCrypt_DRBG.o EverCrypt_Ed25519.o EverCrypt_HKDF.o EverCrypt_HMAC.o EverCrypt_Hash.o EverCrypt_Poly1305.o Hacl_Bignum.o Hacl_Bignum256.o Hacl_Bignum256_32.o Hacl_Bignum32.o Hacl_Bignum4096.o Hacl_Bignum4096_32.o Hacl_Bignum64.o Hacl_Chacha20.o Hacl_Chacha20Poly1305_128.o Hacl_Chacha20Poly1305_256.o Hacl_Chacha20Poly1305_32.o Hacl_Chacha20_Vec128.o Hacl_Chacha20_Vec256.o Hacl_Chacha20_Vec32.o Hacl_Curve25519_51.o Hacl_Curve25519_64.o Hacl_EC_Ed25519.o Hacl_EC_K256.o Hacl_Ed25519.o Hacl_FFDHE.o Hacl_Frodo1344.o Hacl_Frodo64.o Hacl_Frodo640.o Hacl_Frodo976.o Hacl_Frodo_KEM.o Hacl_GenericField32.o Hacl_GenericField64.o Hacl_HKDF.o Hacl_HKDF_Blake2b_256.o Hacl_HKDF_Blake2s_128.o Hacl_HMAC.o Hacl_HMAC_Blake2b_256.o Hacl_HMAC_Blake2s_128.o Hacl_HMAC_DRBG.o Hacl_HPKE_Curve51_CP128_SHA256.o Hacl_HPKE_Curve51_CP128_SHA512.o Hacl_HPKE_Curve51_CP256_SHA256.o Hacl_HPKE_Curve51_CP256_SHA512.o Hacl_HPKE_Curve51_CP32_SHA256.o Hacl_HPKE_Curve51_CP32_SHA512.o Hacl_HPKE_Curve64_CP128_SHA256.o Hacl_HPKE_Curve64_CP128_SHA512.o Hacl_HPKE_Curve64_CP256_SHA256.o Hacl_HPKE_Curve64_CP256_SHA512.o Hacl_HPKE_Curve64_CP32_SHA256.o Hacl_HPKE_Curve64_CP32_SHA512.o Hacl_HPKE_P256_CP128_SHA256.o Hacl_HPKE_P256_CP256_SHA256.o Hacl_HPKE_P256_CP32_SHA256.o Hacl_Hash_Base.o Hacl_Hash_Blake2.o Hacl_Hash_Blake2b_256.o Hacl_Hash_Blake2s_128.o Hacl_Hash_MD5.o Hacl_Hash_SHA1.o Hacl_Hash_SHA2.o Hacl_Hash_SHA3.o Hacl_K256_ECDSA.o Hacl_NaCl.o Hacl_P256.o Hacl_Poly1305_128.o Hacl_Poly1305_256.o Hacl_Poly1305_32.o Hacl_RSAPSS.o Hacl_SHA2_Vec128.o Hacl_SHA2_Vec256.o Hacl_Salsa20.o Hacl_Streaming_Blake2.o Hacl_Streaming_Blake2b_256.o Hacl_Streaming_Blake2s_128.o Hacl_Streaming_Poly1305_128.o Hacl_Streaming_Poly1305_256.o Hacl_Streaming_Poly1305_32.o Vale.o Lib_Memzero0.o Lib_PrintBuffer.o Lib_RandomBuffer_System.o -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o FrodoKEM-64-test.o FrodoKEM-64-test.c
-🟢 --- Summary ---
-   	Transient Marks: 89
-   	Stable Marks: 31
-   	Total Leaks: 31
-   	Total Cuts: 31
+🟢 BladeSummaryData:89,31,89
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all FrodoKEM-64-test.o ../dist/gcc-compatible/libevercrypt.a -o FrodoKEM-64-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o bignum4096-test.o bignum4096-test.c
-🟢 --- Summary ---
-   	Transient Marks: 11
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:11,0,11
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all bignum4096-test.o ../dist/gcc-compatible/libevercrypt.a -o bignum4096-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2-32-test.o blake2-32-test.c
-🟢 --- Summary ---
-   	Transient Marks: 38
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:38,10,38
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2-32-test.o ../dist/gcc-compatible/libevercrypt.a -o blake2-32-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2b-256-test-streaming.o blake2b-256-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 34
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:34,0,34
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2b-256-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2b-256-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2b-256-test.o blake2b-256-test.c
-🟢 --- Summary ---
-   	Transient Marks: 38
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:38,10,38
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2b-256-test.o ../dist/gcc-compatible/libevercrypt.a -o blake2b-256-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2b-32-test-streaming.o blake2b-32-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 32
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:32,0,32
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2b-32-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2b-32-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2s-128-test-streaming.o blake2s-128-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 65
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:65,0,65
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2s-128-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2s-128-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2s-128-test.o blake2s-128-test.c
-🟢 --- Summary ---
-   	Transient Marks: 38
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:38,10,38
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2s-128-test.o ../dist/gcc-compatible/libevercrypt.a -o blake2s-128-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o blake2s-32-test-streaming.o blake2s-32-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 65
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:65,0,65
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2s-32-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2s-32-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o chacha20-test.o chacha20-test.c
-🟢 --- Summary ---
-   	Transient Marks: 37
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:37,10,37
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o chacha20-vec-test.o chacha20-vec-test.c
-🟢 --- Summary ---
-   	Transient Marks: 45
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:45,10,45
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20-vec-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20-vec-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o chacha20poly1305-128-test.o chacha20poly1305-128-test.c
-🟢 --- Summary ---
-   	Transient Marks: 48
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:48,10,48
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20poly1305-128-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20poly1305-128-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o chacha20poly1305-256-test.o chacha20poly1305-256-test.c
-🟢 --- Summary ---
-   	Transient Marks: 48
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:48,10,48
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20poly1305-256-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20poly1305-256-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o chacha20poly1305-32-test.o chacha20poly1305-32-test.c
-🟢 --- Summary ---
-   	Transient Marks: 48
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:48,10,48
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20poly1305-32-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20poly1305-32-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o curve51-ours.o curve51-ours.c
-🟢 --- Summary ---
-   	Transient Marks: 38
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:38,10,38
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all curve51-ours.o ../dist/gcc-compatible/libevercrypt.a -o curve51-ours.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o curve64-ours.o curve64-ours.c
-🟢 --- Summary ---
-   	Transient Marks: 38
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:38,10,38
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all curve64-ours.o ../dist/gcc-compatible/libevercrypt.a -o curve64-ours.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o curve64-rfc.o curve64-rfc.c
-🟢 --- Summary ---
-   	Transient Marks: 38
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:38,10,38
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all curve64-rfc.o rfc7748_src/fp25519_x64.o rfc7748_src/fp448_x64.o rfc7748_src/x25519_x64.o rfc7748_src/x448_x64.o ../dist/gcc-compatible/libevercrypt.a -o curve64-rfc.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o ecdhp256-test.o ecdhp256-test.c
 In file included from ecdhp256-test.c:15:
@@ -785,117 +900,53 @@ In file included from ecdhp256-test.c:15:
 ./ecdsap256_tv_w.h:9524:22: note: expanded from macro 'result___356'
 #define result___356 18446744073709551615
                      ^
-🟢 --- Summary ---
-   	Transient Marks: 424
-   	Stable Marks: 198
-   	Total Leaks: 198
-   	Total Cuts: 198
+🟢 BladeSummaryData:424,198,424
 111 warnings generated.
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all ecdhp256-test.o ../dist/gcc-compatible/libevercrypt.a -o ecdhp256-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o ed25519-test.o ed25519-test.c
-🟢 --- Summary ---
-   	Transient Marks: 62
-   	Stable Marks: 8
-   	Total Leaks: 8
-   	Total Cuts: 8
+🟢 BladeSummaryData:62,8,62
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all ed25519-test.o ../dist/gcc-compatible/libevercrypt.a -o ed25519-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o ffdhe-test.o ffdhe-test.c
-🟢 --- Summary ---
-   	Transient Marks: 70
-   	Stable Marks: 34
-   	Total Leaks: 34
-   	Total Cuts: 34
+🟢 BladeSummaryData:70,34,70
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all ffdhe-test.o ../dist/gcc-compatible/libevercrypt.a -o ffdhe-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o k256-ecdsa-test.o k256-ecdsa-test.c
-🟢 --- Summary ---
-   	Transient Marks: 13
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:13,0,13
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all k256-ecdsa-test.o ../dist/gcc-compatible/libevercrypt.a -o k256-ecdsa-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o naclbox-test.o naclbox-test.c
-🟢 --- Summary ---
-   	Transient Marks: 76
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:76,10,76
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all naclbox-test.o ../dist/gcc-compatible/libevercrypt.a -o naclbox-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o p256-test.o p256-test.c
-🟢 --- Summary ---
-   	Transient Marks: 11
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:11,0,11
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all p256-test.o ../dist/gcc-compatible/libevercrypt.a -o p256-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o poly1305-128-test-streaming.o poly1305-128-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 47
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:47,0,47
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-128-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-128-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o poly1305-128-test.o poly1305-128-test.c
-🟢 --- Summary ---
-   	Transient Marks: 107
-   	Stable Marks: 30
-   	Total Leaks: 30
-   	Total Cuts: 30
+🟢 BladeSummaryData:107,30,107
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-128-test.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-128-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o poly1305-256-test-streaming.o poly1305-256-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 49
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:49,0,49
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-256-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-256-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o poly1305-256-test.o poly1305-256-test.c
-🟢 --- Summary ---
-   	Transient Marks: 107
-   	Stable Marks: 30
-   	Total Leaks: 30
-   	Total Cuts: 30
+🟢 BladeSummaryData:107,30,107
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-256-test.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-256-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o poly1305-32-test-streaming.o poly1305-32-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 47
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:47,0,47
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-32-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-32-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o poly1305-32-test.o poly1305-32-test.c
-🟢 --- Summary ---
-   	Transient Marks: 107
-   	Stable Marks: 30
-   	Total Leaks: 30
-   	Total Cuts: 30
+🟢 BladeSummaryData:107,30,107
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-32-test.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-32-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o rsapss-test.o rsapss-test.c
-🟢 --- Summary ---
-   	Transient Marks: 42
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:42,10,42
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all rsapss-test.o ../dist/gcc-compatible/libevercrypt.a -o rsapss-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o salsa20-test.o salsa20-test.c
-🟢 --- Summary ---
-   	Transient Marks: 74
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:74,10,74
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all salsa20-test.o ../dist/gcc-compatible/libevercrypt.a -o salsa20-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o sha2-mb-test.o sha2-mb-test.c
-🟢 --- Summary ---
-   	Transient Marks: 44
-   	Stable Marks: 10
-   	Total Leaks: 10
-   	Total Cuts: 10
+🟢 BladeSummaryData:44,10,44
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha2-mb-test.o ../dist/gcc-compatible/libevercrypt.a -o sha2-mb-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o sha2-test-streaming.o sha2-test-streaming.c
-🟢 --- Summary ---
-   	Transient Marks: 34
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:34,0,34
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha2-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o sha2-test-streaming.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o sha2-test.o sha2-test.c
 sha2-test.c:21:3: warning: 'SHA256_Init' is deprecated [-Wdeprecated-declarations]
@@ -934,189 +985,12 @@ OSSL_DEPRECATEDIN_3_0 int SHA256_Final(unsigned char *md, SHA256_CTX *c);
 /usr/include/openssl/macros.h:62:52: note: expanded from macro 'OSSL_DEPRECATED'
 #     define OSSL_DEPRECATED(since) __attribute__((deprecated))
                                                    ^
-🟢 --- Summary ---
-   	Transient Marks: 6
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:6,0,6
 3 warnings generated.
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha2-test.o ../dist/gcc-compatible/libevercrypt.a -o sha2-test.exe -lcrypto
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so   -c -o sha3-streaming-test.o sha3-streaming-test.c
-🟢 --- Summary ---
-   	Transient Marks: 43
-   	Stable Marks: 32
-   	Total Leaks: 32
-   	Total Cuts: 32
+🟢 BladeSummaryData:43,32,43
 clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha3-streaming-test.o ../dist/gcc-compatible/libevercrypt.a -o sha3-streaming-test.exe -lcrypto
 clang -I../lib/c -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -fpass-plugin=/home/devblade/build/lib/BladeNaivePass.so -mavx -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all vec-128-test.c -o vec-128-test.exe
-🟢 --- Summary ---
-   	Transient Marks: 35
-   	Stable Marks: 0
-   	Total Leaks: 0
-   	Total Cuts: 0
+🟢 BladeSummaryData:35,0,35
 rm chacha20poly1305-32-test.o k256-ecdsa-test.o blake2b-256-test-streaming.o blake2s-128-test.o sha3-streaming-test.o chacha20poly1305-256-test.o ffdhe-test.o naclbox-test.o curve51-ours.o blake2b-256-test.o FrodoKEM-64-test.o poly1305-128-test.o chacha20poly1305-128-test.o poly1305-256-test-streaming.o curve64-rfc.o sha2-mb-test.o blake2b-32-test-streaming.o poly1305-128-test-streaming.o poly1305-32-test-streaming.o ecdhp256-test.o ed25519-test.o blake2s-32-test-streaming.o bignum4096-test.o blake2s-128-test-streaming.o rsapss-test.o blake2-32-test.o sha2-test-streaming.o poly1305-32-test.o sha2-test.o curve64-ours.o p256-test.o chacha20-vec-test.o chacha20-test.o poly1305-256-test.o salsa20-test.o
-
-
-
-real    0m33.805s
-user    0m28.897s
-sys 0m4.614s
-
-
-
-
-
-
------ Running ./chacha20-test.exe -----
-721.62
-726.06
-718.61
-718.80
-706.92
-708.65
-703.23
-700.14
-715.53
-710.65
-722.74
-721.24
-721.59
-729.86
-721.79
-724.62
-715.96
-718.38
-721.30
-721.59
-688.80
-721.73
-721.41
-721.03
-719.88
-721.28
-724.64
-721.57
-719.99
-728.09
-720.52
-724.52
-725.91
-723.25
-722.49
-725.30
-723.18
-721.99
-721.77
-722.20
-716.60
-728.05
-712.68
-706.29
-706.96
-713.12
-666.24
-710.20
-711.02
-703.94
------ Running ./poly1305-256-test.exe -----
-7535.92
-7450.93
-7563.55
-7675.08
-7760.48
-7711.93
-7749.47
-7746.54
-7666.54
-7661.95
-7731.99
-7593.02
-7643.50
-7731.91
-7690.72
-7717.64
-7413.71
-7502.48
-7695.23
-7624.93
-7606.38
-7702.61
-7697.95
-7600.10
-7714.55
-7671.74
-7557.47
-7616.64
-7699.83
-7658.40
-7722.04
-7673.65
-7668.04
-7684.30
-7595.03
-7688.73
-7711.21
-7767.21
-7667.11
-7571.20
-7709.43
-7688.41
-7475.00
-7625.86
-7652.43
-7655.07
-7716.36
-7770.42
-7860.79
-7819.78
------ Running ./curve64-ours.exe -----
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03
-0.03

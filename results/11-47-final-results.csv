@@ -1,0 +1,144 @@
+---base---
+583.488
+2055.596
+741.309
+7912.693
+0.030
+---blade---
+579.298
+2062.088
+739.657
+7891.195
+0.030
+---naive---
+81.688
+2056.198
+734.749
+7900.394
+0.010
+
+
+Blade RIF
+1.007
+0.997
+1.002
+1.003
+1.0
+
+Naive RIF
+7.143
+0.999
+1.009
+1.002
+3.0
+
+
+
+Salsa20 64 bytes
+SHA2 (32-bit)
+ChaCha20 8192 bytes
+Poly1305 (256-bit) 8192 bytes
+ECDH Curve25519 (64-bit)
+
+
+
+BLADE
+./salsa20-test.exe
+	🟢 BladeSummaryData:660,17,0
+	🟢 BladeSummaryData:74,10,2
+./sha2-test.exe
+	🟢 BladeSummaryData:6,0,0
+./chacha20-test.exe
+	🟢 BladeSummaryData:119,9,0
+	🟢 BladeSummaryData:37,10,2
+./poly1305-256-test.exe
+	🟢 BladeSummaryData:82,5,0
+	🟢 BladeSummaryData:48,10,2
+./curve64-ours.exe
+	🟢 BladeSummaryData:2664,9,0
+	🟢 BladeSummaryData:38,10,2
+
+
+NAIVE
+./salsa20-test.exe
+	🟢 BladeSummaryData:660,17,660
+	🟢 BladeSummaryData:74,10,74
+./sha2-test.exe
+	🟢 BladeSummaryData:6,0,6
+./chacha20-test.exe
+	🟢 BladeSummaryData:119,9,119
+	🟢 BladeSummaryData:37,10,37
+./poly1305-256-test.exe
+	🟢 BladeSummaryData:82,5,82
+	🟢 BladeSummaryData:48,10,2
+./curve64-ours.exe
+	🟢 BladeSummaryData:2664,9,2664
+	🟢 BladeSummaryData:38,10,38
+
+
+
+
+mmmmmmoooreee tests
+
+Blake2 8192 bytes
+	🟢 BladeSummaryData:38,10,2
+ED25519 32768 bytes
+	🟢 BladeSummaryData:62,8,0
+K256_ECDSA 16384 btyes
+	🟢 BladeSummaryData:13,0,0
+
+1.011
+1.0
+1.111
+
+1.007
+1.0
+1.053
+
+---base---
+1189.742
+0.020
+0.020
+---blade---
+1176.286
+0.020
+0.018
+---naive---
+1181.268
+0.020
+0.019
+
+
+
+
+
+
+
+
+
+
+---base---
+1189.742
+2209.635
+542.331
+0.020
+0.020
+---blade---
+1176.286
+2187.125
+520.579
+0.020
+0.018
+---naive---
+1181.268
+511.393
+537.842
+0.020
+0.019
+
+
+
+
+
+
+
