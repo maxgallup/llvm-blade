@@ -14,14 +14,19 @@ TIME_PREFIX=$(date +'%H-%M')
 # 	./curve64-ours.exe
 # )
 
+# EXECUTABLES=(
+# 	./bignum4096-test.exe
+# 	./blake2-32-test.exe
+# 	./chacha20poly1305-256-test.exe
+# 	./chacha20poly1305-32-test.exe
+# 	./ecdhp256-test.exe
+# 	./ed25519-test.exe
+# 	./k256-ecdsa-test.exe
+# )
+
 EXECUTABLES=(
-	./bignum4096-test.exe
-	./blake2-32-test.exe
-	./chacha20poly1305-256-test.exe
-	./chacha20poly1305-32-test.exe
-	./ecdhp256-test.exe
-	./ed25519-test.exe
-	./k256-ecdsa-test.exe
+	./poly1305-256-test.exe
+	./poly1305-256-test2.exe
 )
 
 function run_bw() {
