@@ -8,7 +8,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "llvm/Transforms/Utils/Blade.h"
+
+#include "llvm/IR/PassManager.h"
+#include "llvm/Passes/PassBuilder.h"
+#include "llvm/Passes/PassPlugin.h"
+#include "llvm/Support/raw_ostream.h"
+
 #include "llvm/ADT/Statistic.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/ADT/SetVector.h"
@@ -17,8 +22,10 @@
 #include "llvm/IR/IntrinsicsX86.h"
 #include <queue>
 #include <stack>
+#include <iostream>
 
 using namespace llvm;
+
 
 #define DEBUG_TYPE "blade"
 #define BLADE_DEBUG 1
@@ -26,7 +33,7 @@ using namespace llvm;
 #define D(X)   if(BLADE_DEBUG) errs() << "🟣 " << X << "\n"
 #define S(X)   if(BLADE_DEBUG) errs() << "🟢 " << X << "\n"
 #define N(X)   if(BLADE_DEBUG) errs() << "   " << X << "\n"
-#define RAW(X) if(BLADE_DEBUG) errs() << X
+#define RAW(X) errs() << X
 
 STATISTIC(NumTransient, "Number of transient Nodes added.");
 STATISTIC(NumStable, "Number of stable Nodes added.");
@@ -280,7 +287,7 @@ void printSummary() {
 
 /// @brief Used for command line data collection
 void printSummaryData() {
-  RAW(NumTransient << "," << NumStable << "," << NumLeaks << "," << NumCuts << "\n");
+  RAW("🟢 BladeSummaryData:" << NumTransient << "," << NumStable << "," << NumCuts << "\n");
 }
 
 /// @brief Print all instructions that make up the cutset.
@@ -752,7 +759,7 @@ void runFenceEverywhere(Module &M) {
     auto cutset = SmallSetVector<Instruction*, 16>();
     for (BasicBlock &BB : F) {
       for (Instruction &I : BB) {
-        if (isStableInstruction(&I)) {
+        if (isTransientInstruction(&I)) {
           cutset.insert(&I);
           NumLeaks++;
         }
@@ -764,16 +771,33 @@ void runFenceEverywhere(Module &M) {
   }
 }
 
-/// @brief Main entry point for the LLVM-Blade optimization pass.
-/// @return Currently not considering return value TODO
-PreservedAnalyses BladePass::run(Module &M, ModuleAnalysisManager &AM) {
 
-  runBladePerFunction(M);
-  // runFenceEverywhere(M);
+namespace {
+  struct BladeNaivePass : public PassInfoMixin<BladeNaivePass> {
 
-  printSummary();
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &FAM) {
+      runFenceEverywhere(M);
+      printSummaryData();
+      return PreservedAnalyses::all();
+    }
+  };
+} // namespace
 
 
 
-  return PreservedAnalyses::all();
+
+
+PassPluginLibraryInfo getPassPluginInfo() {
+  const auto callback = [](PassBuilder &PB) {
+      PB.registerOptimizerLastEPCallback([&](ModulePassManager &MPM, auto) {
+          MPM.addPass(BladeNaivePass());
+          return true;
+      });
+  };
+  
+  return {LLVM_PLUGIN_API_VERSION, "BladeNaive", "0.0.1", callback};
+}
+
+extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
+  return getPassPluginInfo();
 }

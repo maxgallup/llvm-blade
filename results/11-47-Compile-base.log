@@ -1,0 +1,872 @@
+clang    -c -o aesgcm-x86_64-linux.o aesgcm-x86_64-linux.S
+clang    -c -o cpuid-x86_64-linux.o cpuid-x86_64-linux.S
+clang    -c -o curve25519-x86_64-linux.o curve25519-x86_64-linux.S
+clang    -c -o poly1305-x86_64-linux.o poly1305-x86_64-linux.S
+clang    -c -o sha256-x86_64-linux.o sha256-x86_64-linux.S
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_AEAD.o EverCrypt_AEAD.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_AutoConfig2.o EverCrypt_AutoConfig2.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Chacha20Poly1305.o EverCrypt_Chacha20Poly1305.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Cipher.o EverCrypt_Cipher.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Curve25519.o EverCrypt_Curve25519.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_DRBG.o EverCrypt_DRBG.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Ed25519.o EverCrypt_Ed25519.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_HKDF.o EverCrypt_HKDF.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_HMAC.o EverCrypt_HMAC.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Hash.o EverCrypt_Hash.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o EverCrypt_Poly1305.o EverCrypt_Poly1305.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum.o Hacl_Bignum.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum256.o Hacl_Bignum256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum256_32.o Hacl_Bignum256_32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum32.o Hacl_Bignum32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum4096.o Hacl_Bignum4096.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum4096_32.o Hacl_Bignum4096_32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Bignum64.o Hacl_Bignum64.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Chacha20.o Hacl_Chacha20.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Chacha20Poly1305_128.o Hacl_Chacha20Poly1305_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Chacha20Poly1305_256.o Hacl_Chacha20Poly1305_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Chacha20Poly1305_32.o Hacl_Chacha20Poly1305_32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Chacha20_Vec128.o Hacl_Chacha20_Vec128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Chacha20_Vec256.o Hacl_Chacha20_Vec256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Chacha20_Vec32.o Hacl_Chacha20_Vec32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Curve25519_51.o Hacl_Curve25519_51.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Curve25519_64.o Hacl_Curve25519_64.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_EC_Ed25519.o Hacl_EC_Ed25519.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_EC_K256.o Hacl_EC_K256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Ed25519.o Hacl_Ed25519.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_FFDHE.o Hacl_FFDHE.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo1344.o Hacl_Frodo1344.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo64.o Hacl_Frodo64.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo640.o Hacl_Frodo640.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo976.o Hacl_Frodo976.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Frodo_KEM.o Hacl_Frodo_KEM.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_GenericField32.o Hacl_GenericField32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_GenericField64.o Hacl_GenericField64.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HKDF.o Hacl_HKDF.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_HKDF_Blake2b_256.o Hacl_HKDF_Blake2b_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_HKDF_Blake2s_128.o Hacl_HKDF_Blake2s_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HMAC.o Hacl_HMAC.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_HMAC_Blake2b_256.o Hacl_HMAC_Blake2b_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_HMAC_Blake2s_128.o Hacl_HMAC_Blake2s_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HMAC_DRBG.o Hacl_HMAC_DRBG.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP128_SHA256.o Hacl_HPKE_Curve51_CP128_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP128_SHA512.o Hacl_HPKE_Curve51_CP128_SHA512.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP256_SHA256.o Hacl_HPKE_Curve51_CP256_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP256_SHA512.o Hacl_HPKE_Curve51_CP256_SHA512.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP32_SHA256.o Hacl_HPKE_Curve51_CP32_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve51_CP32_SHA512.o Hacl_HPKE_Curve51_CP32_SHA512.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP128_SHA256.o Hacl_HPKE_Curve64_CP128_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP128_SHA512.o Hacl_HPKE_Curve64_CP128_SHA512.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP256_SHA256.o Hacl_HPKE_Curve64_CP256_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP256_SHA512.o Hacl_HPKE_Curve64_CP256_SHA512.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP32_SHA256.o Hacl_HPKE_Curve64_CP32_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_Curve64_CP32_SHA512.o Hacl_HPKE_Curve64_CP32_SHA512.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_P256_CP128_SHA256.o Hacl_HPKE_P256_CP128_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_P256_CP256_SHA256.o Hacl_HPKE_P256_CP256_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_HPKE_P256_CP32_SHA256.o Hacl_HPKE_P256_CP32_SHA256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_Base.o Hacl_Hash_Base.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_Blake2.o Hacl_Hash_Blake2.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Hash_Blake2b_256.o Hacl_Hash_Blake2b_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Hash_Blake2s_128.o Hacl_Hash_Blake2s_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_MD5.o Hacl_Hash_MD5.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_SHA1.o Hacl_Hash_SHA1.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_SHA2.o Hacl_Hash_SHA2.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Hash_SHA3.o Hacl_Hash_SHA3.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_K256_ECDSA.o Hacl_K256_ECDSA.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_NaCl.o Hacl_NaCl.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_P256.o Hacl_P256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Poly1305_128.o Hacl_Poly1305_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Poly1305_256.o Hacl_Poly1305_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Poly1305_32.o Hacl_Poly1305_32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_RSAPSS.o Hacl_RSAPSS.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_SHA2_Vec128.o Hacl_SHA2_Vec128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_SHA2_Vec256.o Hacl_SHA2_Vec256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Salsa20.o Hacl_Salsa20.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Streaming_Blake2.o Hacl_Streaming_Blake2.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Streaming_Blake2b_256.o Hacl_Streaming_Blake2b_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Streaming_Blake2s_128.o Hacl_Streaming_Blake2s_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx   -c -o Hacl_Streaming_Poly1305_128.o Hacl_Streaming_Poly1305_128.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -mavx -mavx2   -c -o Hacl_Streaming_Poly1305_256.o Hacl_Streaming_Poly1305_256.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Hacl_Streaming_Poly1305_32.o Hacl_Streaming_Poly1305_32.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Vale.o Vale.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Lib_Memzero0.o Lib_Memzero0.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Lib_PrintBuffer.o Lib_PrintBuffer.c
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3   -c -o Lib_RandomBuffer_System.o Lib_RandomBuffer_System.c
+ar cr libevercrypt.a aesgcm-x86_64-linux.o cpuid-x86_64-linux.o curve25519-x86_64-linux.o poly1305-x86_64-linux.o sha256-x86_64-linux.o EverCrypt_AEAD.o EverCrypt_AutoConfig2.o EverCrypt_Chacha20Poly1305.o EverCrypt_Cipher.o EverCrypt_Curve25519.o EverCrypt_DRBG.o EverCrypt_Ed25519.o EverCrypt_HKDF.o EverCrypt_HMAC.o EverCrypt_Hash.o EverCrypt_Poly1305.o Hacl_Bignum.o Hacl_Bignum256.o Hacl_Bignum256_32.o Hacl_Bignum32.o Hacl_Bignum4096.o Hacl_Bignum4096_32.o Hacl_Bignum64.o Hacl_Chacha20.o Hacl_Chacha20Poly1305_128.o Hacl_Chacha20Poly1305_256.o Hacl_Chacha20Poly1305_32.o Hacl_Chacha20_Vec128.o Hacl_Chacha20_Vec256.o Hacl_Chacha20_Vec32.o Hacl_Curve25519_51.o Hacl_Curve25519_64.o Hacl_EC_Ed25519.o Hacl_EC_K256.o Hacl_Ed25519.o Hacl_FFDHE.o Hacl_Frodo1344.o Hacl_Frodo64.o Hacl_Frodo640.o Hacl_Frodo976.o Hacl_Frodo_KEM.o Hacl_GenericField32.o Hacl_GenericField64.o Hacl_HKDF.o Hacl_HKDF_Blake2b_256.o Hacl_HKDF_Blake2s_128.o Hacl_HMAC.o Hacl_HMAC_Blake2b_256.o Hacl_HMAC_Blake2s_128.o Hacl_HMAC_DRBG.o Hacl_HPKE_Curve51_CP128_SHA256.o Hacl_HPKE_Curve51_CP128_SHA512.o Hacl_HPKE_Curve51_CP256_SHA256.o Hacl_HPKE_Curve51_CP256_SHA512.o Hacl_HPKE_Curve51_CP32_SHA256.o Hacl_HPKE_Curve51_CP32_SHA512.o Hacl_HPKE_Curve64_CP128_SHA256.o Hacl_HPKE_Curve64_CP128_SHA512.o Hacl_HPKE_Curve64_CP256_SHA256.o Hacl_HPKE_Curve64_CP256_SHA512.o Hacl_HPKE_Curve64_CP32_SHA256.o Hacl_HPKE_Curve64_CP32_SHA512.o Hacl_HPKE_P256_CP128_SHA256.o Hacl_HPKE_P256_CP256_SHA256.o Hacl_HPKE_P256_CP32_SHA256.o Hacl_Hash_Base.o Hacl_Hash_Blake2.o Hacl_Hash_Blake2b_256.o Hacl_Hash_Blake2s_128.o Hacl_Hash_MD5.o Hacl_Hash_SHA1.o Hacl_Hash_SHA2.o Hacl_Hash_SHA3.o Hacl_K256_ECDSA.o Hacl_NaCl.o Hacl_P256.o Hacl_Poly1305_128.o Hacl_Poly1305_256.o Hacl_Poly1305_32.o Hacl_RSAPSS.o Hacl_SHA2_Vec128.o Hacl_SHA2_Vec256.o Hacl_Salsa20.o Hacl_Streaming_Blake2.o Hacl_Streaming_Blake2b_256.o Hacl_Streaming_Blake2s_128.o Hacl_Streaming_Poly1305_128.o Hacl_Streaming_Poly1305_256.o Hacl_Streaming_Poly1305_32.o Vale.o Lib_Memzero0.o Lib_PrintBuffer.o Lib_RandomBuffer_System.o
+clang -fPIC -I. -I ../karamel/include -I ../karamel/krmllib/dist/minimal -Wall -Wextra -Werror -std=c11 -Wno-unused-variable -Wno-unknown-warning-option -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-infinite-recursion -g -fwrapv -D_BSD_SOURCE -D_DEFAULT_SOURCE -fPIC -Wno-unused -Wno-parentheses -Wno-deprecated-declarations -Wno-#warnings -Wno-error=cpp -Wno-cpp -g -std=gnu11 -O3 -shared -o libevercrypt.so aesgcm-x86_64-linux.o cpuid-x86_64-linux.o curve25519-x86_64-linux.o poly1305-x86_64-linux.o sha256-x86_64-linux.o EverCrypt_AEAD.o EverCrypt_AutoConfig2.o EverCrypt_Chacha20Poly1305.o EverCrypt_Cipher.o EverCrypt_Curve25519.o EverCrypt_DRBG.o EverCrypt_Ed25519.o EverCrypt_HKDF.o EverCrypt_HMAC.o EverCrypt_Hash.o EverCrypt_Poly1305.o Hacl_Bignum.o Hacl_Bignum256.o Hacl_Bignum256_32.o Hacl_Bignum32.o Hacl_Bignum4096.o Hacl_Bignum4096_32.o Hacl_Bignum64.o Hacl_Chacha20.o Hacl_Chacha20Poly1305_128.o Hacl_Chacha20Poly1305_256.o Hacl_Chacha20Poly1305_32.o Hacl_Chacha20_Vec128.o Hacl_Chacha20_Vec256.o Hacl_Chacha20_Vec32.o Hacl_Curve25519_51.o Hacl_Curve25519_64.o Hacl_EC_Ed25519.o Hacl_EC_K256.o Hacl_Ed25519.o Hacl_FFDHE.o Hacl_Frodo1344.o Hacl_Frodo64.o Hacl_Frodo640.o Hacl_Frodo976.o Hacl_Frodo_KEM.o Hacl_GenericField32.o Hacl_GenericField64.o Hacl_HKDF.o Hacl_HKDF_Blake2b_256.o Hacl_HKDF_Blake2s_128.o Hacl_HMAC.o Hacl_HMAC_Blake2b_256.o Hacl_HMAC_Blake2s_128.o Hacl_HMAC_DRBG.o Hacl_HPKE_Curve51_CP128_SHA256.o Hacl_HPKE_Curve51_CP128_SHA512.o Hacl_HPKE_Curve51_CP256_SHA256.o Hacl_HPKE_Curve51_CP256_SHA512.o Hacl_HPKE_Curve51_CP32_SHA256.o Hacl_HPKE_Curve51_CP32_SHA512.o Hacl_HPKE_Curve64_CP128_SHA256.o Hacl_HPKE_Curve64_CP128_SHA512.o Hacl_HPKE_Curve64_CP256_SHA256.o Hacl_HPKE_Curve64_CP256_SHA512.o Hacl_HPKE_Curve64_CP32_SHA256.o Hacl_HPKE_Curve64_CP32_SHA512.o Hacl_HPKE_P256_CP128_SHA256.o Hacl_HPKE_P256_CP256_SHA256.o Hacl_HPKE_P256_CP32_SHA256.o Hacl_Hash_Base.o Hacl_Hash_Blake2.o Hacl_Hash_Blake2b_256.o Hacl_Hash_Blake2s_128.o Hacl_Hash_MD5.o Hacl_Hash_SHA1.o Hacl_Hash_SHA2.o Hacl_Hash_SHA3.o Hacl_K256_ECDSA.o Hacl_NaCl.o Hacl_P256.o Hacl_Poly1305_128.o Hacl_Poly1305_256.o Hacl_Poly1305_32.o Hacl_RSAPSS.o Hacl_SHA2_Vec128.o Hacl_SHA2_Vec256.o Hacl_Salsa20.o Hacl_Streaming_Blake2.o Hacl_Streaming_Blake2b_256.o Hacl_Streaming_Blake2s_128.o Hacl_Streaming_Poly1305_128.o Hacl_Streaming_Poly1305_256.o Hacl_Streaming_Poly1305_32.o Vale.o Lib_Memzero0.o Lib_PrintBuffer.o Lib_RandomBuffer_System.o -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o FrodoKEM-64-test.o FrodoKEM-64-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all FrodoKEM-64-test.o ../dist/gcc-compatible/libevercrypt.a -o FrodoKEM-64-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o bignum4096-test.o bignum4096-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all bignum4096-test.o ../dist/gcc-compatible/libevercrypt.a -o bignum4096-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2-32-test.o blake2-32-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2-32-test.o ../dist/gcc-compatible/libevercrypt.a -o blake2-32-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2b-256-test-streaming.o blake2b-256-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2b-256-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2b-256-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2b-256-test.o blake2b-256-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2b-256-test.o ../dist/gcc-compatible/libevercrypt.a -o blake2b-256-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2b-32-test-streaming.o blake2b-32-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2b-32-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2b-32-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2s-128-test-streaming.o blake2s-128-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2s-128-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2s-128-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2s-128-test.o blake2s-128-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2s-128-test.o ../dist/gcc-compatible/libevercrypt.a -o blake2s-128-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o blake2s-32-test-streaming.o blake2s-32-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all blake2s-32-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o blake2s-32-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o chacha20-test.o chacha20-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o chacha20-vec-test.o chacha20-vec-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20-vec-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20-vec-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o chacha20poly1305-128-test.o chacha20poly1305-128-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20poly1305-128-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20poly1305-128-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o chacha20poly1305-256-test.o chacha20poly1305-256-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20poly1305-256-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20poly1305-256-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o chacha20poly1305-32-test.o chacha20poly1305-32-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all chacha20poly1305-32-test.o ../dist/gcc-compatible/libevercrypt.a -o chacha20poly1305-32-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o curve51-ours.o curve51-ours.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all curve51-ours.o ../dist/gcc-compatible/libevercrypt.a -o curve51-ours.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o curve64-ours.o curve64-ours.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all curve64-ours.o ../dist/gcc-compatible/libevercrypt.a -o curve64-ours.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o curve64-rfc.o curve64-rfc.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all curve64-rfc.o rfc7748_src/fp25519_x64.o rfc7748_src/fp448_x64.o rfc7748_src/x25519_x64.o rfc7748_src/x448_x64.o ../dist/gcc-compatible/libevercrypt.a -o curve64-rfc.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o ecdhp256-test.o ecdhp256-test.c
+In file included from ecdhp256-test.c:15:
+./ecdsap256_tv_w.h:10377:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___4 },
+            ^
+./ecdsap256_tv_w.h:153:20: note: expanded from macro 'result___4'
+#define result___4 18446744073709551615
+                   ^
+./ecdsap256_tv_w.h:10384:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___5 },
+            ^
+./ecdsap256_tv_w.h:179:20: note: expanded from macro 'result___5'
+#define result___5 18446744073709551615
+                   ^
+./ecdsap256_tv_w.h:10497:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___18 },
+            ^
+./ecdsap256_tv_w.h:459:21: note: expanded from macro 'result___18'
+#define result___18 18446744073709551615
+                    ^
+./ecdsap256_tv_w.h:11376:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___128 },
+            ^
+./ecdsap256_tv_w.h:3243:22: note: expanded from macro 'result___128'
+#define result___128 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11383:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___129 },
+            ^
+./ecdsap256_tv_w.h:3272:22: note: expanded from macro 'result___129'
+#define result___129 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11390:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___130 },
+            ^
+./ecdsap256_tv_w.h:3301:22: note: expanded from macro 'result___130'
+#define result___130 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11397:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___131 },
+            ^
+./ecdsap256_tv_w.h:3330:22: note: expanded from macro 'result___131'
+#define result___131 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11404:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___132 },
+            ^
+./ecdsap256_tv_w.h:3359:22: note: expanded from macro 'result___132'
+#define result___132 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11422:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___134 },
+            ^
+./ecdsap256_tv_w.h:3417:22: note: expanded from macro 'result___134'
+#define result___134 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11429:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___135 },
+            ^
+./ecdsap256_tv_w.h:3446:22: note: expanded from macro 'result___135'
+#define result___135 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11436:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___136 },
+            ^
+./ecdsap256_tv_w.h:3475:22: note: expanded from macro 'result___136'
+#define result___136 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11443:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___137 },
+            ^
+./ecdsap256_tv_w.h:3504:22: note: expanded from macro 'result___137'
+#define result___137 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11450:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___138 },
+            ^
+./ecdsap256_tv_w.h:3533:22: note: expanded from macro 'result___138'
+#define result___138 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11468:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___141 },
+            ^
+./ecdsap256_tv_w.h:3614:22: note: expanded from macro 'result___141'
+#define result___141 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11475:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___142 },
+            ^
+./ecdsap256_tv_w.h:3637:22: note: expanded from macro 'result___142'
+#define result___142 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11482:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___143 },
+            ^
+./ecdsap256_tv_w.h:3660:22: note: expanded from macro 'result___143'
+#define result___143 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11489:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___144 },
+            ^
+./ecdsap256_tv_w.h:3686:22: note: expanded from macro 'result___144'
+#define result___144 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11496:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___145 },
+            ^
+./ecdsap256_tv_w.h:3712:22: note: expanded from macro 'result___145'
+#define result___145 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11503:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___146 },
+            ^
+./ecdsap256_tv_w.h:3738:22: note: expanded from macro 'result___146'
+#define result___146 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11510:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___147 },
+            ^
+./ecdsap256_tv_w.h:3764:22: note: expanded from macro 'result___147'
+#define result___147 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11517:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___148 },
+            ^
+./ecdsap256_tv_w.h:3790:22: note: expanded from macro 'result___148'
+#define result___148 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11524:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___149 },
+            ^
+./ecdsap256_tv_w.h:3813:22: note: expanded from macro 'result___149'
+#define result___149 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11531:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___150 },
+            ^
+./ecdsap256_tv_w.h:3836:22: note: expanded from macro 'result___150'
+#define result___150 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11538:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___151 },
+            ^
+./ecdsap256_tv_w.h:3859:22: note: expanded from macro 'result___151'
+#define result___151 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11545:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___152 },
+            ^
+./ecdsap256_tv_w.h:3882:22: note: expanded from macro 'result___152'
+#define result___152 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11552:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___153 },
+            ^
+./ecdsap256_tv_w.h:3905:22: note: expanded from macro 'result___153'
+#define result___153 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11559:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___154 },
+            ^
+./ecdsap256_tv_w.h:3931:22: note: expanded from macro 'result___154'
+#define result___154 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11566:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___155 },
+            ^
+./ecdsap256_tv_w.h:3957:22: note: expanded from macro 'result___155'
+#define result___155 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11573:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___156 },
+            ^
+./ecdsap256_tv_w.h:3983:22: note: expanded from macro 'result___156'
+#define result___156 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11580:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___157 },
+            ^
+./ecdsap256_tv_w.h:4009:22: note: expanded from macro 'result___157'
+#define result___157 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11587:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___158 },
+            ^
+./ecdsap256_tv_w.h:4035:22: note: expanded from macro 'result___158'
+#define result___158 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11594:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___159 },
+            ^
+./ecdsap256_tv_w.h:4058:22: note: expanded from macro 'result___159'
+#define result___159 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11601:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___160 },
+            ^
+./ecdsap256_tv_w.h:4081:22: note: expanded from macro 'result___160'
+#define result___160 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11608:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___161 },
+            ^
+./ecdsap256_tv_w.h:4104:22: note: expanded from macro 'result___161'
+#define result___161 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11615:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___162 },
+            ^
+./ecdsap256_tv_w.h:4127:22: note: expanded from macro 'result___162'
+#define result___162 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11622:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___163 },
+            ^
+./ecdsap256_tv_w.h:4150:22: note: expanded from macro 'result___163'
+#define result___163 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11629:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___164 },
+            ^
+./ecdsap256_tv_w.h:4176:22: note: expanded from macro 'result___164'
+#define result___164 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11636:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___165 },
+            ^
+./ecdsap256_tv_w.h:4202:22: note: expanded from macro 'result___165'
+#define result___165 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11643:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___166 },
+            ^
+./ecdsap256_tv_w.h:4228:22: note: expanded from macro 'result___166'
+#define result___166 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11650:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___167 },
+            ^
+./ecdsap256_tv_w.h:4254:22: note: expanded from macro 'result___167'
+#define result___167 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11657:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___168 },
+            ^
+./ecdsap256_tv_w.h:4280:22: note: expanded from macro 'result___168'
+#define result___168 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11664:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___169 },
+            ^
+./ecdsap256_tv_w.h:4303:22: note: expanded from macro 'result___169'
+#define result___169 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11671:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___170 },
+            ^
+./ecdsap256_tv_w.h:4326:22: note: expanded from macro 'result___170'
+#define result___170 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11678:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___171 },
+            ^
+./ecdsap256_tv_w.h:4352:22: note: expanded from macro 'result___171'
+#define result___171 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11685:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___172 },
+            ^
+./ecdsap256_tv_w.h:4378:22: note: expanded from macro 'result___172'
+#define result___172 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11692:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___173 },
+            ^
+./ecdsap256_tv_w.h:4404:22: note: expanded from macro 'result___173'
+#define result___173 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11699:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___174 },
+            ^
+./ecdsap256_tv_w.h:4433:22: note: expanded from macro 'result___174'
+#define result___174 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11706:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___175 },
+            ^
+./ecdsap256_tv_w.h:4462:22: note: expanded from macro 'result___175'
+#define result___175 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11713:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___176 },
+            ^
+./ecdsap256_tv_w.h:4491:22: note: expanded from macro 'result___176'
+#define result___176 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11720:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___177 },
+            ^
+./ecdsap256_tv_w.h:4520:22: note: expanded from macro 'result___177'
+#define result___177 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11727:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___178 },
+            ^
+./ecdsap256_tv_w.h:4549:22: note: expanded from macro 'result___178'
+#define result___178 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11734:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___179 },
+            ^
+./ecdsap256_tv_w.h:4575:22: note: expanded from macro 'result___179'
+#define result___179 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11741:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___180 },
+            ^
+./ecdsap256_tv_w.h:4601:22: note: expanded from macro 'result___180'
+#define result___180 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11748:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___181 },
+            ^
+./ecdsap256_tv_w.h:4627:22: note: expanded from macro 'result___181'
+#define result___181 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11755:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___182 },
+            ^
+./ecdsap256_tv_w.h:4653:22: note: expanded from macro 'result___182'
+#define result___182 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11762:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___183 },
+            ^
+./ecdsap256_tv_w.h:4679:22: note: expanded from macro 'result___183'
+#define result___183 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11769:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___184 },
+            ^
+./ecdsap256_tv_w.h:4708:22: note: expanded from macro 'result___184'
+#define result___184 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11776:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___185 },
+            ^
+./ecdsap256_tv_w.h:4737:22: note: expanded from macro 'result___185'
+#define result___185 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11783:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___186 },
+            ^
+./ecdsap256_tv_w.h:4766:22: note: expanded from macro 'result___186'
+#define result___186 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11790:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___187 },
+            ^
+./ecdsap256_tv_w.h:4795:22: note: expanded from macro 'result___187'
+#define result___187 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11797:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___188 },
+            ^
+./ecdsap256_tv_w.h:4824:22: note: expanded from macro 'result___188'
+#define result___188 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11804:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___189 },
+            ^
+./ecdsap256_tv_w.h:4850:22: note: expanded from macro 'result___189'
+#define result___189 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11811:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___190 },
+            ^
+./ecdsap256_tv_w.h:4876:22: note: expanded from macro 'result___190'
+#define result___190 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11818:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___191 },
+            ^
+./ecdsap256_tv_w.h:4902:22: note: expanded from macro 'result___191'
+#define result___191 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11825:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___192 },
+            ^
+./ecdsap256_tv_w.h:4928:22: note: expanded from macro 'result___192'
+#define result___192 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11832:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___193 },
+            ^
+./ecdsap256_tv_w.h:4954:22: note: expanded from macro 'result___193'
+#define result___193 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11839:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___194 },
+            ^
+./ecdsap256_tv_w.h:4983:22: note: expanded from macro 'result___194'
+#define result___194 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11846:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___195 },
+            ^
+./ecdsap256_tv_w.h:5012:22: note: expanded from macro 'result___195'
+#define result___195 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11853:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___196 },
+            ^
+./ecdsap256_tv_w.h:5041:22: note: expanded from macro 'result___196'
+#define result___196 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11860:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___197 },
+            ^
+./ecdsap256_tv_w.h:5070:22: note: expanded from macro 'result___197'
+#define result___197 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11867:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___198 },
+            ^
+./ecdsap256_tv_w.h:5099:22: note: expanded from macro 'result___198'
+#define result___198 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11874:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___199 },
+            ^
+./ecdsap256_tv_w.h:5125:22: note: expanded from macro 'result___199'
+#define result___199 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11881:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___200 },
+            ^
+./ecdsap256_tv_w.h:5151:22: note: expanded from macro 'result___200'
+#define result___200 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11888:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___201 },
+            ^
+./ecdsap256_tv_w.h:5177:22: note: expanded from macro 'result___201'
+#define result___201 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11895:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___202 },
+            ^
+./ecdsap256_tv_w.h:5203:22: note: expanded from macro 'result___202'
+#define result___202 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11902:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___203 },
+            ^
+./ecdsap256_tv_w.h:5229:22: note: expanded from macro 'result___203'
+#define result___203 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11909:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___204 },
+            ^
+./ecdsap256_tv_w.h:5258:22: note: expanded from macro 'result___204'
+#define result___204 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11916:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___205 },
+            ^
+./ecdsap256_tv_w.h:5287:22: note: expanded from macro 'result___205'
+#define result___205 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11923:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___206 },
+            ^
+./ecdsap256_tv_w.h:5316:22: note: expanded from macro 'result___206'
+#define result___206 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11930:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___207 },
+            ^
+./ecdsap256_tv_w.h:5345:22: note: expanded from macro 'result___207'
+#define result___207 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11937:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___208 },
+            ^
+./ecdsap256_tv_w.h:5374:22: note: expanded from macro 'result___208'
+#define result___208 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11944:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___209 },
+            ^
+./ecdsap256_tv_w.h:5400:22: note: expanded from macro 'result___209'
+#define result___209 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11951:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___210 },
+            ^
+./ecdsap256_tv_w.h:5426:22: note: expanded from macro 'result___210'
+#define result___210 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11958:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___211 },
+            ^
+./ecdsap256_tv_w.h:5452:22: note: expanded from macro 'result___211'
+#define result___211 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11965:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___212 },
+            ^
+./ecdsap256_tv_w.h:5478:22: note: expanded from macro 'result___212'
+#define result___212 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11972:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___213 },
+            ^
+./ecdsap256_tv_w.h:5504:22: note: expanded from macro 'result___213'
+#define result___213 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11979:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___214 },
+            ^
+./ecdsap256_tv_w.h:5533:22: note: expanded from macro 'result___214'
+#define result___214 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11986:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___215 },
+            ^
+./ecdsap256_tv_w.h:5562:22: note: expanded from macro 'result___215'
+#define result___215 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:11993:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___216 },
+            ^
+./ecdsap256_tv_w.h:5591:22: note: expanded from macro 'result___216'
+#define result___216 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12000:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___217 },
+            ^
+./ecdsap256_tv_w.h:5620:22: note: expanded from macro 'result___217'
+#define result___217 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12007:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___218 },
+            ^
+./ecdsap256_tv_w.h:5649:22: note: expanded from macro 'result___218'
+#define result___218 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12014:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___219 },
+            ^
+./ecdsap256_tv_w.h:5675:22: note: expanded from macro 'result___219'
+#define result___219 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12021:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___220 },
+            ^
+./ecdsap256_tv_w.h:5701:22: note: expanded from macro 'result___220'
+#define result___220 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12028:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___221 },
+            ^
+./ecdsap256_tv_w.h:5724:22: note: expanded from macro 'result___221'
+#define result___221 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12035:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___222 },
+            ^
+./ecdsap256_tv_w.h:5749:22: note: expanded from macro 'result___222'
+#define result___222 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12042:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___223 },
+            ^
+./ecdsap256_tv_w.h:5772:22: note: expanded from macro 'result___223'
+#define result___223 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12049:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___224 },
+            ^
+./ecdsap256_tv_w.h:5795:22: note: expanded from macro 'result___224'
+#define result___224 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12065:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___226 },
+            ^
+./ecdsap256_tv_w.h:5835:22: note: expanded from macro 'result___226'
+#define result___226 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12464:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___283 },
+            ^
+./ecdsap256_tv_w.h:7484:22: note: expanded from macro 'result___283'
+#define result___283 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12520:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___291 },
+            ^
+./ecdsap256_tv_w.h:7710:22: note: expanded from macro 'result___291'
+#define result___291 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12527:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___292 },
+            ^
+./ecdsap256_tv_w.h:7735:22: note: expanded from macro 'result___292'
+#define result___292 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12583:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___300 },
+            ^
+./ecdsap256_tv_w.h:7956:22: note: expanded from macro 'result___300'
+#define result___300 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12590:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___301 },
+            ^
+./ecdsap256_tv_w.h:7984:22: note: expanded from macro 'result___301'
+#define result___301 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12842:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___337 },
+            ^
+./ecdsap256_tv_w.h:8995:22: note: expanded from macro 'result___337'
+#define result___337 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12849:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___338 },
+            ^
+./ecdsap256_tv_w.h:9020:22: note: expanded from macro 'result___338'
+#define result___338 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12856:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___339 },
+            ^
+./ecdsap256_tv_w.h:9048:22: note: expanded from macro 'result___339'
+#define result___339 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12863:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___340 },
+            ^
+./ecdsap256_tv_w.h:9076:22: note: expanded from macro 'result___340'
+#define result___340 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12954:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___353 },
+            ^
+./ecdsap256_tv_w.h:9440:22: note: expanded from macro 'result___353'
+#define result___353 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12961:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___354 },
+            ^
+./ecdsap256_tv_w.h:9468:22: note: expanded from macro 'result___354'
+#define result___354 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12968:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___355 },
+            ^
+./ecdsap256_tv_w.h:9496:22: note: expanded from macro 'result___355'
+#define result___355 18446744073709551615
+                     ^
+./ecdsap256_tv_w.h:12975:13: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+    .flag = result___356 },
+            ^
+./ecdsap256_tv_w.h:9524:22: note: expanded from macro 'result___356'
+#define result___356 18446744073709551615
+                     ^
+111 warnings generated.
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all ecdhp256-test.o ../dist/gcc-compatible/libevercrypt.a -o ecdhp256-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o ed25519-test.o ed25519-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all ed25519-test.o ../dist/gcc-compatible/libevercrypt.a -o ed25519-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o ffdhe-test.o ffdhe-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all ffdhe-test.o ../dist/gcc-compatible/libevercrypt.a -o ffdhe-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o k256-ecdsa-test.o k256-ecdsa-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all k256-ecdsa-test.o ../dist/gcc-compatible/libevercrypt.a -o k256-ecdsa-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o naclbox-test.o naclbox-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all naclbox-test.o ../dist/gcc-compatible/libevercrypt.a -o naclbox-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o p256-test.o p256-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all p256-test.o ../dist/gcc-compatible/libevercrypt.a -o p256-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o poly1305-128-test-streaming.o poly1305-128-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-128-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-128-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o poly1305-128-test.o poly1305-128-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-128-test.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-128-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o poly1305-256-test-streaming.o poly1305-256-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-256-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-256-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o poly1305-256-test.o poly1305-256-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-256-test.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-256-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o poly1305-32-test-streaming.o poly1305-32-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-32-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-32-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o poly1305-32-test.o poly1305-32-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all poly1305-32-test.o ../dist/gcc-compatible/libevercrypt.a -o poly1305-32-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o rsapss-test.o rsapss-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all rsapss-test.o ../dist/gcc-compatible/libevercrypt.a -o rsapss-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o salsa20-test.o salsa20-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all salsa20-test.o ../dist/gcc-compatible/libevercrypt.a -o salsa20-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o sha2-mb-test.o sha2-mb-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha2-mb-test.o ../dist/gcc-compatible/libevercrypt.a -o sha2-mb-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o sha2-test-streaming.o sha2-test-streaming.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha2-test-streaming.o ../dist/gcc-compatible/libevercrypt.a -o sha2-test-streaming.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o sha2-test.o sha2-test.c
+sha2-test.c:21:3: warning: 'SHA256_Init' is deprecated [-Wdeprecated-declarations]
+  SHA256_Init(&ctx);
+  ^
+/usr/include/openssl/sha.h:73:1: note: 'SHA256_Init' has been explicitly marked deprecated here
+OSSL_DEPRECATEDIN_3_0 int SHA256_Init(SHA256_CTX *c);
+^
+/usr/include/openssl/macros.h:182:49: note: expanded from macro 'OSSL_DEPRECATEDIN_3_0'
+#   define OSSL_DEPRECATEDIN_3_0                OSSL_DEPRECATED(3.0)
+                                                ^
+/usr/include/openssl/macros.h:62:52: note: expanded from macro 'OSSL_DEPRECATED'
+#     define OSSL_DEPRECATED(since) __attribute__((deprecated))
+                                                   ^
+sha2-test.c:22:3: warning: 'SHA256_Update' is deprecated [-Wdeprecated-declarations]
+  SHA256_Update(&ctx, input, len);
+  ^
+/usr/include/openssl/sha.h:74:1: note: 'SHA256_Update' has been explicitly marked deprecated here
+OSSL_DEPRECATEDIN_3_0 int SHA256_Update(SHA256_CTX *c,
+^
+/usr/include/openssl/macros.h:182:49: note: expanded from macro 'OSSL_DEPRECATEDIN_3_0'
+#   define OSSL_DEPRECATEDIN_3_0                OSSL_DEPRECATED(3.0)
+                                                ^
+/usr/include/openssl/macros.h:62:52: note: expanded from macro 'OSSL_DEPRECATED'
+#     define OSSL_DEPRECATED(since) __attribute__((deprecated))
+                                                   ^
+sha2-test.c:23:3: warning: 'SHA256_Final' is deprecated [-Wdeprecated-declarations]
+  SHA256_Final(hash, &ctx);
+  ^
+/usr/include/openssl/sha.h:76:1: note: 'SHA256_Final' has been explicitly marked deprecated here
+OSSL_DEPRECATEDIN_3_0 int SHA256_Final(unsigned char *md, SHA256_CTX *c);
+^
+/usr/include/openssl/macros.h:182:49: note: expanded from macro 'OSSL_DEPRECATEDIN_3_0'
+#   define OSSL_DEPRECATEDIN_3_0                OSSL_DEPRECATED(3.0)
+                                                ^
+/usr/include/openssl/macros.h:62:52: note: expanded from macro 'OSSL_DEPRECATED'
+#     define OSSL_DEPRECATED(since) __attribute__((deprecated))
+                                                   ^
+3 warnings generated.
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha2-test.o ../dist/gcc-compatible/libevercrypt.a -o sha2-test.exe -lcrypto
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3    -c -o sha3-streaming-test.o sha3-streaming-test.c
+clang -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all sha3-streaming-test.o ../dist/gcc-compatible/libevercrypt.a -o sha3-streaming-test.exe -lcrypto
+clang -I../lib/c -DHACL_CAN_COMPILE_VEC128 -DHACL_CAN_COMPILE_VEC256 -DHACL_CAN_COMPILE_INTRINSICS -DHACL_CAN_COMPILE_INLINE_ASM -I../dist/karamel/include -I../dist/gcc-compatible -I../dist/karamel/krmllib/dist/minimal -I../secure_api/merkle_tree -O3  -mavx -Xlinker -z -Xlinker noexecstack -Xlinker --unresolved-symbols=report-all vec-128-test.c -o vec-128-test.exe
+rm chacha20poly1305-32-test.o k256-ecdsa-test.o blake2b-256-test-streaming.o blake2s-128-test.o sha3-streaming-test.o chacha20poly1305-256-test.o ffdhe-test.o naclbox-test.o curve51-ours.o blake2b-256-test.o FrodoKEM-64-test.o poly1305-128-test.o chacha20poly1305-128-test.o poly1305-256-test-streaming.o curve64-rfc.o sha2-mb-test.o blake2b-32-test-streaming.o poly1305-128-test-streaming.o poly1305-32-test-streaming.o ecdhp256-test.o ed25519-test.o blake2s-32-test-streaming.o bignum4096-test.o blake2s-128-test-streaming.o rsapss-test.o blake2-32-test.o sha2-test-streaming.o poly1305-32-test.o sha2-test.o curve64-ours.o p256-test.o chacha20-vec-test.o chacha20-test.o poly1305-256-test.o salsa20-test.o
