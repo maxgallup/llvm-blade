@@ -11,7 +11,7 @@ TIME_PREFIX=$(date +'%H-%M')
 # 	./sha2-test.exe
 # 	./chacha20-test.exe
 # 	./poly1305-256-test.exe
-# 	./curve64-ours.exe
+	# ./curve64-ours.exe
 # )
 
 # EXECUTABLES=(
@@ -24,9 +24,13 @@ TIME_PREFIX=$(date +'%H-%M')
 # 	./k256-ecdsa-test.exe
 # )
 
+# EXECUTABLES=(
+	# ./poly1305-256-test.exe
+	# ./poly1305-256-test2.exe
+# )
+
 EXECUTABLES=(
-	./poly1305-256-test.exe
-	./poly1305-256-test2.exe
+	./curve51-ours.exe
 )
 
 function run_bw() {
@@ -55,9 +59,9 @@ function compile() {
 }
 
 
-compile base
+# compile base
 compile blade
-compile naive
+# compile naive
 
 
 
